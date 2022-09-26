@@ -70,7 +70,7 @@ class Home extends CI_Controller {
 		}
 		elseif($this->session->usertype == 1)
 		{
-			
+			redirect('/admin', 'refresh');
 		}
 		else 
 		{
@@ -112,10 +112,10 @@ class Home extends CI_Controller {
 		$mail = $this->phpmailer_lib->load();
 
 		$mail->isSMTP();
-		$mail->Host = 'ssl://smtp.gmail.com';
+		$mail->Host = 'smtp.gmail.com';
 		$mail->SMPTAuth = true;
-		$mail->SMTPSecure = 'ssl';
-		$mail->Port = 465; //465 or 587
+		$mail->SMTPSecure = 'tls';
+		$mail->Port = 587; //465 or 587
 
 		$mail->Username = 'georgelouisjose@gmail.com';
 		$mail->Password = 'besldfwobwscqfoy';
@@ -134,7 +134,6 @@ class Home extends CI_Controller {
 		}
 
 		$mail->smtpClose();
-
 	}
 
 	// Register Function
@@ -188,7 +187,6 @@ class Home extends CI_Controller {
 		}
 
 		redirect('/home', 'refresh');
-
 	}
 
 	// About Function
