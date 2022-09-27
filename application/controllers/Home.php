@@ -108,19 +108,20 @@ class Home extends CI_Controller {
 
 	public function reset_password()
 	{
-		$this->load->library('phpmailer_lib');
-		$mail = $this->phpmailer_lib->load();
+		$this->load->library('mailer');
+		$mail = $this->mailer->load();
 
 		$mail->isSMTP();
-		$mail->Host = 'smtp.gmail.com';
-		$mail->SMPTAuth = true;
-		$mail->SMTPSecure = 'tls';
+
+		$mail->Host = "smtp.gmail.com";
+		$mail->SMTPAuth = true;
+		$mail->SMTPSecure = 'tls'; //ssl or tls
 		$mail->Port = 587; //465 or 587
 
 		$mail->Username = 'georgelouisjose@gmail.com';
-		$mail->Password = 'besldfwobwscqfoy';
+		$mail->Password = 'khdlwosgntaehbjj';
 
-		$mail->setFrom('georgelouisjose@gmail.com',);
+		$mail->setFrom('georgelouisjose@gmail.com');
 		$mail->addAddress('georgelouisjose@gmail.com');
 
 		$mail->isHTML(TRUE);
