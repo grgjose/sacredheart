@@ -39,8 +39,100 @@ class Events extends CI_Controller {
 			$this->session->unset_userdata('error');
 			$this->session->unset_userdata('success');
 		}
+	}
 
 
+	public function ayuda(){
 
+		if($this->session->logged_in == false)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('events/ayuda', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+
+	}
+
+	public function senior_citizen(){
+
+		if($this->session->logged_in == false)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('events/senior', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+	}
+
+	public function projects(){
+
+		if($this->session->logged_in == false)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('events/program', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
 	}
 }

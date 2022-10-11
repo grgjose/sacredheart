@@ -27,7 +27,8 @@ class User_model extends CI_Model {
             return true;
         }
         
-        public function users_retrieve(){
+        public function users_retrieve($id = null){
+			if($id !== null) { $this->db->where('user_id', $id); }
             $query = $this->db->get('tbl_users');
             $this->db->close();
             return $query->result();

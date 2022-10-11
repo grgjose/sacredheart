@@ -13,6 +13,7 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$newdata = array(
+			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
@@ -35,12 +36,12 @@ class Home extends CI_Controller {
 	public function login()
 	{
 
-		// Get Email & Password Inputs
+		// Get Email & Password from UI
 		$mail = $this->input->post('email');
 		$pass = $this->input->post('password');
 		$verified = false;
 
-		// Verify Inputs
+		// Verify Email & Password from Database
 		$users = $this->user_model->users_retrieve();
 
 		foreach($users as $user)
@@ -49,6 +50,7 @@ class Home extends CI_Controller {
 			{
 
 				$newdata = array(
+						'user_id'  => $user->user_id,
 						'username'  => $user->username,
 						'usertype'  => $user->usertype,
 						'email'     => $user->email,
@@ -60,7 +62,7 @@ class Home extends CI_Controller {
 			}
 		}
 
-		// Verification Result
+		// Reload Webpage based on Verification Result
 		if($verified == false)
 		{
 			$error = "Wrong Email or Password! Try again!";
@@ -82,6 +84,7 @@ class Home extends CI_Controller {
 	// Logout Function
 	public function logout()
 	{
+		$this->session->unset_userdata('user_id');
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('usertype');
 		$this->session->unset_userdata('email');
@@ -93,6 +96,7 @@ class Home extends CI_Controller {
 	public function reset()
 	{
 		$newdata = array(
+			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
@@ -121,7 +125,7 @@ class Home extends CI_Controller {
 		$mail->Username = 'georgelouisjose@gmail.com';
 		$mail->Password = 'khdlwosgntaehbjj';
 
-		$mail->setFrom('georgelouisjose@gmail.com');
+		$mail->setFrom('no-reply-sacredheart@gmail.com');
 		$mail->addAddress('georgelouisjose@gmail.com');
 
 		$mail->isHTML(TRUE);
@@ -141,6 +145,7 @@ class Home extends CI_Controller {
 	public function register()
 	{
 		$newdata = array(
+			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
@@ -195,6 +200,7 @@ class Home extends CI_Controller {
 	public function about()
 	{
 		$newdata = array(
+			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
@@ -218,6 +224,7 @@ class Home extends CI_Controller {
 	public function contact()
 	{
 		$newdata = array(
+			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
@@ -234,5 +241,56 @@ class Home extends CI_Controller {
 
 		$this->session->unset_userdata('error');
 		$this->session->unset_userdata('success');
+	}
+
+	public function edit_info(){
+
+		if($this->session->usertype != 3)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$info = $this->user_model->users_retrieve($this->session->userdata('user_id'));
+
+			$data['profile'] = array(
+				'user_id' => $info[0]->user_id,
+				'username' => $info[0]->username,
+				'password' => $info[0]->password,
+				'usertype' => $info[0]->usertype,
+				'email' => $info[0]->email,
+				'fname' => $info[0]->fname,
+				'mname' => $info[0]->mname,
+				'lname' => $info[0]->lname,
+				'address' => $info[0]->address,
+				'contact' => $info[0]->contact,
+				'userfile' => $info[0]->userfile,
+				'approved' => $info[0]->approved,
+				'date_created' => $info[0]->date_created
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('profile', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+
 	}
 }

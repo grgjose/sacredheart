@@ -1,9 +1,15 @@
 
 
-<!-- ********************************
-     *          Hero Section        *
-	 ******************************** -->
+<!-- 
+
+********************************
+*         INTRO BANNER         *
+******************************** 
+
+-->
+
 <section class="section gradient-banner">
+
 	<div class="shapes-container">
 		<div class="shape" data-aos="fade-down-left" data-aos-duration="1500" data-aos-delay="100"></div>
 		<div class="shape" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100"></div>
@@ -22,18 +28,20 @@
 		<div class="shape" data-aos="fade-up-right" data-aos-duration="500" data-aos-delay="100"></div>
 		<div class="shape" data-aos="fade-down-left" data-aos-duration="500" data-aos-delay="0"></div>
 	</div>
+
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
 				<h1 class="text-white font-weight-bold mb-4">We adhere to provide best service possible</h1>
 				<p class="text-white mb-5">Besides our lovely staff. Our service is beyond expectable</p>
-				<a href="FAQ.html" class="btn btn-main-md">Request Registration For Residents</a>
+				<a href="<?php base_url(); ?>home/register" class="btn btn-main-md">Request Registration For Residents</a>
 			</div>
 			<div class="col-md-6 text-center order-1 order-md-2">
 				<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/default.jpg" alt="screenshot">
 			</div>
 		</div>
 	</div>
+
 </section>
 
 <section class="section pt-0 position-relative pull-top">
@@ -62,9 +70,13 @@
 </section>
 
 
-<!-- ********************************
-     *       Feature Section        *
-	 ******************************** -->
+<!-- 
+
+********************************
+*            FEATURE           *
+******************************** 
+
+-->
 
 <section class="feature section pt-0">
 	<div class="container">
@@ -132,9 +144,14 @@
 	</div>
 </section>
 
-<!-- ********************************
-     *           SERVICES           *
-	 ******************************** -->
+<!-- 
+
+********************************
+*           SERVICES           *
+******************************** 
+
+-->
+
 <?php $x = 0; if($x == 1){ ?>
 <section class="service section bg-gray">
 	<div class="container-fluid p-0">
@@ -209,9 +226,14 @@
 </section>
 <?php } ?>
 
-<!-- ********************************
-     *          VIDEO PROMO         *
-	 ******************************** -->
+<!-- 
+
+********************************
+*      PROMOTIONAL VIDEO       *
+******************************** 
+
+-->
+
 <section class="video-promo section bg-1">
 	<div class="container">
 		<div class="row">
@@ -233,51 +255,20 @@
 </section>
 
 
-<!-- ********************************
-     *        INSPIRED QUOTES       *
-	 ******************************** -->
+<!-- 
+
+********************************
+*      INSPIRATIONAL QUOTES    *
+******************************** 
+
+-->
+
 <section class="section testimonial" id="testimonial">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<!-- Testimonial Slider -->
 				<div class="testimonial-slider owl-carousel owl-theme">
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
-							<div class="image">
-								<img src="<?php echo base_url(); ?>assets/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
-						</div>
-					</div>
-					<!-- Testimonial 01 -->
-					<div class="item">
-						<div class="block shadow">
-							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
-							<div class="image">
-								<img src="<?php echo base_url(); ?>assets/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
-						</div>
-					</div>
 					<!-- Testimonial 01 -->
 					<div class="item">
 						<div class="block shadow">
