@@ -34,6 +34,22 @@ class User_model extends CI_Model {
             return $query->result();
         }
         
+		public function users_update_verification_code($code, $email){
+            $this->db->set('verification_code', $code);
+			$this->db->where('email', $email);
+			$this->db->update('tbl_users'); 
+            $this->db->close();
+        }
+
+		public function users_update_password($password, $code, $email){
+            $this->db->set('password', $password);
+			$this->db->set('verification_code', $code);
+			$this->db->where('email', $email);
+			$this->db->update('tbl_users'); 
+            $this->db->close();
+        }
+
+
         public function users_update($id, $username, $password, $firstname, $lastname, $email, $number, $userlevel){
             
             $this->db->query('UPDATE `tbl_users` SET `user_id`="'.$id.'",`username`="'.$username.'",`password`="'.$password.'",`firstname`="'.$firstname.'",`lastname`="'.$lastname.'",`email`="'.$email.'",`number`="'.$number.'",`userlevel`="'.$userlevel.'" WHERE user_id ='.$id);

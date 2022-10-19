@@ -71,8 +71,7 @@
 							</li>
 						</ul>
 					</li>
-					<?php } ?>
-
+					<?php } else { ?>
 					<!-- Headbar Navigation (For Normal Users) -->
 					<li class="nav-item dropdown @@services">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Services <span><i class="ti-angle-down"></i></span></a> 
@@ -89,6 +88,7 @@
 							</li>
 						</ul>
 					</li>
+					<?php } ?>
 					<li class="nav-item dropdown @@events">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Events <span><i class="ti-angle-down"></i></span></a> 
 						<!-- Dropdown list -->

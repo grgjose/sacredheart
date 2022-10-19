@@ -112,6 +112,18 @@ class Home extends CI_Controller {
 
 	public function reset_password()
 	{
+
+		$myEmail = $this->input->post('email');
+
+		//Generate Verification Code
+		$letters='abcdefghijklmnopqrstuvwxyz';			// a-z
+		$string='';										// declare empty string
+		for($x=0; $x<3; ++$x){							// loop three times
+			$string.=$letters[rand(0,25)].rand(0,9);	// concatenate one letter then one number
+		}
+
+		$this->user_model->users_update_verification_code($string, $myEmail);
+
 		$this->load->library('mailer');
 		$mail = $this->mailer->load();
 
@@ -122,23 +134,82 @@ class Home extends CI_Controller {
 		$mail->SMTPSecure = 'tls'; //ssl or tls
 		$mail->Port = 587; //465 or 587
 
-		$mail->Username = 'georgelouisjose@gmail.com';
-		$mail->Password = 'khdlwosgntaehbjj';
+		$mail->Username = 'kendrickmallare.km@gmail.com';
+		$mail->Password = 'pofemwkzevfsjpvs';
 
 		$mail->setFrom('no-reply-sacredheart@gmail.com');
-		$mail->addAddress('georgelouisjose@gmail.com');
+		$mail->addAddress($myEmail);
+
+		$message = "<p>Good Day!</p>" 
+		         . "<p>I am one of the Developers of the Sacred Heart Barangay Information System.</p>"
+				 . "<p>Please use the link below for the Password Reset!</p>"
+				 . "<p>Link: ". base_url() . "home/reset_password_now/" . $string . "</p>"
+				 . "<br><br>"
+				 . "<p>Thank you!</p>"
+				 . "<p>Kendrick Lamar</p>"
+				 . "<p>Software Developer</p>";
 
 		$mail->isHTML(TRUE);
 		$mail->Subject = 'Reset Password';
-		$mail->Body =  "<h1>Test</h1>";
+		$mail->Body =  $message;
 
 		if(!$mail->send()){
-			echo 'Mailer Error: '.$mail->ErrorInfo;
+			$error = 'Mailer Error: '.$mail->ErrorInfo;
+			$this->session->set_userdata('error' , $error);
 		} else{
-			echo 'check mail';
+			$success = "Please check your email for the reset password link. Thanks!";
+			$this->session->set_userdata('success' , $success);
 		}
 
 		$mail->smtpClose();
+		redirect('/home', 'refresh');
+
+	}
+
+	public function reset_password_now($code = null)
+	{
+		if($code == null){
+			$error = "Invalid Link!";
+			$this->session->set_userdata('error' , $error);
+			redirect('/home', 'refresh');
+		} else {
+
+			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+
+			$users = $this->user_model->users_retrieve();
+
+			foreach($users as $user)
+			{
+				if($user->verification_code == $code)
+				{
+					$data['email'] = $user->email;
+				}
+			}
+			$this->load->view('plus/header', $data);
+			$this->load->view('reset_form', $data);
+			$this->load->view('plus/footer', $data);
+		}
+	}
+
+	public function reset_form_submit()
+	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		$code = "";
+
+		$this->user_model->users_update_password($password, $code, $email);
+
+		$success = "Please try your email and new password. Thanks!";
+		$this->session->set_userdata('success' , $success);
+		redirect('/home', 'refresh');
 	}
 
 	// Register Function
@@ -186,7 +257,7 @@ class Home extends CI_Controller {
 		else
 		{
 			$this->user_model->users_insert( 'user_'.time(), $password, 3,
-			$fname, $mname, $lname, $email, $address, $contact, $config['file_name']);
+			$fname, $mname, $lname, $email, $address, $contact, $this->upload->data('file_name'));
 
 			$success = "Registration Filed Successfully, Please wait for the Officials to Approve it";
 			$this->session->set_userdata('success' , $success);

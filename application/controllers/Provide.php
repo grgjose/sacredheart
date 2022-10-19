@@ -44,14 +44,7 @@ class Provide extends CI_Controller {
 
 	public function verification(){
 
-		if($this->session->usertype != 1)
-		{
-			$error = "Register or Login First";
-			$this->session->set_userdata('error' , $error);
-
-			redirect('/home', 'refresh');
-		}
-		elseif($this->session->logged_in == false)
+		if($this->session->logged_in == false || $this->session->usertype != 2)
 		{
 			$error = "Register or Login First";
 			$this->session->set_userdata('error' , $error);
@@ -72,7 +65,7 @@ class Provide extends CI_Controller {
 			$data['success'] = $this->session->userdata('success');
 
 			$this->load->view('plus/header', $data);
-			$this->load->view('home', $data);
+			$this->load->view('provide/verify', $data);
 			$this->load->view('plus/footer', $data);
 
 			$this->session->unset_userdata('error');
@@ -83,14 +76,7 @@ class Provide extends CI_Controller {
 
 	public function complaints(){
 
-		if($this->session->usertype != 1)
-		{
-			$error = "Register or Login First";
-			$this->session->set_userdata('error' , $error);
-
-			redirect('/home', 'refresh');
-		}
-		elseif($this->session->logged_in == false)
+		if($this->session->logged_in == false || $this->session->usertype != 2)
 		{
 			$error = "Register or Login First";
 			$this->session->set_userdata('error' , $error);
@@ -121,14 +107,7 @@ class Provide extends CI_Controller {
 
 	public function information(){
 
-		if($this->session->usertype != 1)
-		{
-			$error = "Register or Login First";
-			$this->session->set_userdata('error' , $error);
-
-			redirect('/home', 'refresh');
-		}
-		elseif($this->session->logged_in == false)
+		if($this->session->logged_in == false || $this->session->usertype != 2)
 		{
 			$error = "Register or Login First";
 			$this->session->set_userdata('error' , $error);

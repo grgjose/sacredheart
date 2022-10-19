@@ -10,12 +10,12 @@
 				<h2 class="mb-5 text-center">Assistance Details</h2>
 			</div>
 			<div class="col-12">
-				<form action="">
+				<?php echo form_open('services/upload_assistance') ?>
 					<div class="row">
 						<!-- Name -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Assistance Type:</label>
-							<select class="form-select form-control main" aria-label="Select Assistance Type" required>
+							<select class="form-select form-control main" name="asst_type" aria-label="Select Assistance Type" required>
 							  <option selected>Financial Assistance</option>
 							  <option value="1">Man-power Assistance</option>
 							  <option value="2">Utility Assistance</option>
@@ -25,13 +25,13 @@
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Assistance Purpose:</label>
-							<textarea class="form-control main" name="message" rows="10" placeholder="Enter your purpose here..."></textarea>
+							<textarea class="form-control main" name="purpose" rows="10" placeholder="Enter your purpose here..."></textarea>
 						</div>
 
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Date Needed:</label>
-							<input class="form-control main" type="date" name="message" placeholder="Enter your purpose here..." />
+							<input class="form-control main" type="date" name="date_needed" placeholder="Enter your purpose here..." />
 						</div>
 						
 

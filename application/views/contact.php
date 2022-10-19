@@ -48,10 +48,10 @@
 				</div>
 			</div>
 			<div class="col-lg-7 mt-5 mt-lg-0">
-				<div class="google-map" style="border-style: solid; border-width: 2px;">
+				<div class="google-map" style="border-style: solid; border-width: 2px; height: 450px; width: 650px;">
 					<!-- Google Map -->
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d573.8602585931006!2d121.04316399476372!3d14.630021857936802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b753b2a538db%3A0x61fd6796ee217d20!2sSacred%20Heart%20Barangay%20Hall!5e0!3m2!1sen!2sph!4v1664115324138!5m2!1sen!2sph" 
-					width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					class="" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 		</div>

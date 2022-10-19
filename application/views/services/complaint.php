@@ -10,22 +10,19 @@
 				<h2 class="mb-5 text-center">File Complaint</h2>
 			</div>
 			<div class="col-12">
-				<form action="">
+				<?php echo form_open_multipart('services/upload_complaint'); ?>
 					<div class="row">
 						<!-- Name -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Complaint Description:</label>
-							<textarea class="form-control main" name="message" rows="10" placeholder="Enter your Complaint Description here..."></textarea>
+							<textarea class="form-control main" name="description" rows="10" placeholder="Enter your Complaint Description here..."></textarea>
 						</div>
-
 
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Complaint Letter File:</label>
-							<input class="form-control main" type="file" style="height: 60px;" size="1000000"/>
+							<input class="form-control main" name="userfile" type="file" style="height: 60px;" size="100000000"/>
 						</div>
-						
-
 
 						<!-- Submit Button -->
 						<div class="col-12 text-right">

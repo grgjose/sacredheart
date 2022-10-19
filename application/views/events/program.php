@@ -19,38 +19,67 @@
 <!-- ********************************
      *         CREATE SERVICE       *
 	 ******************************** -->
-<section class="section create-stories pt-0">
+<section class="feature section pt-0">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6">
-				<div class="block">
-					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/events/event_04.jpg" alt="Story-Image">
-					<!-- Heading -->
-					<h2>Our Story</h2>
-					<!-- Story -->
-					<p>Men go abroad to wonder at the heights of mountains, 
-					at the huge waves of the sea, at the long courses of the rivers, 
-					at the vast compass of the ocean, at the circular motions of the stars, 
-					and they pass by themselves without wondering.</p>
+			<div class="col-lg-6 ml-auto justify-content-center">
+				<!-- Feature Mockup -->
+				<div class="image-content">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
 				</div>
 			</div>
-			<div class="col-lg-6 mt-5 mt-lg-0">
-				<div class="block">
-					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/events/event_06.jpg" alt="Story-Image">
-					<!-- Heading -->
-					<h2>What we do</h2>
-					<!-- Story -->
-					<p>Some may serve for hope of earthly reward. 
-					Such a man or woman might serve in Church positions or in private acts of mercy in an 
-					effort to achieve prominence or cultivate contacts that would increase income or aid in acquiring
-					wealth. Others might serve in order to obtain worldly honors, prominence, or power.</p>
+			<div class="col-lg-6 mr-auto align-self-center">
+				<div class="feature-content">
+					<!-- Feature Title -->
+					<h2>Upcoming Event: Street Mass</h2>
+					<!-- Feature Description -->
+					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
+				</div>
+				<!-- Testimonial Quote -->
+				<div class="testimonial">
+					<p>
+						"We adhere to provide the best service possible"
+					</p>
+					<ul class="list-inline meta">
+						<li class="list-inline-item">
+							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+						</li>
+						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 ml-auto justify-content-center">
+				<!-- Feature Mockup -->
+				<div class="image-content">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
+				</div>
+			</div>
+			<div class="col-lg-6 mr-auto align-self-center">
+				<div class="feature-content">
+					<!-- Feature Title -->
+					<h2>Upcoming Event: Street Mass</h2>
+					<!-- Feature Description -->
+					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
+				</div>
+				<!-- Testimonial Quote -->
+				<div class="testimonial">
+					<p>
+						"We adhere to provide the best service possible"
+					</p>
+					<ul class="list-inline meta">
+						<li class="list-inline-item">
+							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+						</li>
+						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+
 
 
 <!-- ********************************
@@ -73,33 +102,61 @@
 <!-- ********************************
      *         CREATE SERVICE       *
 	 ******************************** -->
-<section class="section create-stories pt-0">
+<section class="feature section pt-0">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6">
-				<div class="block">
-					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/events/event_04.jpg" alt="Story-Image">
-					<!-- Heading -->
-					<h2>Our Story</h2>
-					<!-- Story -->
-					<p>Men go abroad to wonder at the heights of mountains, 
-					at the huge waves of the sea, at the long courses of the rivers, 
-					at the vast compass of the ocean, at the circular motions of the stars, 
-					and they pass by themselves without wondering.</p>
+			<div class="col-lg-6 ml-auto justify-content-center">
+				<!-- Feature Mockup -->
+				<div class="image-content">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
 				</div>
 			</div>
-			<div class="col-lg-6 mt-5 mt-lg-0">
-				<div class="block">
-					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/events/event_06.jpg" alt="Story-Image">
-					<!-- Heading -->
-					<h2>What we do</h2>
-					<!-- Story -->
-					<p>Some may serve for hope of earthly reward. 
-					Such a man or woman might serve in Church positions or in private acts of mercy in an 
-					effort to achieve prominence or cultivate contacts that would increase income or aid in acquiring
-					wealth. Others might serve in order to obtain worldly honors, prominence, or power.</p>
+			<div class="col-lg-6 mr-auto align-self-center">
+				<div class="feature-content">
+					<!-- Feature Title -->
+					<h2>Upcoming Event: Street Mass</h2>
+					<!-- Feature Description -->
+					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
+				</div>
+				<!-- Testimonial Quote -->
+				<div class="testimonial">
+					<p>
+						"We adhere to provide the best service possible"
+					</p>
+					<ul class="list-inline meta">
+						<li class="list-inline-item">
+							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+						</li>
+						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 ml-auto justify-content-center">
+				<!-- Feature Mockup -->
+				<div class="image-content">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
+				</div>
+			</div>
+			<div class="col-lg-6 mr-auto align-self-center">
+				<div class="feature-content">
+					<!-- Feature Title -->
+					<h2>Upcoming Event: Street Mass</h2>
+					<!-- Feature Description -->
+					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
+				</div>
+				<!-- Testimonial Quote -->
+				<div class="testimonial">
+					<p>
+						"We adhere to provide the best service possible"
+					</p>
+					<ul class="list-inline meta">
+						<li class="list-inline-item">
+							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+						</li>
+						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+					</ul>
 				</div>
 			</div>
 		</div>

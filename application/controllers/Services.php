@@ -71,11 +71,32 @@ class Services extends CI_Controller {
 			$this->session->unset_userdata('error');
 			$this->session->unset_userdata('success');
 		}
-
 	}
 
-	public function file_complaint(){
+	public function upload_request(){
 
+		if($this->session->logged_in == false)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$doc_type = $this->input->post('doctype');
+			$purpose = $this->input->post('purpose');
+			$date_needed = $this->input->post('docdate');
+
+			$this->requests_model->request_insert($this->session->userdata('user_id'), $doc_type, $purpose, $date_needed);
+			$this->session->set_userdata('success', 'Request Created. Please wait for 1-2 Working Days.');
+
+			redirect('/home', 'refresh');
+		}
+	}
+
+	public function file_complaint()
+	{
 		if($this->session->logged_in == false)
 		{
 			$error = "Register or Login First";
@@ -104,6 +125,45 @@ class Services extends CI_Controller {
 			$this->session->unset_userdata('success');
 		}
 	}
+
+	public function upload_complaint()
+	{
+		if($this->session->userdata('logged_in') == false)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$description = $this->input->post('description');
+			
+			// Upload ID to a Path
+			$config['upload_path']          = './assets/files/registration/';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 1000000000;
+			$config['file_name']			= time();
+
+			$this->load->library('upload', $config);	
+
+			if ( ! $this->upload->do_upload('userfile'))
+			{
+				$error = "File Failed to Upload due to the following reasons" . $this->upload->display_errors();
+				$this->session->set_userdata('error' , $error);
+			}
+			else
+			{
+				$this->complaints_model->complaint_insert( $this->session->userdata('user_id'), $description, $this->upload->data('file_name'));
+
+				$success = "Complaint Created. Please wait for the response. Thank you!";
+				$this->session->set_userdata('success' , $success);
+			}
+
+			redirect('/home', 'refresh');
+		}
+	}
+
 
 	public function assistance(){
 
@@ -135,4 +195,28 @@ class Services extends CI_Controller {
 			$this->session->unset_userdata('success');
 		}
 	}
+
+
+	public function upload_assistance()
+	{
+		if($this->session->userdata('logged_in') == false)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$asst_type = $this->input->post('asst_type');
+			$purpose = $this->input->post('purpose');
+			$date_needed = $this->input->post('date_needed');
+
+			$this->assistance_model->assistance_insert($this->session->userdata('user_id'), $asst_type, $purpose, $date_needed);
+			$this->session->set_userdata('success', 'Assistance Created. Please wait for 1-2 Working Days.');
+
+			redirect('/home', 'refresh');
+		}
+	}
+
 }

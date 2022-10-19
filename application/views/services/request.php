@@ -7,34 +7,32 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="mb-5 text-center">Enter the Desired Document Details</h2>
+				<h2 class="mb-5 text-center">Enter Document Details</h2>
 			</div>
 			<div class="col-12">
-				<form action="">
+				<?php echo form_open('services/upload_request'); ?>
 					<div class="row">
 						<!-- Name -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Document Type:</label>
-							<select class="form-select form-control main" aria-label="Select Document Type" required>
-							  <option selected>Cedula</option>
-							  <option value="1">Barangay Clearance</option>
-							  <option value="2">Business Clearance</option>
-							  <option value="3">Barangay ID</option>
+							<select class="form-select form-control main" name="doctype" style="height: 50px;" aria-label="Select Document Type" required>
+							  <option value="Cedula" selected>Cedula</option>
+							  <option value="Barangay Clearance">Barangay Clearance</option>
+							  <option value="Business Clearance">Business Clearance</option>
+							  <option value="Barangay ID">Barangay ID</option>
 							</select>
 						</div>
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Document Purpose:</label>
-							<textarea class="form-control main" name="message" rows="10" placeholder="Enter your purpose here..."></textarea>
+							<textarea class="form-control main" name="purpose" rows="10" placeholder="Enter your purpose here..." required></textarea>
 						</div>
 
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Date Needed:</label>
-							<input class="form-control main" type="date" name="message" placeholder="Enter your purpose here..." />
+							<input class="form-control main" type="date" name="docdate" required/>
 						</div>
-						
-
 
 						<!-- Submit Button -->
 						<div class="col-12 text-right">
@@ -173,8 +171,6 @@
 				<p>Be curious. Use data. Leverage imagination. Be an expert. Be an enthusiast. Be authentic. Know your competition. 
 				Hiring is the most important people function you have, and most of us aren’t as good at it as we think.
 				Refocusing your resources on hiring better will have a higher return than almost any training program you can develop. </p>
-				<!-- Action Button -->
-				<a href="<?php echo base_url(); ?>home/register" class="mt-3 btn btn-main-md">Register as a Resident</a>
 			</div>
 		</div>
 	</div>

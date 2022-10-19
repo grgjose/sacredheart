@@ -17,13 +17,14 @@
 					<input type="text" class="search form-control" placeholder="What you looking for?">
 				</div>
 				<span class="counter pull-right"></span>
+
 				<table class="table table-hover table-bordered results">
 				  <thead>
 					<tr>
 					  <th>#</th>
-					  <th class="col-md-5 col-xs-5">Name / Surname</th>
-					  <th class="col-md-4 col-xs-4">Job</th>
-					  <th class="col-md-3 col-xs-3">City</th>
+					  <th class="col-md-5 col-xs-5">FullName</th>
+					  <th class="col-md-4 col-xs-4">Age</th>
+					  <th class="col-md-3 col-xs-3">Previous Job</th>
 					</tr>
 					<tr class="warning no-result">
 					  <td colspan="4"><i class="fa fa-warning"></i> No result</td>
@@ -33,7 +34,7 @@
 					<tr>
 					  <th scope="row">1</th>
 					  <td>George Louis Jose</td>
-					  <td>UI & UX</td>
+					  <td>16</td>
 					  <td>Mars</td>
 					</tr>
 					<tr>

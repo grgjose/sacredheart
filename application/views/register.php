@@ -48,7 +48,7 @@
 						<?php echo form_close();?>
 						<div class="new-acount">
 							<p>By clicking “Sign Up” I agree to <a href="privacy-policy.html">Terms of Conditions.</a></p>
-							<p>Anready have an account? <a href="sign-in.html">SIGN IN</a></p>
+							<p>Anready have an account? <a href="#" data-target="#LoginModal" data-toggle="modal">SIGN IN</a></p>
 						</div>
 					</div>
 				</div>
@@ -107,6 +107,22 @@
 	$("#c_password").change(function() {
 
         if($("#m_password").val() != $("#c_password").val())
+		{
+			$("#m_password").val("");
+			$("#c_password").val("");
+			var notyf = new Notyf();
+			notyf.error("Passwords do not match");
+			$("#m_password").focus();
+		}
+    });
+
+	$("#m_password").change(function() {
+
+		if($("#c_password").val() == "")
+		{
+
+		}
+        else if($("#m_password").val() != $("#c_password").val())
 		{
 			$("#m_password").val("");
 			$("#c_password").val("");
