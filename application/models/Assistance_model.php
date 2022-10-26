@@ -21,6 +21,14 @@ class Assistance_model extends CI_Model {
             return true;
         }
 
+		
+		public function assistance_retrieve($id = null){
+			if($id !== null) { $this->db->where('user_id', intval($id)); }
+            $query = $this->db->get('tbl_assistance');
+            $this->db->close();
+            return $query->result();
+		}
+
   }
 
 ?>

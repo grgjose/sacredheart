@@ -47,7 +47,7 @@
 							<input id="submit" type="submit" class="btn btn-main-sm" value="Sign Up">
 						<?php echo form_close();?>
 						<div class="new-acount">
-							<p>By clicking “Sign Up” I agree to <a href="privacy-policy.html">Terms of Conditions.</a></p>
+							<p>By clicking “Sign Up” I agree to <a href="#" data-target="#TermsModal" data-toggle="modal">Terms of Conditions.</a></p>
 							<p>Anready have an account? <a href="#" data-target="#LoginModal" data-toggle="modal">SIGN IN</a></p>
 						</div>
 					</div>

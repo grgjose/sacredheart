@@ -44,7 +44,7 @@ class Events extends CI_Controller {
 
 	public function ayuda(){
 
-		if($this->session->logged_in == false)
+		if($this->session->userdata('logged_in') == false)
 		{
 			$error = "Register or Login First";
 			$this->session->set_userdata('error' , $error);
@@ -63,6 +63,7 @@ class Events extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+			$data['receivers'] = $this->receivers_model->receiver_retrieve();
 
 			$this->load->view('plus/header', $data);
 			$this->load->view('events/ayuda', $data);
@@ -95,6 +96,7 @@ class Events extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+			$data['seniors'] = $this->seniors_model->senior_retrieve();
 
 			$this->load->view('plus/header', $data);
 			$this->load->view('events/senior', $data);

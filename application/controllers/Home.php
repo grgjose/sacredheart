@@ -314,6 +314,59 @@ class Home extends CI_Controller {
 		$this->session->unset_userdata('success');
 	}
 
+	public function my_info(){
+		if($this->session->userdata('usertype') == 1)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$info = $this->user_model->users_retrieve($this->session->userdata('user_id'));
+
+			$data['profile'] = array(
+				'user_id' => $info[0]->user_id,
+				'username' => $info[0]->username,
+				'password' => $info[0]->password,
+				'usertype' => $info[0]->usertype,
+				'email' => $info[0]->email,
+				'fname' => $info[0]->fname,
+				'mname' => $info[0]->mname,
+				'lname' => $info[0]->lname,
+				'address' => $info[0]->address,
+				'contact' => $info[0]->contact,
+				'userfile' => $info[0]->userfile,
+				'approved' => $info[0]->approved,
+				'date_created' => $info[0]->date_created
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$data['complaints'] = $this->complaints_model->complaint_retrieve($this->session->userdata('user_id'));
+			$data['requests'] = $this->requests_model->request_retrieve($this->session->userdata('user_id'));
+			$data['assistance'] = $this->assistance_model->assistance_retrieve($this->session->userdata('user_id'));
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('my_info', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+	}
+
 	public function edit_info(){
 
 		if($this->session->usertype != 3)

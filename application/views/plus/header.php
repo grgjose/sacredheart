@@ -18,24 +18,26 @@
 	<link href="<?php echo base_url(); ?>assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	
 	<!-- CSS Plugins (Bootstrap / Themify / Slick / Fancybox / AOS / Notyf) -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"><link href="<?php echo base_url(); ?>assets/plugins/slick/slick.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/themify-icons/themify-icons.css" rel="stylesheet">
-	<link href="<?php echo base_url(); ?>assets/plugins/slick/slick.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/slick/slick-theme.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/fancybox/jquery.fancybox.min.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/aos/aos.css" rel="stylesheet">
 	<link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+	
 	
 	<!-- CSS Custom -->
 	<link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 	
 	<!-- JQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
-	crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" 
-	integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 
 </head>
 <body class="body-wrapper" data-spy="scroll" data-target=".privacy-nav">
@@ -128,7 +130,7 @@
 						<!-- Dropdown list -->
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item @@team" href="<?php echo base_url(); ?>">My Home</a>
+								<a class="dropdown-item @@team" href="<?php echo base_url(); ?>home/my_info">My Home</a>
 							</li>
 							<li>
 								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>home/edit_info">Edit Info</a>
@@ -178,3 +180,93 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Terms and Conditions Modal -->
+	<div aria-hidden="true" aria-labelledby="TermsModal" class="modal fade" id="TermsModal" role="dialog" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="modal-body" style="padding-top:0px;">
+					<div class="d-flex flex-column text-center">
+						<h1>Terms and Conditions for Sacred Heart Barangay</h1>
+
+						<h2>Introduction</h2> 
+  
+						<p>These Website Standard Terms and Conditions written on this webpage shall manage your use of our website, Sacred Heart accessible at http://localhost/sacredheart/.</p>
+
+						<p>These Terms will be applied fully and affect to your use of this Website. By using this Website, you agreed to accept all terms and conditions written in here. You must not use this Website if you disagree with any of these Website Standard Terms and Conditions. These Terms and Conditions have been generated with the help of the <a href="https://www.termsandcondiitionssample.com">Terms And Conditiions Sample Generator</a>.</p>
+
+						<p>Minors or people below 18 years old are not allowed to use this Website.</p>
+
+						<h2>Intellectual Property Rights</h2>
+
+						<p>Other than the content you own, under these Terms, Sacred Heart Barangay and/or its licensors own all the intellectual property rights and materials contained in this Website.</p>
+
+						<p>You are granted limited license only for purposes of viewing the material contained on this Website.</p>
+
+						<h2>Restrictions</h2>
+
+						<p>You are specifically restricted from all of the following:</p>
+
+						<ul>
+							<li>publishing any Website material in any other media;</li>
+							<li>selling, sublicensing and/or otherwise commercializing any Website material;</li>
+							<li>publicly performing and/or showing any Website material;</li>
+							<li>using this Website in any way that is or may be damaging to this Website;</li>
+							<li>using this Website in any way that impacts user access to this Website;</li>
+							<li>using this Website contrary to applicable laws and regulations, or in any way may cause harm to the Website, or to any person or business entity;</li>
+							<li>engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Website;</li>
+							<li>using this Website to engage in any advertising or marketing.</li>
+						</ul>
+
+						<p>Certain areas of this Website are restricted from being access by you and Sacred Heart Barangay may further restrict access by you to any areas of this Website, at any time, in absolute discretion. Any user ID and password you may have for this Website are confidential and you must maintain confidentiality as well.</p>
+
+						<h2>Your Content</h2>
+
+						<p>In these Website Standard Terms and Conditions, "Your Content" shall mean any audio, video text, images or other material you choose to display on this Website. By displaying Your Content, you grant Sacred Heart Barangay a non-exclusive, worldwide irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.</p>
+
+						<p>Your Content must be your own and must not be invading any third-party’s rights. Sacred Heart Barangay reserves the right to remove any of Your Content from this Website at any time without notice.</p>
+
+						<h2>Your Privacy</h2>
+
+						<p>Please read Privacy Policy.</p>
+
+						<h2>No warranties</h2>
+
+						<p>This Website is provided "as is," with all faults, and Sacred Heart Barangay express no representations or warranties, of any kind related to this Website or the materials contained on this Website. Also, nothing contained on this Website shall be interpreted as advising you.</p>
+
+						<h2>Limitation of liability</h2>
+
+						<p>In no event shall Sacred Heart Barangay, nor any of its officers, directors and employees, shall be held liable for anything arising out of or in any way connected with your use of this Website whether such liability is under contract.  Sacred Heart Barangay, including its officers, directors and employees shall not be held liable for any indirect, consequential or special liability arising out of or in any way related to your use of this Website.</p>
+
+						<h2>Indemnification</h2>
+
+						<p>You hereby indemnify to the fullest extent Sacred Heart Barangay from and against any and/or all liabilities, costs, demands, causes of action, damages and expenses arising in any way related to your breach of any of the provisions of these Terms.</p>
+
+						<h2>Severability</h2>
+
+						<p>If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+
+						<h2>Variation of Terms</h2>
+
+						<p>Sacred Heart Barangay is permitted to revise these Terms at any time as it sees fit, and by using this Website you are expected to review these Terms on a regular basis.</p>
+
+						<h2>Assignment</h2>
+
+						<p>The Sacred Heart Barangay is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms without any notification. However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these Terms.</p>
+
+						<h2>Entire Agreement</h2>
+    
+						<p>These Terms constitute the entire agreement between Sacred Heart Barangay and you in relation to your use of this Website, and supersede all prior agreements and understandings.</p>
+
+						<h2>Governing Law & Jurisdiction</h2>
+
+						<p>These Terms will be governed by and interpreted in accordance with the laws of the State of ph, and you submit to the non-exclusive jurisdiction of the state and federal courts located in ph for the resolution of any disputes.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+

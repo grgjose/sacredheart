@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2022 at 12:42 AM
+-- Generation Time: Oct 26, 2022 at 07:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -46,23 +46,6 @@ INSERT INTO `tbl_assistance` (`assistance_id`, `user_id`, `assistance_type`, `as
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_ayuda_receivers`
---
-
-CREATE TABLE `tbl_ayuda_receivers` (
-  `ayuda_receiver_id` int(11) NOT NULL,
-  `fname` varchar(100) NOT NULL,
-  `mname` varchar(100) NOT NULL,
-  `lname` varchar(100) NOT NULL,
-  `age` int(11) NOT NULL,
-  `prev_job` varchar(250) NOT NULL,
-  `date_to_receive` varchar(100) NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_complaints`
 --
 
@@ -97,6 +80,66 @@ CREATE TABLE `tbl_logs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_receivers`
+--
+
+CREATE TABLE `tbl_receivers` (
+  `receiver_id` int(11) NOT NULL,
+  `fname` varchar(100) NOT NULL,
+  `mname` varchar(100) NOT NULL,
+  `lname` varchar(100) NOT NULL,
+  `age` int(11) NOT NULL,
+  `current_job` varchar(250) NOT NULL,
+  `date_to_receive` varchar(100) NOT NULL,
+  `is_received` varchar(100) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_receivers`
+--
+
+INSERT INTO `tbl_receivers` (`receiver_id`, `fname`, `mname`, `lname`, `age`, `current_job`, `date_to_receive`, `is_received`, `date_created`) VALUES
+(1, 'George Louis', 'Martinez', 'Jose', 22, 'NA', '11/03/2022', 'Not yet Received', '2022-10-20 09:23:24'),
+(2, 'Sponge', 'Bob', 'Square Pants', 21, 'Cook', '11/03/2022', 'Not yet Received', '2022-10-20 09:24:15'),
+(3, 'Patrick', 'The', 'Star', 21, 'Friend', '11/03/2022', 'Not yet Received', '2022-10-20 09:25:36'),
+(4, 'Squidward', 'The', 'Squid', 21, 'Cashier', '11/03/2022', 'Not yet Received', '2022-10-20 09:25:36'),
+(5, 'Krusty', 'The', 'Crab', 32, 'Owner', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
+(6, 'Monkey', 'D', 'Luffy', 19, 'Pirate King', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
+(7, 'Naruto', 'The', 'Uzumaki', 17, 'Hokage', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
+(8, 'Anya', 'The', 'Forger', 12, 'Mentalist', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
+(9, 'Katniss', 'X', 'Everdeen', 18, 'Tribute', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
+(10, 'Petah', 'X', 'Mellark', 19, 'Tribute', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
+(11, 'Steve', 'Less', 'Jobs', 45, 'Founder', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
+(12, 'The', 'World', 'Star', 47, 'Commet', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
+(13, 'Mother', 'Lily', 'Shimmer', 33, 'Flower', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
+(14, 'Harry', 'The', 'Potter', 26, 'Wizard', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
+(15, 'Old', 'Spank', 'Harry', 92, 'Farmer', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_replies`
+--
+
+CREATE TABLE `tbl_replies` (
+  `reply_id` int(11) NOT NULL,
+  `reply` varchar(1000) NOT NULL,
+  `reply_suggested` varchar(100) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_replies`
+--
+
+INSERT INTO `tbl_replies` (`reply_id`, `reply`, `reply_suggested`, `date_created`) VALUES
+(1, 'How are you?', '2,3,4,5', '2022-10-24 12:35:17'),
+(2, 'I need help from the Barangay', '6,7', '2022-10-24 12:36:24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_requests`
 --
 
@@ -116,6 +159,42 @@ CREATE TABLE `tbl_requests` (
 INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `date_needed`, `date_created`) VALUES
 (1, 6, 'Barangay Clearance', 'Something', '2022-10-18', '2022-10-16 12:46:35'),
 (2, 6, 'Barangay Clearance', '1231123', '2022-10-19', '2022-10-19 15:23:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_seniors`
+--
+
+CREATE TABLE `tbl_seniors` (
+  `senior_id` int(11) NOT NULL,
+  `senior_card_id` varchar(100) NOT NULL,
+  `fname` varchar(250) NOT NULL,
+  `mname` varchar(250) NOT NULL,
+  `lname` varchar(250) NOT NULL,
+  `age` int(11) NOT NULL,
+  `job` varchar(250) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_seniors`
+--
+
+INSERT INTO `tbl_seniors` (`senior_id`, `senior_card_id`, `fname`, `mname`, `lname`, `age`, `job`, `date_created`) VALUES
+(1, '0728', 'Don', 'Don', 'Ritualo', 101, 'Old Job (Publisher of Rizal)', '2022-10-24 08:09:45'),
+(2, '0729', 'Mondragon', 'De', 'Jonor', 126, 'Monk', '2022-10-24 08:16:31'),
+(3, '0730', 'Emilito', 'De', 'Kuntador', 99, 'Veteran', '2022-10-24 08:16:31'),
+(4, '0731', 'Roel', 'Castro', 'Barumbado', 165, 'Superman', '2022-10-24 08:16:31'),
+(5, '0732', 'Tasing', 'Sabog', 'Tae', 125, 'Pornstar', '2022-10-24 08:16:31'),
+(6, '0733', 'Bogart', 'El', 'Nombre', 111, 'Handyman', '2022-10-24 08:16:31'),
+(7, '0734', 'Raul', 'De', 'Palo', 171, 'Carpenter', '2022-10-24 08:16:31'),
+(8, '0735', 'Barting', 'Con', 'Tubo', 96, 'Plumber', '2022-10-24 08:16:31'),
+(9, '0736', 'Tupac', 'N', 'Shakur', 95, 'Rapper', '2022-10-24 08:16:31'),
+(10, '0925', 'Aling', 'X', 'Cely', 78, 'Singer', '2022-10-24 08:16:31'),
+(11, '0926', 'Esparanza', 'Mel', 'Checo', 200, 'Dancer', '2022-10-24 08:16:31'),
+(12, '0927', 'Magdalena', 'Anong', 'Problema', 1000, 'GRO', '2022-10-24 08:16:31'),
+(13, '1256', 'Batong', 'Burngis', 'Bakal', 268, 'Welder', '2022-10-24 08:16:31');
 
 -- --------------------------------------------------------
 
@@ -148,7 +227,7 @@ INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`,
 (1, 'admin', 'admin', 1, 'admin@gmail.com', '', '', '', '', '', '', 1, '', '2022-09-16 12:38:05'),
 (2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'John', 'F', 'Kenedy', 'Sulok', '093131313131', '1663763872', 1, '', '2022-09-16 12:39:14'),
 (3, 'resident', 'resident', 3, 'resident@gmail.com', '', '', '', '', '', '', 1, '', '2022-09-16 12:39:14'),
-(6, 'user_1663763872', 'george', 3, 'georgelouisjose@gmail.com', 'George Louis', 'Martinez', 'Jose', 'Binangonan, Rizal', '09363362225', '1663763872.png', 1, '', '2022-09-21 12:37:52');
+(6, 'user_1663763872', 'password', 3, 'georgelouisjose@gmail.com', 'George Louis', 'Martinez', 'Jose', 'Binangonan, Rizal', '09363362225', '1663763872.png', 1, '', '2022-09-21 12:37:52');
 
 -- --------------------------------------------------------
 
@@ -181,12 +260,6 @@ ALTER TABLE `tbl_assistance`
   ADD PRIMARY KEY (`assistance_id`);
 
 --
--- Indexes for table `tbl_ayuda_receivers`
---
-ALTER TABLE `tbl_ayuda_receivers`
-  ADD PRIMARY KEY (`ayuda_receiver_id`);
-
---
 -- Indexes for table `tbl_complaints`
 --
 ALTER TABLE `tbl_complaints`
@@ -199,10 +272,28 @@ ALTER TABLE `tbl_logs`
   ADD PRIMARY KEY (`log_id`);
 
 --
+-- Indexes for table `tbl_receivers`
+--
+ALTER TABLE `tbl_receivers`
+  ADD PRIMARY KEY (`receiver_id`);
+
+--
+-- Indexes for table `tbl_replies`
+--
+ALTER TABLE `tbl_replies`
+  ADD PRIMARY KEY (`reply_id`);
+
+--
 -- Indexes for table `tbl_requests`
 --
 ALTER TABLE `tbl_requests`
   ADD PRIMARY KEY (`request_id`);
+
+--
+-- Indexes for table `tbl_seniors`
+--
+ALTER TABLE `tbl_seniors`
+  ADD PRIMARY KEY (`senior_id`);
 
 --
 -- Indexes for table `tbl_users`
@@ -229,12 +320,6 @@ ALTER TABLE `tbl_assistance`
   MODIFY `assistance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tbl_ayuda_receivers`
---
-ALTER TABLE `tbl_ayuda_receivers`
-  MODIFY `ayuda_receiver_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tbl_complaints`
 --
 ALTER TABLE `tbl_complaints`
@@ -247,10 +332,28 @@ ALTER TABLE `tbl_logs`
   MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_receivers`
+--
+ALTER TABLE `tbl_receivers`
+  MODIFY `receiver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `tbl_replies`
+--
+ALTER TABLE `tbl_replies`
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `tbl_requests`
 --
 ALTER TABLE `tbl_requests`
   MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_seniors`
+--
+ALTER TABLE `tbl_seniors`
+  MODIFY `senior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

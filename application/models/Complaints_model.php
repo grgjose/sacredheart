@@ -20,6 +20,16 @@ class Complaints_model extends CI_Model {
             return true;
         }
 
+		public function complaint_retrieve($id = null){
+			if($id != null) { 
+				$this->db->where('user_id', intval($id)); 
+			}
+
+            $query = $this->db->get('tbl_complaints');
+            $this->db->close();
+            return $query->result();
+		}
+
     }
 
 ?>

@@ -21,137 +21,27 @@
 				<div class="chatbox__body">
 
 					<div class="chatbox__body__message chatbox__body__message--left">
-						<div class="chatbox_timing">
-							<ul>
-								<li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
-								<li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
-							</ul>
-						</div>
-						<img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Chatbot Pic">
-						
-						<div class="clearfix"></div>
-						
+						<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="Chatbot Pic">
+												
 						<div class="ul_section_full">
 							<ul class="ul_msg">
-								<li><strong>Person Name</strong></li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
+								<li><strong>Chat Pat</strong></li>
+								<li>How can I help you?</li>
 							</ul>
-						
-							<div class="clearfix"></div>
 
-							<ul class="ul_msg2">
-								<li><a href="#"><i class="fa fa-pencil"></i> </a></li>
-								<li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
-							</ul>
 						</div>
 					</div>
 
 					<div class="chatbox__body__message chatbox__body__message--right">
-
-						<div class="chatbox_timing">
-							<ul>
-								<li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
-								<li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
-							</ul>
-						</div>
-	
-						<img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Chatbot Pic">
-
-						<div class="clearfix"></div>
+						<!--img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="Chatbot Pic" -->
 
 						<div class="ul_section_full">
 							<ul class="ul_msg">
-								<li><strong>Person Name</strong></li>
 								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
 							</ul>
-
-							<div class="clearfix"></div>
-
-							<ul class="ul_msg2">
-								<li><a href="#"><i class="fa fa-pencil"></i> </a></li>
-								<li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
-							</ul>
 						</div>
 					</div>
 
-					<div class="chatbox__body__message chatbox__body__message--left">
-		
-						<div class="chatbox_timing">
-							<ul>
-								<li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
-								<li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
-							</ul>
-						</div>
-	
-						<img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
-						<div class="clearfix"></div>
-						<div class="ul_section_full">
-						<ul class="ul_msg">
-						<li><strong>Person Name</strong></li>
-						<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
-						</ul>
-						<div class="clearfix"></div>
-						<ul class="ul_msg2">
-						<li><a href="#"><i class="fa fa-pencil"></i> </a></li>
-						<li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
-						</ul>
-						</div>
-					</div>
-
-					<div class="chatbox__body__message chatbox__body__message--right">
-		
-						<div class="chatbox_timing">
-							<ul>
-								<li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
-								<li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
-							</ul>
-						</div>
-	
-						<img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
-						<div class="clearfix"></div>
-
-						<div class="ul_section_full">
-							<ul class="ul_msg">
-								<li><strong>Person Name</strong></li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
-							</ul>
-						
-							<div class="clearfix"></div>
-						
-							<ul class="ul_msg2">
-								<li><a href="#"><i class="fa fa-pencil"></i> </a></li>
-								<li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="chatbox__body__message chatbox__body__message--left">
-		
-						<div class="chatbox_timing">
-							<ul>
-								<li><a href="#"><i class="fa fa-calendar"></i> 22/11/2018</a></li>
-								<li><a href="#"><i class="fa fa-clock-o"></i> 7:00 PM</a></a></li>
-							</ul>
-						</div>
-	
-						<img src="https://www.gstatic.com/webp/gallery/2.jpg" alt="Picture">
-					
-						<div class="clearfix"></div>
-
-						<div class="ul_section_full">
-							<ul class="ul_msg">
-								<li><strong>Person Name</strong></li>
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
-							</ul>
-
-						<div class="clearfix"></div>
-							<ul class="ul_msg2">
-								<li><a href="#"><i class="fa fa-pencil"></i> </a></li>
-								<li><a href="#"><i class="fa fa-trash chat-trash"></i></a></li>
-							</ul>
-						</div>
-			 
-					</div>
 				</div>
 
 				<div class="panel-footer">
@@ -583,10 +473,10 @@
 					<a href="https://www.facebook.com/OfficialBarangaySacredHeart"><i class="ti-facebook"></i></a>
 				  </li>
 				  <li class="list-inline-item">
-					<a href="https://www.facebook.com/OfficialBarangaySacredHeart"><i class="ti-twitter"></i></a>
+					<a href="https://twitter.com/SKSacre?s=20&t=t487gkarG01J8WI9W8VbkA"><i class="ti-twitter"></i></a>
 				  </li>
 				  <li class="list-inline-item">
-					<a href="https://www.facebook.com/OfficialBarangaySacredHeart"><i class="ti-instagram"></i></a>
+					<a href="https://www.instagram.com/ilostcountph/"><i class="ti-instagram"></i></a>
 				  </li>
 				</ul>
 			  </div>
@@ -597,8 +487,8 @@
 				<h6>Product</h6>
 				<!-- links -->
 				<ul>
-				  <li><a href="<?php echo base_url(); ?>home/about">Teams</a></li>
-				  <li><a href="<?php echo base_url(); ?>home/events/ayuda">Blogs</a></li>
+				  <li><a href="<?php echo base_url(); ?>home/contacts">Teams</a></li>
+				  <li><a href="<?php echo base_url(); ?>home/about">Blogs</a></li>
 				  <li><a href="<?php echo base_url(); ?>home/contacts">FAQs</a></li>
 				</ul>
 			  </div>
@@ -609,10 +499,10 @@
 				<h6>Company</h6>
 				<!-- links -->
 				<ul>
-				  <li><a href="about.html">About</a></li>
-				  <li><a href="contact.html">Contact</a></li>
-				  <li><a href="team.html">Team</a></li>
-				  <li><a href="privacy-policy.html">Privacy Policy</a></li>
+				  <li><a href="<?php echo base_url(); ?>home/about">About</a></li>
+				  <li><a href="<?php echo base_url(); ?>home/contacts">Contact</a></li>
+				  <li><a href="<?php echo base_url(); ?>home/contacts">Team</a></li>
+				  <li><a href="#" data-target="#TermsModal" data-toggle="modal">Privacy Policy</a></li>
 				</ul>
 			  </div>
 			</div>
