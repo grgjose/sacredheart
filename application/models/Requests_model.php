@@ -21,10 +21,16 @@ class Requests_model extends CI_Model {
             return true;
         }
 
-		
 		public function request_retrieve($id = null){
 			if($id !== null) { $this->db->where('user_id', intval($id)); }
             $query = $this->db->get('tbl_requests');
+            $this->db->close();
+            return $query->result();
+		}
+
+		public function request_types_retrieve($id = null){
+			if($id !== null) { $this->db->where('request_type_id', intval($id)); }
+            $query = $this->db->get('tbl_request_types');
             $this->db->close();
             return $query->result();
 		}

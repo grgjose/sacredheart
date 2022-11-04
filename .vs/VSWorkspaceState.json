@@ -4,11 +4,13 @@
     "\\application",
     "\\application\\views",
     "\\application\\views\\admin",
-    "\\application\\views\\events",
     "\\application\\views\\plus",
-    "\\application\\views\\provide",
-    "\\application\\views\\services"
+    "\\assets",
+    "\\assets\\admin\\pages",
+    "\\assets\\admin\\pages\\UI",
+    "\\assets\\images",
+    "\\assets\\images\\feature"
   ],
-  "SelectedNode": "\\application\\views\\admin\\dashboard.php",
+  "SelectedNode": "\\application\\views\\admin\\users.php",
   "PreviewInSolutionExplorer": false
 }

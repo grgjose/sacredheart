@@ -15,6 +15,9 @@ class Home extends CI_Controller {
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
+			'fname'  => $this->session->userdata('fname'),
+			'mname'  => $this->session->userdata('mname'),
+			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
 			'logged_in' => $this->session->userdata('logged_in')
@@ -52,6 +55,9 @@ class Home extends CI_Controller {
 				$newdata = array(
 						'user_id'  => $user->user_id,
 						'username'  => $user->username,
+						'fname'  =>$user->fname,
+						'mname'  => $user->mname,
+						'lname'  => $user->lname,
 						'usertype'  => $user->usertype,
 						'email'     => $user->email,
 						'logged_in' => TRUE
@@ -86,6 +92,9 @@ class Home extends CI_Controller {
 	{
 		$this->session->unset_userdata('user_id');
 		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('fname');
+		$this->session->unset_userdata('mname');
+		$this->session->unset_userdata('lname');
 		$this->session->unset_userdata('usertype');
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('logged_in');
@@ -98,6 +107,9 @@ class Home extends CI_Controller {
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
+			'fname'  => $this->session->userdata('fname'),
+			'mname'  => $this->session->userdata('mname'),
+			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
 			'logged_in' => $this->session->userdata('logged_in')
@@ -177,6 +189,9 @@ class Home extends CI_Controller {
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -218,6 +233,9 @@ class Home extends CI_Controller {
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
+			'fname'  => $this->session->userdata('fname'),
+			'mname'  => $this->session->userdata('mname'),
+			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
 			'logged_in' => $this->session->userdata('logged_in')
@@ -273,6 +291,9 @@ class Home extends CI_Controller {
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
+			'fname'  => $this->session->userdata('fname'),
+			'mname'  => $this->session->userdata('mname'),
+			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
 			'logged_in' => $this->session->userdata('logged_in')
@@ -297,6 +318,9 @@ class Home extends CI_Controller {
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
+			'fname'  => $this->session->userdata('fname'),
+			'mname'  => $this->session->userdata('mname'),
+			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
 			'logged_in' => $this->session->userdata('logged_in')
@@ -327,6 +351,9 @@ class Home extends CI_Controller {
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -381,6 +408,9 @@ class Home extends CI_Controller {
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')

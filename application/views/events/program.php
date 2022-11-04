@@ -42,9 +42,9 @@
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
 						</li>
-						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
 					</ul>
 				</div>
 			</div>
@@ -70,9 +70,9 @@
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
 						</li>
-						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
 					</ul>
 				</div>
 			</div>
@@ -125,9 +125,9 @@
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
 						</li>
-						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
 					</ul>
 				</div>
 			</div>
@@ -153,9 +153,9 @@
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
 						</li>
-						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
 					</ul>
 				</div>
 			</div>

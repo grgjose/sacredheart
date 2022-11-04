@@ -126,7 +126,7 @@
 					<!-- Headbar Navigation (For Logged In Users) -->
 					<?php } else { ?>
 					<li class="nav-item dropdown @@myprofile">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Welcome Resident <span><i class="ti-angle-down"></i></span></a> 
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Welcome <?php echo $user['lname']; ?> <span><i class="ti-angle-down"></i></span></a> 
 						<!-- Dropdown list -->
 						<ul class="dropdown-menu">
 							<li>

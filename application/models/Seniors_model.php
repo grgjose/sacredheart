@@ -15,6 +15,45 @@ class Seniors_model extends CI_Model {
             return $query->result();
         }
 
+		public function senior_insert($fname, $mname, $lname, $age, $job, $senior_card_id){
+			$data = array(
+				'fname' => $fname,
+				'mname' => $mname,
+				'lname' => $lname,
+				'age' => $age,
+				'job' => $job,
+				'senior_card_id' => $senior_card_id,
+			);
+
+			$this->db->insert('tbl_seniors', $data);
+			$this->db->close();
+            return true;
+        }
+
+		public function senior_update($senior_id, $fname, $mname, $lname, $age, $job, $senior_card_id){
+			$data = array(
+				'fname' => $fname,
+				'mname' => $mname,
+				'lname' => $lname,
+				'age' => $age,
+				'job' => $job,
+				'senior_card_id' => $senior_card_id,
+			);
+
+			$this->db->where('senior_id', $senior_id);
+			$this->db->update('tbl_seniors', $data);
+			$this->db->close();
+            return true;
+        }
+
+		public function senior_delete($senior_id){
+
+			$this->db->where('senior_id', $senior_id);
+			$this->db->delete('tbl_seniors');
+			$this->db->close();
+            return true;
+        }
+
   }
 
 ?>

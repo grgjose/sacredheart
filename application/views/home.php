@@ -101,9 +101,9 @@
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
 						</li>
-						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
 					</ul>
 				</div>
 			</div>
@@ -128,9 +128,9 @@
 					</p>
 					<ul class="list-inline meta">
 						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="">
+							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
 						</li>
-						<li class="list-inline-item">George Louis Jose , SK Secretary</li>
+						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
 					</ul>
 				</div>
 			</div>
@@ -281,10 +281,10 @@
 							</p>
 							<!-- Person Thumb -->
 							<div class="image">
-								<img src="<?php echo base_url(); ?>assets/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
+								<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="image">
 							</div>
 							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
+							<cite>Patricia Del Rosario , SK Secretary</cite>
 						</div>
 					</div>
 					<!-- Testimonial 01 -->
@@ -299,10 +299,10 @@
 							</p>
 							<!-- Person Thumb -->
 							<div class="image">
-								<img src="<?php echo base_url(); ?>assets/images/testimonial/feature-testimonial-thumb.jpg" alt="image">
+								<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="image">
 							</div>
 							<!-- Name and Company -->
-							<cite>Abraham Linkon , Themefisher.com</cite>
+							<cite>Patricia Del Rosario , SK Secretary</cite>
 						</div>
 					</div>
 				</div>

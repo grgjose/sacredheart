@@ -13,7 +13,8 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url() ?>assets/admin/dist/css/adminlte.min.css">
-
+  	<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   	<!-- Favicon -->
 	<link href="<?php echo base_url(); ?>assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -167,7 +168,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed;">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="<?php echo base_url() ?>assets/images/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -204,7 +205,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
+            <a href="<?php echo base_url() ?>admin/" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Dashboard
@@ -222,19 +223,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/sliders.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/ayuda_receivers" class="nav-link">
                   <i class="fas fa-praying-hands nav-icon"></i>
                   <p>Ayuda Receivers</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/modals.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/senior_citizens" class="nav-link">
                   <i class="fas fa-blind nav-icon"></i>
                   <p>Senior Citizens</p>
                 </a>
               </li>
 			  <li class="nav-item">
-                <a href="pages/UI/modals.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/projects" class="nav-link">
                   <i class="fas fa-running nav-icon"></i>
                   <p>Projects</p>
                 </a>
@@ -251,19 +252,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/chatbot" class="nav-link">
                   <i class="fas fa-robot nav-icon"></i>
                   <p>Chatbot Settings</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/officials_tree" class="nav-link">
                   <i class="fas fa-sitemap nav-icon"></i>
                   <p>Baranggay Officials Tree</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/users_list" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
                   <p>Users and Officials List</p>
                 </a>
@@ -280,24 +281,33 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/document_requests" class="nav-link">
                   <i class="far fa-file-alt nav-icon"></i>
                   <p>Document Requests</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/file_complaints" class="nav-link">
                   <i class="far fa-angry nav-icon"></i>
                   <p>Filed Complaints</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/jsgrid.html" class="nav-link">
+                <a href="<?php echo base_url() ?>admin/assistance_requests" class="nav-link">
                   <i class="fas fa-hands-helping nav-icon"></i>
                   <p>Assistance Requests</p>
                 </a>
               </li>
             </ul>
+          </li>
+		  <li class="nav-item">
+            <a href="<?php echo base_url(); ?>home/logout" class="nav-link">
+              <i class="nav-icon fas fa-power-off"></i>
+              <p>
+                Logout
+                <span class="badge badge-info right"></span>
+              </p>
+            </a>
           </li>
         </ul>
       </nav>
@@ -327,7 +337,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section id="main_content" class="content">
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
@@ -338,8 +348,9 @@
               <div class="info-box-content">
                 <span class="info-box-text">Document Requests</span>
                 <span class="info-box-number">
-                  10
-                  <small>%</small>
+                  <?php $ctr=0; foreach($requests as $request){ if($request->status == 0){$ctr = $ctr + 1;}} echo $ctr; ?>
+                  <small>/</small>
+				   <?php $ctr=0; foreach($requests as $request){ $ctr = $ctr + 1;} echo $ctr; ?>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -353,7 +364,11 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Complaints</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number">
+                  <?php $ctr=0; foreach($complaints as $complaint){ if($complaint->status == 0){$ctr = $ctr + 1;}} echo $ctr; ?>
+                  <small>/</small>
+				  <?php $ctr=0; foreach($complaints as $complaint){ $ctr = $ctr + 1;} echo $ctr; ?>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -370,7 +385,11 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Assistance Requests</span>
-                <span class="info-box-number">20/60</span>
+                <span class="info-box-number">
+                  <?php $ctr=0; foreach($assistance as $assist){ if($assist->status == 0){$ctr = $ctr + 1;}} echo $ctr; ?>
+                  <small>/</small>
+				  <?php $ctr=0; foreach($assistance as $assist){ $ctr = $ctr + 1;} echo $ctr; ?>
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -383,7 +402,7 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Users</span>
-                <span class="info-box-number">2,000</span>
+                  <?php $ctr=0; foreach($users as $user){ $ctr = $ctr + 1;} echo $ctr; ?>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -424,18 +443,16 @@
             </div>
             <!-- /.row -->
 
-            <!-- TABLE: LATEST ORDERS -->
+            <!-- TABLE: Latest Complaints -->
             <div class="card">
               <div class="card-header border-transparent">
-                <h3 class="card-title">Latest Orders</h3>
+                <h3 class="card-title">Latest Complaints</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
                   </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
+
                 </div>
               </div>
               <!-- /.card-header -->
@@ -444,69 +461,28 @@
                   <table class="table m-0">
                     <thead>
                     <tr>
-                      <th>Order ID</th>
-                      <th>Item</th>
+                      <th>ID</th>
+                      <th>Description</th>
+                      <th>Letter File Link</th>
                       <th>Status</th>
-                      <th>Popularity</th>
+                      <th>Complaintant</th>
+					  <th>Date Created</th>
                     </tr>
                     </thead>
                     <tbody>
+					<?php $ctr=0; foreach($complaints as $complaint){ ?>
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
+                      <td><?php echo $complaint->complaint_id; ?></td>
+                      <td><?php echo $complaint->complaint_description; ?></td>
+					  <td><a href="<?php echo base_url() ?>assets/files/<?php echo $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
                       <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
+					    <?php if($complaint->status == 1){?> <span class="badge badge-success">Success</span> <?php }?>
+						<?php if($complaint->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
+					  </td>
+					  <td><?php foreach($users as $user){ if($user->user_id == $complaint->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
+					  <td><?php echo $complaint->date_created; ?></td>
                     </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-info">Processing</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
+                    <?php $ctr = $ctr + 1; if($ctr==6){ break; }  } ?>
                     </tbody>
                   </table>
                 </div>
@@ -514,11 +490,122 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-                <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+
+                <a href="<?php echo base_url(); ?>admin/file_complaints" class="btn btn-sm btn-secondary float-right">View All Complaints</a>
               </div>
               <!-- /.card-footer -->
             </div>
+
+			<!-- TABLE: Latest Document Requests-->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">Latest Document Requests</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+					  <th>Document Type</th>
+                      <th>Purpose</th>
+                      <th>Date Needed</th>
+                      <th>Status</th>
+                      <th>Complaintant</th>
+					  <th>Date Created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+					<?php $ctr=0; foreach($requests as $request){ ?>
+                    <tr>
+                      <td><?php echo $request->request_id; ?></td>
+					  <td><?php foreach($request_types as $type){ if($request->document_type == $type->request_type_id){ echo $type->request_type; break; }} ?></td>
+                      <td><?php echo $request->document_purpose; ?></td>
+					  <td><?php echo $request->date_needed; ?></td>
+                      <td>
+					    <?php if($request->status == 1){?> <span class="badge badge-success">Success</span> <?php }?>
+						<?php if($request->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
+					  </td>
+					  <td><?php foreach($users as $user){ if($user->user_id == $request->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
+					  <td><?php echo $request->date_created; ?></td>
+                    </tr>
+                    <?php $ctr = $ctr + 1; if($ctr==6){ break; }  } ?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+
+                <a href="<?php echo base_url(); ?>admin/document_requests" class="btn btn-sm btn-secondary float-right">View All Document Requests</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+
+			<!-- TABLE: Latest Assistance Requests-->
+            <div class="card">
+              <div class="card-header border-transparent">
+                <h3 class="card-title">Latest Assistance Requests</h3>
+
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+					  <th>Assistance Type</th>
+                      <th>Purpose</th>
+                      <th>Date Needed</th>
+                      <th>Status</th>
+                      <th>Complaintant</th>
+					  <th>Date Created</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+					<?php $ctr=0; foreach($assistance as $assist){ ?>
+                    <tr>
+                      <td><?php echo $assist->request_id; ?></td>
+					  <td><?php foreach($request_types as $type){ if($assist->document_type == $type->request_type_id){ echo $type->request_type; break; }} ?></td>
+                      <td><?php echo $assist->document_purpose; ?></td>
+					  <td><?php echo $assist->date_needed; ?></td>
+                      <td>
+					    <?php if($assist->status == 1){?> <span class="badge badge-success">Success</span> <?php }?>
+						<?php if($assist->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
+					  </td>
+					  <td><?php foreach($users as $user){ if($user->user_id == $assist->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
+					  <td><?php echo $assist->date_created; ?></td>
+                    </tr>
+                    <?php $ctr = $ctr + 1; if($ctr==6){ break; }  } ?>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.table-responsive -->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer clearfix">
+
+                <a href="<?php echo base_url(); ?>admin/assistance_requests" class="btn btn-sm btn-secondary float-right">View All Assistance Requests</a>
+              </div>
+              <!-- /.card-footer -->
+            </div>
+
             <!-- /.card -->
           </div>
           <!-- /.col -->
@@ -531,72 +618,7 @@
 
             <!-- PRODUCT LIST -->
 
-			<div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Latest Members</h3>
 
-                    <div class="card-tools">
-                      <span class="badge badge-danger">8 New Members</span>
-                      <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <button type="button" class="btn btn-tool" data-card-widget="remove">
-                        <i class="fas fa-times"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <!-- /.card-header -->
-                  <div class="card-body p-0">
-                    <ul class="users-list clearfix">
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user1-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Alexander Pierce</a>
-                        <span class="users-list-date">Today</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user8-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Norman</a>
-                        <span class="users-list-date">Yesterday</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user7-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Jane</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user6-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">John</a>
-                        <span class="users-list-date">12 Jan</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user2-160x160.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Alexander</a>
-                        <span class="users-list-date">13 Jan</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user5-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Sarah</a>
-                        <span class="users-list-date">14 Jan</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user4-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Nora</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
-                      <li>
-                        <img src="<?php echo base_url() ?>assets/admin/dist/img/user3-128x128.jpg" alt="User Image">
-                        <a class="users-list-name" href="#">Nadia</a>
-                        <span class="users-list-date">15 Jan</span>
-                      </li>
-                    </ul>
-                    <!-- /.users-list -->
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer text-center">
-                    <a href="javascript:">View All Users</a>
-                  </div>
-                  <!-- /.card-footer -->
-                </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
