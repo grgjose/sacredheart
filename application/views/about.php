@@ -139,7 +139,7 @@
 <!-- ********************************
      *			PARTNERSHIP         *
 	 ******************************** -->
-<section class="section clients bg-gray">
+<!-- section class="section clients bg-gray">
 	<div class="container">
 		<div class="row">
 			<div class="col-10 m-auto text-center">
@@ -167,7 +167,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section -->
 
 
 <!-- ********************************

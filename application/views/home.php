@@ -33,7 +33,7 @@
 		<div class="row align-items-center">
 			<div class="col-md-6 order-2 order-md-1 text-center text-md-left">
 				<h1 class="text-white font-weight-bold mb-4">We adhere to provide best service possible</h1>
-				<p class="text-white mb-5">Besides our lovely staff. Our service is beyond expectable</p>
+				<p class="text-white mb-5">#MALIGayangPaglilingkod</p>
 				<a href="<?php base_url(); ?>home/register" class="btn btn-main-md">Request Registration For Residents</a>
 			</div>
 			<div class="col-md-6 text-center order-1 order-md-2">
@@ -242,8 +242,7 @@
 					<!-- Heading -->
 					<h2>Watch this Video</h2>
 					<!-- Promotional Speech -->
-					<p>Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et,
-						porttitor at sem. Vivamus </p>
+					<p>Let us show you how we do things here in our Barangay!</p>
 					<!-- Popup Video -->
 					<a data-fancybox href="https://www.youtube.com/watch?v=6UDTMEQpW_w">
 						<i class="ti-control-play video"></i>
@@ -269,40 +268,51 @@
 			<div class="col-lg-12">
 				<!-- Testimonial Slider -->
 				<div class="testimonial-slider owl-carousel owl-theme">
-					<!-- Testimonial 01 -->
 					<div class="item">
-						<div class="block shadow">
+						<div class="block">
 							<!-- Speech -->
-							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
-							</p>
-							<!-- Person Thumb -->
+							<img src="<?php echo base_url() ?>assets/files/Advocacy.jpg" width="450px" height="200px">
+							<!-- Person Thumb 
 							<div class="image">
 								<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Patricia Del Rosario , SK Secretary</cite>
+							</div> -->
+							<!-- Name and Company
+							<cite>Patricia Del Rosario , SK Secretary</cite>  -->
 						</div>
 					</div>
 					<!-- Testimonial 01 -->
 					<div class="item">
 						<div class="block shadow">
 							<!-- Speech -->
+							<h4>Mission</h4>
 							<p>
-								Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Donec sollicitudin molestie malesuada.
-								Donec sollicitudin molestie malesuada. Pellentesque in ipsum id orci porta dapibus. Lorem ipsum dolor
-								sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Quisque velit nisi,
-								pretium ut lacinia in, elementum id enim.
+								To be able to provide quality service which will make Barangay Sacred Heart a model community where people 
+								live, work, and do business in a peacuful, drug-free and progressive environment.
 							</p>
-							<!-- Person Thumb -->
+							<!-- Person Thumb 
 							<div class="image">
 								<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="image">
-							</div>
-							<!-- Name and Company -->
-							<cite>Patricia Del Rosario , SK Secretary</cite>
+							</div> -->
+							<!-- Name and Company
+							<cite>Patricia Del Rosario , SK Secretary</cite>  -->
+						</div>
+					</div>
+					<!-- Testimonial 01 -->
+					<div class="item">
+						<div class="block shadow">
+							<!-- Speech -->
+							<h4>Vision</h4>
+							<p>
+								In line with the Quezon City Local Government, the Barangay Sacred Heart envisions itself as a 
+								peaceful, drug-free, progressive local government unit in Discrict IV Quezon City commited to the 
+								leadership formation, effective governance, working partnership with the constitutents in building a better community.
+							</p>
+							<!-- Person Thumb 
+							<div class="image">
+								<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="image">
+							</div> -->
+							<!-- Name and Company
+							<cite>Patricia Del Rosario , SK Secretary</cite>  -->
 						</div>
 					</div>
 				</div>

@@ -4,13 +4,10 @@
     "\\application",
     "\\application\\views",
     "\\application\\views\\admin",
-    "\\application\\views\\plus",
+    "\\application\\views\\admin\\plus",
     "\\assets",
-    "\\assets\\admin\\pages",
-    "\\assets\\admin\\pages\\UI",
-    "\\assets\\images",
-    "\\assets\\images\\feature"
+    "\\assets\\files"
   ],
-  "SelectedNode": "\\application\\views\\admin\\users.php",
+  "SelectedNode": "\\application\\views\\admin\\dr_types.php",
   "PreviewInSolutionExplorer": false
 }

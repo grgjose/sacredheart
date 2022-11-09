@@ -10,6 +10,7 @@ class Receivers_model extends CI_Model {
 
 		public function receiver_retrieve($receiver_id = null){
 			if($receiver_id !== null) { $this->db->where('receiver_id', $receiver_id); }
+			$this->db->order_by('date_created', 'DESC');
             $query = $this->db->get('tbl_receivers');
             $this->db->close();
             return $query->result();

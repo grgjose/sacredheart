@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2022 at 07:09 PM
+-- Generation Time: Nov 09, 2022 at 10:51 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -33,6 +33,7 @@ CREATE TABLE `tbl_assistance` (
   `assistance_type` varchar(100) NOT NULL,
   `assistance_purpose` varchar(1000) NOT NULL,
   `date_needed` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -40,8 +41,28 @@ CREATE TABLE `tbl_assistance` (
 -- Dumping data for table `tbl_assistance`
 --
 
-INSERT INTO `tbl_assistance` (`assistance_id`, `user_id`, `assistance_type`, `assistance_purpose`, `date_needed`, `date_created`) VALUES
-(1, 6, '1', '123213', '2022-10-21', '2022-10-19 22:27:55');
+INSERT INTO `tbl_assistance` (`assistance_id`, `user_id`, `assistance_type`, `assistance_purpose`, `date_needed`, `status`, `date_created`) VALUES
+(1, 6, '1', '123213', '2022-10-21', 0, '2022-11-09 10:54:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_assistance_types`
+--
+
+CREATE TABLE `tbl_assistance_types` (
+  `assistance_type_id` int(11) NOT NULL,
+  `assistance_type` varchar(100) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_assistance_types`
+--
+
+INSERT INTO `tbl_assistance_types` (`assistance_type_id`, `assistance_type`, `date_created`) VALUES
+(1, 'Man-power Assistance', '2022-11-04 14:03:10'),
+(2, 'Financial Assistance', '2022-11-09 13:49:42');
 
 -- --------------------------------------------------------
 
@@ -54,6 +75,7 @@ CREATE TABLE `tbl_complaints` (
   `user_id` int(11) NOT NULL,
   `complaint_description` varchar(250) NOT NULL,
   `complaint_letter` varchar(500) NOT NULL,
+  `status` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -61,9 +83,9 @@ CREATE TABLE `tbl_complaints` (
 -- Dumping data for table `tbl_complaints`
 --
 
-INSERT INTO `tbl_complaints` (`complaint_id`, `user_id`, `complaint_description`, `complaint_letter`, `date_created`) VALUES
-(1, 6, '123123', '1666196054', '2022-10-19 16:14:14'),
-(2, 6, '12313123', '1666196237.txt', '2022-10-19 16:17:17');
+INSERT INTO `tbl_complaints` (`complaint_id`, `user_id`, `complaint_description`, `complaint_letter`, `status`, `date_created`) VALUES
+(1, 6, '123123', '1666196054.txt', 1, '2022-11-09 10:54:26'),
+(2, 6, '12313123', '1666196237.txt', 0, '2022-10-19 16:17:17');
 
 -- --------------------------------------------------------
 
@@ -100,21 +122,21 @@ CREATE TABLE `tbl_receivers` (
 --
 
 INSERT INTO `tbl_receivers` (`receiver_id`, `fname`, `mname`, `lname`, `age`, `current_job`, `date_to_receive`, `is_received`, `date_created`) VALUES
-(1, 'George Louis', 'Martinez', 'Jose', 22, 'NA', '11/03/2022', 'Not yet Received', '2022-10-20 09:23:24'),
-(2, 'Sponge', 'Bob', 'Square Pants', 21, 'Cook', '11/03/2022', 'Not yet Received', '2022-10-20 09:24:15'),
-(3, 'Patrick', 'The', 'Star', 21, 'Friend', '11/03/2022', 'Not yet Received', '2022-10-20 09:25:36'),
-(4, 'Squidward', 'The', 'Squid', 21, 'Cashier', '11/03/2022', 'Not yet Received', '2022-10-20 09:25:36'),
-(5, 'Krusty', 'The', 'Crab', 32, 'Owner', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
-(6, 'Monkey', 'D', 'Luffy', 19, 'Pirate King', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
-(7, 'Naruto', 'The', 'Uzumaki', 17, 'Hokage', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
-(8, 'Anya', 'The', 'Forger', 12, 'Mentalist', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
-(9, 'Katniss', 'X', 'Everdeen', 18, 'Tribute', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
-(10, 'Petah', 'X', 'Mellark', 19, 'Tribute', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
-(11, 'Steve', 'Less', 'Jobs', 45, 'Founder', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
-(12, 'The', 'World', 'Star', 47, 'Commet', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
-(13, 'Mother', 'Lily', 'Shimmer', 33, 'Flower', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45'),
-(14, 'Harry', 'The', 'Potter', 26, 'Wizard', '11/03/2022', 'Received', '2022-10-20 09:30:45'),
-(15, 'Old', 'Spank', 'Harry', 92, 'Farmer', '11/03/2022', 'Not yet Received', '2022-10-20 09:30:45');
+(2, 'Sponge', 'Bob', 'Square Pants', 21, 'Cook', '11/03/2022', 'No', '2022-10-20 09:24:15'),
+(3, 'Patrick', 'The', 'Star', 21, 'Friend', '11/03/2022', 'No', '2022-10-20 09:25:36'),
+(4, 'Squidward', 'The', 'Squid', 21, 'Cashier', '11/03/2022', 'No', '2022-10-20 09:25:36'),
+(5, 'Krusty', 'The', 'Crab', 32, 'Owner', '11/03/2022', 'No', '2022-10-20 09:30:45'),
+(7, 'Naruto', 'The', 'Uzumaki', 17, 'Hokage', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
+(8, 'Anya', 'The', 'Forger', 18, 'Mentalist', '2022-11-03', 'No', '2022-10-20 09:30:45'),
+(9, 'Katniss', 'X', 'Everdeen', 18, 'Tribute', '11/03/2022', 'No', '2022-10-20 09:30:45'),
+(10, 'Petah', 'X', 'Mellark', 19, 'Tribute', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
+(11, 'Steve', 'Less', 'Jobs', 45, 'Founder', '11/03/2022', 'No', '2022-10-20 09:30:45'),
+(12, 'The', 'World', 'Star', 47, 'Commet', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
+(13, 'Mother', 'Lily', 'Shimmer', 33, 'Flower', '11/03/2022', 'No', '2022-10-20 09:30:45'),
+(14, 'Harry', 'The', 'Potter', 26, 'Wizard', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
+(15, 'Old', 'Spank', 'Harry', 92, 'Farmer', '11/03/2022', 'No', '2022-10-20 09:30:45'),
+(16, 'Pat', 'Ricia', 'Velasquez', 13, 'Something', '2022-11-05', 'No', '2022-10-31 22:25:08'),
+(17, 'Frank', 'The ', 'Builder', 33, 'Vocal Gawker', '2022-11-10', 'No', '2022-10-31 22:26:51');
 
 -- --------------------------------------------------------
 
@@ -134,7 +156,7 @@ CREATE TABLE `tbl_replies` (
 --
 
 INSERT INTO `tbl_replies` (`reply_id`, `reply`, `reply_suggested`, `date_created`) VALUES
-(1, 'How are you?', '2,3,4,5', '2022-10-24 12:35:17'),
+(1, 'How can I help you?', '2,3,4,5', '2022-10-24 12:35:17'),
 (2, 'I need help from the Barangay', '6,7', '2022-10-24 12:36:24');
 
 -- --------------------------------------------------------
@@ -149,6 +171,7 @@ CREATE TABLE `tbl_requests` (
   `document_type` varchar(250) NOT NULL,
   `document_purpose` varchar(1000) NOT NULL,
   `date_needed` varchar(100) NOT NULL,
+  `status` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -156,9 +179,30 @@ CREATE TABLE `tbl_requests` (
 -- Dumping data for table `tbl_requests`
 --
 
-INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `date_needed`, `date_created`) VALUES
-(1, 6, 'Barangay Clearance', 'Something', '2022-10-18', '2022-10-16 12:46:35'),
-(2, 6, 'Barangay Clearance', '1231123', '2022-10-19', '2022-10-19 15:23:06');
+INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `date_needed`, `status`, `date_created`) VALUES
+(1, 6, '1', 'Something', '2022-10-18', 0, '2022-11-09 13:27:22'),
+(2, 6, '1', '1231123', '2022-10-19', 1, '2022-11-09 10:51:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_request_types`
+--
+
+CREATE TABLE `tbl_request_types` (
+  `request_type_id` int(11) NOT NULL,
+  `request_type` varchar(100) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_request_types`
+--
+
+INSERT INTO `tbl_request_types` (`request_type_id`, `request_type`, `date_created`) VALUES
+(1, 'Barangay Clearance', '2022-11-04 13:51:20'),
+(2, 'Cedula', '2022-11-04 13:51:20'),
+(3, 'Barangay ID', '2022-11-04 13:52:03');
 
 -- --------------------------------------------------------
 
@@ -216,6 +260,8 @@ CREATE TABLE `tbl_users` (
   `userfile` varchar(500) NOT NULL,
   `approved` int(11) NOT NULL,
   `verification_code` varchar(100) NOT NULL,
+  `reg_userfile` varchar(250) NOT NULL,
+  `dp_userfile` varchar(250) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -223,11 +269,11 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`, `fname`, `mname`, `lname`, `address`, `contact`, `userfile`, `approved`, `verification_code`, `date_created`) VALUES
-(1, 'admin', 'admin', 1, 'admin@gmail.com', '', '', '', '', '', '', 1, '', '2022-09-16 12:38:05'),
-(2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'John', 'F', 'Kenedy', 'Sulok', '093131313131', '1663763872', 1, '', '2022-09-16 12:39:14'),
-(3, 'resident', 'resident', 3, 'resident@gmail.com', '', '', '', '', '', '', 1, '', '2022-09-16 12:39:14'),
-(6, 'user_1663763872', 'password', 3, 'georgelouisjose@gmail.com', 'George Louis', 'Martinez', 'Jose', 'Binangonan, Rizal', '09363362225', '1663763872.png', 1, '', '2022-09-21 12:37:52');
+INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`, `fname`, `mname`, `lname`, `address`, `contact`, `userfile`, `approved`, `verification_code`, `reg_userfile`, `dp_userfile`, `date_created`) VALUES
+(1, 'admin', 'admin', 1, 'admin@gmail.com', '', '', '', '', '', 'default.jpg', 1, '', '', '', '2022-09-16 12:38:05'),
+(2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'John', 'F', 'Kenedy', 'Sulok', '093131313131', 'pat.jpg', 1, '', '', '', '2022-09-16 12:39:14'),
+(3, 'resident', 'resident', 3, 'resident@gmail.com', '', '', '', '', '', 'default.jpg', 1, '', '', '', '2022-09-16 12:39:14'),
+(6, 'user_1663763872', 'password', 3, 'georgelouisjose@gmail.com', 'George Louis', 'Martinez', 'Jose', 'Binangonan, Rizal', '09363362225', 'pat.jpg', 1, '', '', '', '2022-09-21 12:37:52');
 
 -- --------------------------------------------------------
 
@@ -260,6 +306,12 @@ ALTER TABLE `tbl_assistance`
   ADD PRIMARY KEY (`assistance_id`);
 
 --
+-- Indexes for table `tbl_assistance_types`
+--
+ALTER TABLE `tbl_assistance_types`
+  ADD PRIMARY KEY (`assistance_type_id`);
+
+--
 -- Indexes for table `tbl_complaints`
 --
 ALTER TABLE `tbl_complaints`
@@ -288,6 +340,12 @@ ALTER TABLE `tbl_replies`
 --
 ALTER TABLE `tbl_requests`
   ADD PRIMARY KEY (`request_id`);
+
+--
+-- Indexes for table `tbl_request_types`
+--
+ALTER TABLE `tbl_request_types`
+  ADD PRIMARY KEY (`request_type_id`);
 
 --
 -- Indexes for table `tbl_seniors`
@@ -320,6 +378,12 @@ ALTER TABLE `tbl_assistance`
   MODIFY `assistance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `tbl_assistance_types`
+--
+ALTER TABLE `tbl_assistance_types`
+  MODIFY `assistance_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_complaints`
 --
 ALTER TABLE `tbl_complaints`
@@ -335,7 +399,7 @@ ALTER TABLE `tbl_logs`
 -- AUTO_INCREMENT for table `tbl_receivers`
 --
 ALTER TABLE `tbl_receivers`
-  MODIFY `receiver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `receiver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tbl_replies`
@@ -350,10 +414,16 @@ ALTER TABLE `tbl_requests`
   MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `tbl_request_types`
+--
+ALTER TABLE `tbl_request_types`
+  MODIFY `request_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tbl_seniors`
 --
 ALTER TABLE `tbl_seniors`
-  MODIFY `senior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `senior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

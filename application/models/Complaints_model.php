@@ -24,11 +24,20 @@ class Complaints_model extends CI_Model {
 			if($id != null) { 
 				$this->db->where('user_id', intval($id)); 
 			}
-
+			$this->db->order_by('date_created', 'DESC');
             $query = $this->db->get('tbl_complaints');
             $this->db->close();
             return $query->result();
 		}
+
+		public function complaint_update($id, $status)
+		{
+			$this->db->set('status', $status);
+			$this->db->where('complaint_id', $id);
+			$this->db->update('tbl_complaints'); 
+            $this->db->close();
+		}
+
 
     }
 

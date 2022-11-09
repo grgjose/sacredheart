@@ -24,10 +24,44 @@ class Assistance_model extends CI_Model {
 		
 		public function assistance_retrieve($id = null){
 			if($id !== null) { $this->db->where('user_id', intval($id)); }
-            $query = $this->db->get('tbl_assistance');
+            $this->db->order_by('date_created', 'DESC');
+			$query = $this->db->get('tbl_assistance');
             $this->db->close();
             return $query->result();
 		}
+
+		public function assistance_update($id, $status)
+		{
+			$this->db->set('status', $status);
+			$this->db->where('assistance_id', $id);
+			$this->db->update('tbl_assistance'); 
+            $this->db->close();
+		}
+
+		public function assistance_types_retrieve($id = null){
+			if($id !== null) { $this->db->where('assistance_type_id', intval($id)); }
+			$query = $this->db->get('tbl_assistance_types');
+            $this->db->close();
+            return $query->result();
+		}
+
+		public function assistance_types_insert($type){
+			$data = array(
+				'assistance_type' => $type
+			);
+
+			$this->db->insert('tbl_assistance_types', $data);
+			$this->db->close();
+            return true;
+		}
+
+		public function assistance_types_delete($id)
+		{
+			$this->db->where('assistance_type_id', $id);
+			$this->db->delete('tbl_assistance_types');
+			return true;
+		}
+
 
   }
 

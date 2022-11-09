@@ -10,6 +10,7 @@ class Seniors_model extends CI_Model {
 
 		public function senior_retrieve($senior_id = null){
 			if($senior_id !== null) { $this->db->where('senior_id', $senior_id); }
+			$this->db->order_by('date_created', 'DESC');
             $query = $this->db->get('tbl_seniors');
             $this->db->close();
             return $query->result();
