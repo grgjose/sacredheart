@@ -22,7 +22,11 @@ class Events extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -54,7 +58,11 @@ class Events extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -87,7 +95,11 @@ class Events extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -119,7 +131,11 @@ class Events extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -128,6 +144,9 @@ class Events extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+
+			$data['projects'] = $this->projects_model->project_retrieve();
+			$data['users'] = $this->user_model->users_retrieve();
 
 			$this->load->view('plus/header', $data);
 			$this->load->view('events/program', $data);

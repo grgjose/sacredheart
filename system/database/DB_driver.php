@@ -1113,7 +1113,7 @@ abstract class CI_DB_driver {
 	{
 		if (is_array($str))
 		{
-			$str = array_map(array(&$this, 'escape'), $str);
+			$str = array_map(array(&$this, 'escape'), $str); 
 			return $str;
 		}
 		elseif (is_string($str) OR (is_object($str) && method_exists($str, '__toString')))
@@ -1153,7 +1153,9 @@ abstract class CI_DB_driver {
 			return $str;
 		}
 
-		$str = $this->_escape_str($str);
+		
+
+		//$str = $this->_escape_str($str);
 
 		// escape LIKE condition wildcards
 		if ($like === TRUE)
@@ -1164,7 +1166,7 @@ abstract class CI_DB_driver {
 				$str
 			);
 		}
-
+		
 		return $str;
 	}
 

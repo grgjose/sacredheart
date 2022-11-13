@@ -68,9 +68,11 @@
 							<li>
 								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>provide/complaints">View Complaints</a>
 							</li>
+							<!-- 
 							<li>
 								<a class="dropdown-item @@blog" href="<?php echo base_url(); ?>provide/information">Edit Barangay Info</a>
 							</li>
+							-->
 						</ul>
 					</li>
 					<?php } else { ?>
@@ -126,11 +128,15 @@
 					<!-- Headbar Navigation (For Logged In Users) -->
 					<?php } else { ?>
 					<li class="nav-item dropdown @@myprofile">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Welcome <?php echo $user['lname']; ?> <span><i class="ti-angle-down"></i></span></a> 
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Welcome <?php echo $user['lname']; ?> <span><i class="ti-angle-down"></i>
+							<i class="ti-bell" style="width: 14px; height: 14px; border-radius: 5px; background-color: #C7E4EE; font-size: 14px; padding: 5px; ">1</i></span>
+						</a> 
 						<!-- Dropdown list -->
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item @@team" href="<?php echo base_url(); ?>home/my_info">My Home</a>
+								<a class="dropdown-item @@team" href="<?php echo base_url(); ?>home/my_info">My Home
+									<i class="ti-bell" style="width: 14px; height: 14px; border-radius: 5px; background-color: #C7E4EE; font-size: 14px; padding: 5px; ">1</i>
+								</a>
 							</li>
 							<li>
 								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>home/edit_info">Edit Info</a>

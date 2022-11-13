@@ -5,57 +5,57 @@
 <section class="section page-title">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 m-auto">
+			<div class="col-md-12 m-auto">
 				<!-- Page Title -->
 				<h1>List of Residents</h1>
 				<!-- Page Description -->
 				<p>Our Barangay here in Quezon City, adheres to provide the best service possible for our residents. We want to give top priority on our residents' 
 				wellness and health. In order to do that, We provide many available options for their convenience.</p>
 
-				<br>
-				<div class="form-group pull-right">
-					<input type="text" class="search form-control" placeholder="What you looking for?">
-				</div>
-				<span class="counter pull-right"></span>
-				<table class="table table-hover table-bordered results">
-				  <thead>
-					<tr>
-					  <th>#</th>
-					  <th class="col-md-5 col-xs-5">Name / Surname</th>
-					  <th class="col-md-4 col-xs-4">Job</th>
-					  <th class="col-md-3 col-xs-3">City</th>
-					</tr>
-					<tr class="warning no-result">
-					  <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <th scope="row">1</th>
-					  <td>George Louis Jose</td>
-					  <td>UI & UX</td>
-					  <td>Mars</td>
-					</tr>
-					<tr>
-					  <th scope="row">2</th>
-					  <td>Kendrick Lamar</td>
-					  <td>Software Developer</td>
-					  <td>Japan</td>
-					</tr>
-					<tr>
-					  <th scope="row">3</th>
-					  <td>Patrick Star</td>
-					  <td>Purchasing</td>
-					  <td>China</td>
-					</tr>
-					<tr>
-					  <th scope="row">4</th>
-					  <td>Michael the Great</td>
-					  <td>Sales</td>
-					  <td>Philippines</td>
-					</tr>
-				  </tbody>
-				</table>
+				<br> <br><br>
+
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+				    <th>Picture</th>
+                    <th>Username</th>
+
+					<th>Email</th>
+					<th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th -->
+                    <th>Address</th>
+                    <th>Contact #</th>
+
+
+
+                  </tr>
+                  </thead>
+                  <tbody>
+					<?php foreach($users as $user){ ?>
+					<?php if($user->usertype == 3){ ?>
+                  <tr>
+				    <td id="userfile_<?php echo $user->user_id; ?>"><img src="<?php echo base_url() ?>assets/files/users/<?php echo $user->userfile; ?>" width="100" height="100" ></td>
+					<td id="username_<?php echo $user->user_id; ?>"><?php echo $user->username; ?></td>
+
+					<td id="email_<?php echo $user->user_id; ?>"><?php echo $user->email; ?></td>
+					<td id="fname_<?php echo $user->user_id; ?>"><?php echo $user->fname; ?></td>
+					<td id="mname_<?php echo $user->user_id; ?>"><?php echo $user->mname; ?></td>
+					<td id="lname_<?php echo $user->user_id; ?>"><?php echo $user->lname; ?></td>
+					<td id="address_<?php echo $user->user_id; ?>"><?php echo $user->address; ?></td>
+					<td id="contact_<?php echo $user->user_id; ?>"><?php echo $user->contact; ?></td>
+					
+
+
+
+                  </tr>
+                  <?php } ?>
+				  <?php } ?>
+                  </tfoot>
+                </table>
+
+
+
 				<style>
 
 				.results tr[visible='false'],
@@ -73,32 +73,71 @@
 				}
 				</style>
 				<script>
-				$(document).ready(function() {
-					$(".search").keyup(function () {
-					var searchTerm = $(".search").val();
-					var listItem = $('.results tbody').children('tr');
-					var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-    
-				  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-						return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-					}
-				  });
-    
-				  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-					$(this).attr('visible','false');
-				  });
+  $(function () {
+    //$("#example1").DataTable({
+    //  "responsive": true, "lengthChange": false, "autoWidth": false,
+    //  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+   
+	$('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+	  "lengthMenu": [2],
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+	  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
+	
+	$('#example3').DataTable({
+      "paging": true,
+      "lengthChange": false,
+	  "lengthMenu": [3],
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false,
+      "responsive": true,
+	  
+    });
 
-				  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-					$(this).attr('visible','true');
-				  });
+  });
 
-				  var jobCount = $('.results tbody tr[visible="true"]').length;
-					$('.counter').text(jobCount + ' item');
+  // Select the target node.
+var target = document.querySelector('tbody')
 
-				  if(jobCount == '0') {$('.no-result').show();}
-					else {$('.no-result').hide();}
-						  });
-				});								
+// Create an observer instance.
+var observer = new MutationObserver(function(mutations) {
+	$('#example2_length').attr('style', 'color: white; padding-right: 20px;');
+	$('#example2_filter').attr('style', 'color: white;'); 
+	$('#example2_info').attr('style', 'color: white;');
+	$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+});
+
+var observer2 = new MutationObserver(function(mutations) {
+	$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
+	$('#example3_filter').attr('style', 'color: white;'); 
+	$('#example3_info').attr('style', 'color: white;');
+	$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+});
+
+// Pass in the target node, as well as the observer options.
+observer.observe(target, {
+    attributes:    true,
+    childList:     true,
+    characterData: true
+});
+
+observer2.observe(target, {
+    attributes:    true,
+    childList:     true,
+    characterData: true
+});
+				
+				
+
 				</script>
 			</div>
 		</div>
@@ -147,7 +186,7 @@
 			<div class="col-lg-6">
 				<div class="block">
 					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/events/event_04.jpg" alt="Story-Image">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/projects/event_04.jpg" alt="Story-Image">
 					<!-- Heading -->
 					<h2>Our Story</h2>
 					<!-- Story -->
@@ -160,7 +199,7 @@
 			<div class="col-lg-6 mt-5 mt-lg-0">
 				<div class="block">
 					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/events/event_06.jpg" alt="Story-Image">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/events/event_06.jpg" alt="Story-Image">
 					<!-- Heading -->
 					<h2>What we do</h2>
 					<!-- Story -->

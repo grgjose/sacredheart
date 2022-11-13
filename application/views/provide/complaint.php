@@ -13,49 +13,40 @@
 				wellness and health. In order to do that, We provide many available options for their convenience.</p>
 
 				<br>
-				<div class="form-group pull-right">
-					<input type="text" class="search form-control" placeholder="What you looking for?">
-				</div>
-				<span class="counter pull-right"></span>
-				<table class="table table-hover table-bordered results">
-				  <thead>
-					<tr>
-					  <th>#</th>
-					  <th class="col-md-5 col-xs-5">Name / Surname</th>
-					  <th class="col-md-4 col-xs-4">Job</th>
-					  <th class="col-md-3 col-xs-3">City</th>
-					</tr>
-					<tr class="warning no-result">
-					  <td colspan="4"><i class="fa fa-warning"></i> No result</td>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <th scope="row">1</th>
-					  <td>George Louis Jose</td>
-					  <td>UI & UX</td>
-					  <td>Mars</td>
-					</tr>
-					<tr>
-					  <th scope="row">2</th>
-					  <td>Kendrick Lamar</td>
-					  <td>Software Developer</td>
-					  <td>Japan</td>
-					</tr>
-					<tr>
-					  <th scope="row">3</th>
-					  <td>Patrick Star</td>
-					  <td>Purchasing</td>
-					  <td>China</td>
-					</tr>
-					<tr>
-					  <th scope="row">4</th>
-					  <td>Michael the Great</td>
-					  <td>Sales</td>
-					  <td>Philippines</td>
-					</tr>
-				  </tbody>
-				</table>
+
+				 <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Description</th>
+                    <th>Letter</th>
+                    <th>Complaintant</th>
+                    <th>Status</th>
+					<th>Date Created</th>
+					<th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+					<?php foreach($complaints as $complaint){ ?>
+                  <tr>
+					<td><?php echo $complaint->complaint_description; ?></td>
+					<td><a href="<?php echo base_url() . 'assets/files/complaints/' . $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
+					<td><?php foreach($users as $user){ if($user->user_id == $complaint->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
+                    <td>
+					<?php if($complaint->status == 1){?> <span class="badge badge-success">Done</span> <?php }?>
+					<?php if($complaint->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
+					</td>
+					<td><?php echo $complaint->date_created; ?></td>
+					<td>
+						<button class="btn btn-<?php if($complaint->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
+						onclick="<?php if($complaint->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $complaint->complaint_id; ?>)" >
+						<?php if($complaint->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
+						</button>
+					</td>
+
+                  </tr>
+                  <?php } ?>
+                  </tfoot>
+                </table>
 				<style>
 
 				.results tr[visible='false'],
@@ -73,32 +64,68 @@
 				}
 				</style>
 				<script>
-				$(document).ready(function() {
-					$(".search").keyup(function () {
-					var searchTerm = $(".search").val();
-					var listItem = $('.results tbody').children('tr');
-					var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
-    
-				  $.extend($.expr[':'], {'containsi': function(elem, i, match, array){
-						return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
-					}
-				  });
-    
-				  $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function(e){
-					$(this).attr('visible','false');
-				  });
+  $(function () {
+    //$("#example1").DataTable({
+    //  "responsive": true, "lengthChange": false, "autoWidth": false,
+    //  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+   
+	$('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+	  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
+	
+	$('#example3').DataTable({
+      "paging": true,
+      "lengthChange": false,
+	  "lengthMenu": [3],
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false,
+      "responsive": true,
+	  
+    });
 
-				  $(".results tbody tr:containsi('" + searchSplit + "')").each(function(e){
-					$(this).attr('visible','true');
-				  });
+  });
 
-				  var jobCount = $('.results tbody tr[visible="true"]').length;
-					$('.counter').text(jobCount + ' item');
+  // Select the target node.
+var target = document.querySelector('tbody')
 
-				  if(jobCount == '0') {$('.no-result').show();}
-					else {$('.no-result').hide();}
-						  });
-				});								
+// Create an observer instance.
+var observer = new MutationObserver(function(mutations) {
+	$('#example2_length').attr('style', 'color: white; padding-right: 20px;');
+	$('#example2_filter').attr('style', 'color: white;'); 
+	$('#example2_info').attr('style', 'color: white;');
+	$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+});
+
+var observer2 = new MutationObserver(function(mutations) {
+	$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
+	$('#example3_filter').attr('style', 'color: white;'); 
+	$('#example3_info').attr('style', 'color: white;');
+	$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+});
+
+// Pass in the target node, as well as the observer options.
+observer.observe(target, {
+    attributes:    true,
+    childList:     true,
+    characterData: true
+});
+
+observer2.observe(target, {
+    attributes:    true,
+    childList:     true,
+    characterData: true
+});
+						
 				</script>
 			</div>
 		</div>
@@ -198,7 +225,7 @@
 
 <!-- ********************************
      *			PARTNERSHIP         *
-	 ******************************** -->
+	 ******************************** 
 <section class="section clients bg-gray">
 	<div class="container">
 		<div class="row">
@@ -227,7 +254,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 
 <!-- ********************************
@@ -344,22 +371,22 @@
 
 <!-- ********************************
      *			RESIDENTS           *
-	 ******************************** -->
+	 ******************************** 
 <section class="section cta-hire bg-gary">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<!-- Hire Title -->
+	
 				<h2>We are hunting Passionate Residents</h2>
-				<!-- Job Description -->
+			
 				<p>Be curious. Use data. Leverage imagination. Be an expert. Be an enthusiast. Be authentic. Know your competition. 
 				Hiring is the most important people function you have, and most of us aren’t as good at it as we think.
 				Refocusing your resources on hiring better will have a higher return than almost any training program you can develop. </p>
-				<!-- Action Button -->
+
 				<a href="<?php echo base_url(); ?>home/register" class="mt-3 btn btn-main-md">Register as a Resident</a>
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!--====  End of Section comment  ====-->

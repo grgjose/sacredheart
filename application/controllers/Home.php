@@ -447,4 +447,79 @@ class Home extends CI_Controller {
 		}
 
 	}
+
+	public function update_info(){
+
+		$type = $this->input->post('type');
+		
+		$users = $this->user_model->users_retrieve();
+
+		foreach($users as $user){
+			if($user->user_id == $this->session->userdata('user_id')){
+
+				$id = intval(trim($user->user_id));
+				$password = $user->password;
+				if($type == "password"){ $password = $this->input->post('password'); }
+				$usertype = $user->usertype;
+
+				$email = $user->email;
+				if($type == "email"){ $email = $this->input->post('email'); }
+
+				$fname = $user->fname;
+				if($type == "fname"){ $fname = $this->input->post('fname'); }
+
+				$mname = $user->mname;
+				if($type == "mname"){ $mname = $this->input->post('mname'); }
+				
+				$lname = $user->lname;
+				if($type == "lname"){ $lname = $this->input->post('lname'); }
+				
+				$address = $user->address;
+				if($type == "address"){ $address = $this->input->post('address'); }
+				
+				$contact = $user->contact;
+				if($type == "contact"){ $contact = $this->input->post('contact'); }
+				
+				$userfile = $user->userfile;
+				$approved = $user->approved;
+				$reg_userfile = $user->reg_userfile;
+				
+				break;
+			}
+		}
+
+		$this->user_model->users_update($id, $password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, $approved, $reg_userfile);
+
+		$success = "Data Edited Successfully";
+		$this->session->set_userdata('success' , $success);
+
+		redirect('/home/edit_info', 'refresh');
+	}
+
+	public function edit_profile_picture(){
+		
+		$id = $this->input->post('id');
+		
+		// Upload ID to a Path
+		$config['upload_path']          = './assets/files/users/';
+		$config['allowed_types']        = 'pdf|gif|jpg|png';
+		$config['max_size']             = 100000;
+		$config['file_name']			= time();
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('userfile'))
+		{
+			$userfile = $this->upload->data('file_name');
+			$success = "Profile Picture Edited Successfully";
+			$this->session->set_userdata('success' , $success);
+		}
+
+		$this->user_model->users_update_userfile($id, $userfile);
+
+
+
+		redirect('/home/edit_info', 'refresh');
+	}
+
 }

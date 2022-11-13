@@ -2,12 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\application",
+    "\\application\\controllers",
     "\\application\\views",
-    "\\application\\views\\admin",
-    "\\application\\views\\admin\\plus",
-    "\\assets",
-    "\\assets\\files"
+    "\\system\\database",
+    "\\system\\database\\drivers",
+    "\\system\\database\\drivers\\mysqli"
   ],
-  "SelectedNode": "\\application\\views\\admin\\dr_types.php",
+  "SelectedNode": "\\application\\views\\register.php",
   "PreviewInSolutionExplorer": false
 }

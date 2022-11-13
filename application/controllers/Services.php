@@ -22,7 +22,11 @@ class Services extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -54,7 +58,11 @@ class Services extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -107,7 +115,11 @@ class Services extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')
@@ -177,7 +189,11 @@ class Services extends CI_Controller {
 		else
 		{
 			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
 				'logged_in' => $this->session->userdata('logged_in')

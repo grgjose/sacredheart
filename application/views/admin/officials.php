@@ -34,52 +34,33 @@
                   <thead>
                   <tr>
 				    <th>Picture</th>
-                    <th>Username</th>
-					<th>Usertype</th>
-					<th>Position</th>
-					<th>Display Picture</th>
 					<th>Email</th>
 					<th>First Name</th>
                     <th>Middle Name</th>
                     <th>Last Name</th>
-                    <th>Address</th>
                     <th>Contact #</th>
-					<th>Approved</th>
-					<th>Date Created</th>
+					<th>Position</th>
+					<th>Display Picture</th>
 					<th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
 					<?php foreach($users as $user){ ?>
-					<?php if($user->usertype == 1 || $user->usertype == 2){ ?>
+					<?php if($user->usertype != 3){ ?>
                   <tr>
 				    <td id="userfile_<?php echo $user->user_id; ?>"><img src="<?php echo base_url() ?>assets/files/users/<?php echo $user->userfile; ?>" width="100" height="100" ></td>
-					<td id="username_<?php echo $user->user_id; ?>"><?php echo $user->username; ?></td>
-					<td id="usertype_<?php echo $user->user_id; ?>">
-						<?php if($user->usertype == 1){ echo "admin"; } if($user->usertype == 2){ echo "official"; } if($user->usertype == 3){ echo "resident"; }?>
-					</td>
-					<td id="position_<?php echo $user->user_id; ?>"><?php echo $user->email; ?></td>
 					<td id="email_<?php echo $user->user_id; ?>"><?php echo $user->email; ?></td>
-                    <td id="fname_<?php echo $user->user_id; ?>"><?php echo $user->fname; ?></td>
+					<td id="fname_<?php echo $user->user_id; ?>"><?php echo $user->fname; ?></td>
 					<td id="mname_<?php echo $user->user_id; ?>"><?php echo $user->mname; ?></td>
 					<td id="lname_<?php echo $user->user_id; ?>"><?php echo $user->lname; ?></td>
-					<td id="address_<?php echo $user->user_id; ?>"><?php echo $user->address; ?></td>
 					<td id="contact_<?php echo $user->user_id; ?>"><?php echo $user->contact; ?></td>
+					<td id="position_<?php echo $user->user_id; ?>"><?php echo $user->position; ?></td>
+					<td id="dp_userfile_<?php echo $user->user_id; ?>"><img src="<?php echo base_url() ?>assets/files/officials/<?php echo $user->dp_userfile; ?>" width="140" height="200" ></td>
 					<td>
-						<?php if($user->approved == 1){?> <span class="badge badge-success">Approved</span> <?php }?>
-						<?php if($user->approved == 0){?> <span class="badge badge-danger">Not yet Approved</span> <?php }?>
-					</td>
-					<td id="date_created_<?php echo $user->user_id; ?>"><?php echo $user->date_created; ?></td>
-
-					
-					<td>
-						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
-						onclick="editFunc(<?php echo $user->user_id; ?>)">
-							<span class="fas fa-pen"></span>
-						</button>
-						<button class="btn btn-danger text-justify text-center" data-toggle="modal" data-target="#DeleteModal"
-						onclick="delFunc(<?php echo $user->user_id; ?>)">
-							<span class="fas fa-times"></span>
+						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal" 
+						style="width: 30px; height: 30px; margin: 5px;"
+						onclick="editFunc(<?php echo $user->user_id; ?>,'<?php echo $user->dp_userfile; ?>')">
+							<span class="fas fa-pen" style="display: flex; justify-content: center; align-items: center; font-size: 12px;"></span>
 						</button>
 					</td>
 
@@ -91,143 +72,42 @@
               </div>
 
 			  <script>
-				function editFunc(id){
+				function editFunc(id, uf){
 
-					$('#EditModal #receiver_id').val(id);
-					$('#EditModal #fname').val($("#fname_"+id).html());
-					$('#EditModal #mname').val($("#mname_"+id).html());
-					$('#EditModal #lname').val($("#lname_"+id).html());
-					$('#EditModal #age').val($("#age_"+id).html());
-					$('#EditModal #current_job').val($("#current_job_"+id).html());
-					
-					var theDate = $("#date_to_receive_"+id).html();
-					var input = theDate;
-					var output = input.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2");
-
-					$('#EditModal #date_to_receive').val(output);
-					$('#EditModal #is_received').val($("#is_received_"+id).html());
+					$('#EditModal #id').val(id);
+					$('#EditModal #position').val($("#position_"+id).html());
+					$('#EditModal #prev_dp_userfile').val(uf);
 
 				}
-
-				function delFunc(id){
-					$('#DeleteModal #receiver_id').val(id);
-					$('#DeleteModal #fname').val($("#fname_"+id).html());
-					$('#DeleteModal #receiver_name').html(
-						$("#fname_"+id).html() + " " + $("#mname_"+id).html() + " " + $("#lname_"+id).html() + "?");
-				}
-
 			  </script>
-
-			  <!-- Add Modal -->
-				<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="AddModal" aria-hidden="true">
-				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Add Ayuda Receiver</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						  <span aria-hidden="true">&times;</span>
-						</button>
-					  </div>
-					  <div class="modal-body">
-						<?php echo form_open('admin/add_receiver'); ?>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="fname">First Name</label>
-							  <input type="text" class="form-control" id="fname" name="fname" placeholder="First name" required>
-							</div>
-							<div class="col">
-							  <label for="mname">Middle Name</label>
-							  <input type="text" class="form-control" id="mname" name="mname" placeholder="Middle name">
-							</div>
-							<div class="col">
-							  <label for="lname">Last Name</label>
-							  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="age">Age</label>
-							  <input type="text" class="form-control" id="age" name="age" placeholder="Age" required>
-							</div>
-							<div class="col">
-							  <label for="current_job">Current Job</label>
-							  <input type="text" class="form-control" id="current_job" name="current_job" placeholder="Current Job" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="date_to_receive">Date To Receive</label>
-							  <input type="date" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive" required>
-							</div>
-							<div class="col">
-							  <label for="is_received">Is Received</label>
-							  <select class="form-control" id="is_received" name="is_received" placeholder="Is Received?" required>
-								  <option value="Yes">Yes</option>
-								  <option value="No">No</option>
-							  </select>
-							</div>
-						  </div> <br>
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary" value="Save" />
-					  </div>
-					  </form>
-					</div>
-				  </div>
-				</div>
 
 			  <!-- Edit Modal -->
 				<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="EditModal" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						  <span aria-hidden="true">&times;</span>
 						</button>
 					  </div>
 					  <div class="modal-body">
-						<?php echo form_open('admin/update_receiver'); ?>
+						<?php echo form_open_multipart('admin/edit_official'); ?>
+						  <input type="hidden" id="id" name="id" value="" />
 						  <div class="form-row">
-						    <input type="hidden" id="receiver_id" name="receiver_id"  value="">
 							<div class="col">
-							  <label for="fname">First Name</label>
-							  <input type="text" class="form-control" id="fname" name="fname" placeholder="First name">
-							</div>
-							<div class="col">
-							  <label for="mname">Middle Name</label>
-							  <input type="text" class="form-control" id="mname" name="mname" placeholder="Middle name">
-							</div>
-							<div class="col">
-							  <label for="lname">Last Name</label>
-							  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last name">
+							  <label for="position">Position</label>
+							  <input type="text" class="form-control" id="position" name="position" placeholder="Position" required>
 							</div>
 						  </div> <br>
 						  <div class="form-row">
 							<div class="col">
-							  <label for="age">Age</label>
-							  <input type="text" class="form-control" id="age" name="age" placeholder="Age">
-							</div>
-							<div class="col">
-							  <label for="current_job">Current Job</label>
-							  <input type="text" class="form-control" id="current_job" name="current_job" placeholder="Current Job">
+							  <label for="prev_dp_userfile">Display Picture</label>
+							  <input type="file" class="form-control-file form-control-sm" id="dp_userfile" name="dp_userfile" placeholder="Display Picture" 
+							   style="padding-bottom: 15px;">
+							   <input type="hidden" id="prev_dp_userfile" name="prev_dp_userfile" value="" />
 							</div>
 						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="date_to_receive">Date To Receive</label>
-							  <input type="date" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive">
-							</div>
-							<div class="col">
-							  <label for="is_received">Is Received</label>
-							  <select class="form-control" id="is_received" name="is_received" placeholder="Is Received?">
-								  <option value="Yes">Yes</option>
-								  <option value="No">No</option>
-							  </select>
-							</div>
-						  </div> <br>
-						
 					  </div>
 					  <div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -238,33 +118,6 @@
 				  </div>
 				</div>
 
-			  <!-- Delete Modal -->
-				<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModal" aria-hidden="true">
-				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						  <span aria-hidden="true">&times;</span>
-						</button>
-					  </div>
-					  <div class="modal-body">
-						<?php echo form_open('admin/delete_receiver'); ?>
-						  <div class="form-row">
-						    <input type="hidden" id="receiver_id" name="receiver_id"  value="">
-							<input type="hidden" id="fname" name="fname"  value="">
-								<h6>Are you sure you wanted to delete this Receiver? &nbsp;</h6>
-								<h6 id="receiver_name"></h6>
-							<br>
-					  </div>
-					  <div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary" value="Delete" />
-					  </div>
-					  </form>
-					</div>
-				  </div>
-				</div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->

@@ -21,66 +21,77 @@
 	 ******************************** -->
 <section class="feature section pt-0">
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 ml-auto justify-content-center">
-				<!-- Feature Mockup -->
-				<div class="image-content">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
-				</div>
-			</div>
-			<div class="col-lg-6 mr-auto align-self-center">
-				<div class="feature-content">
-					<!-- Feature Title -->
-					<h2>Upcoming Event: Street Mass</h2>
-					<!-- Feature Description -->
-					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
-				</div>
-				<!-- Testimonial Quote -->
-				<div class="testimonial">
-					<p>
-						"We adhere to provide the best service possible"
-					</p>
-					<ul class="list-inline meta">
-						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
-						</li>
-						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 ml-auto justify-content-center">
-				<!-- Feature Mockup -->
-				<div class="image-content">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
-				</div>
-			</div>
-			<div class="col-lg-6 mr-auto align-self-center">
-				<div class="feature-content">
-					<!-- Feature Title -->
-					<h2>Upcoming Event: Street Mass</h2>
-					<!-- Feature Description -->
-					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
-				</div>
-				<!-- Testimonial Quote -->
-				<div class="testimonial">
-					<p>
-						"We adhere to provide the best service possible"
-					</p>
-					<ul class="list-inline meta">
-						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
-						</li>
-						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+
+		<table id="myTable2" class="table table-hover table-borderless results" style="font-size: 13px;" width="100%">
+
+		 <thead>
+			<tr>
+				<th>&nbsp;</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php foreach($projects as $project){ ?>
+			<?php if(strtotime($project->project_date) >= Time()){ ?>
+			<tr>
+				<td style="height: 30px;" class="text-center">
+					<div class="row">
+					<div class="col-lg-6 ml-auto justify-content-center">
+							<!-- Feature Mockup -->
+							<div class="image-content">
+								<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/projects/<?php echo $project->project_userfile; ?>" alt="iphone">
+							</div>
+						</div>
+						<div class="col-lg-6 mr-auto align-self-center">
+							<div class="feature-content">
+								<!-- Feature Title -->
+								<h2>Upcoming Project: <?php echo $project->project_title; ?></h2>
+								<!-- Feature Description -->
+								<p class="desc"><?php echo $project->project_details; ?></p>
+							</div>
+							<!-- Testimonial Quote -->
+							<div class="testimonial">
+								<ul class="list-inline meta">
+									<?php foreach($users as $user){ ?>
+									<?php if($user->user_id == $project->user_id){ ?>
+									<li class="list-inline-item">
+										<img src="<?php echo base_url(); ?>assets/files/users/<?php echo $user->userfile;?>" alt="">
+									</li>
+									<li class="list-inline-item"><?php echo $user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
+									<?php } ?>
+									<?php } ?>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<?php } ?>
+			<?php } ?>
+			</tbody>
+		</table>
+
 	</div>
 </section>
 
 
+<script>
+	$(document).ready(function () {
+		$('#myTable2').DataTable({
+		"paging": true,
+		"lengthChange": false,
+		"lengthMenu": [3],
+		"searching": true,
+		"ordering": false,
+		"info": false,
+		"autoWidth": false,
+		"responsive": true,
+		});
+		$('#myTable2_wrapper input').attr('class', 'form-control main');
+		$('#myTable2_wrapper input').attr('style', 'height: 30px;');
+		$('#myTable2_wrapper select').attr('class', 'form-control main');
+		$('#myTable2_wrapper select').attr('style', 'height: 30px;');
+	});
+</script>
 
 <!-- ********************************
      *             INTRO            *
@@ -104,64 +115,76 @@
 	 ******************************** -->
 <section class="feature section pt-0">
 	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 ml-auto justify-content-center">
-				<!-- Feature Mockup -->
-				<div class="image-content">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
-				</div>
-			</div>
-			<div class="col-lg-6 mr-auto align-self-center">
-				<div class="feature-content">
-					<!-- Feature Title -->
-					<h2>Upcoming Event: Street Mass</h2>
-					<!-- Feature Description -->
-					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
-				</div>
-				<!-- Testimonial Quote -->
-				<div class="testimonial">
-					<p>
-						"We adhere to provide the best service possible"
-					</p>
-					<ul class="list-inline meta">
-						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
-						</li>
-						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 ml-auto justify-content-center">
-				<!-- Feature Mockup -->
-				<div class="image-content">
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/feature/event_01.jpg" alt="iphone">
-				</div>
-			</div>
-			<div class="col-lg-6 mr-auto align-self-center">
-				<div class="feature-content">
-					<!-- Feature Title -->
-					<h2>Upcoming Event: Street Mass</h2>
-					<!-- Feature Description -->
-					<p class="desc">In our upcoming fiesta, We invite each and everyone of you to start our feast with a Street Mass that will happen this August 11, 2022 in the Anak ng Bayan Street. See you there!</p>
-				</div>
-				<!-- Testimonial Quote -->
-				<div class="testimonial">
-					<p>
-						"We adhere to provide the best service possible"
-					</p>
-					<ul class="list-inline meta">
-						<li class="list-inline-item">
-							<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="">
-						</li>
-						<li class="list-inline-item">Patricia Del Rosario , SK Secretary</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+
+		<table id="myTable" class="table table-hover table-borderless results" style="font-size: 13px;" width="100%">
+
+		 <thead>
+			<tr>
+				<th>&nbsp;</th>
+			</tr>
+			</thead>
+			<tbody>
+			<?php foreach($projects as $project){ ?>
+			<?php if(strtotime($project->project_date) < Time()){ ?>
+			<tr>
+				<td style="height: 30px;" class="text-center">
+					<div class="row">
+					<div class="col-lg-6 ml-auto justify-content-center">
+							<!-- Feature Mockup -->
+							<div class="image-content">
+								<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/projects/<?php echo $project->project_userfile; ?>" alt="iphone">
+							</div>
+						</div>
+						<div class="col-lg-6 mr-auto align-self-center">
+							<div class="feature-content">
+								<!-- Feature Title -->
+								<h2>Finished Projects: <?php echo $project->project_title; ?></h2>
+								<!-- Feature Description -->
+								<p class="desc"><?php echo $project->project_details; ?></p>
+							</div>
+							<!-- Testimonial Quote -->
+							<div class="testimonial">
+								<ul class="list-inline meta">
+									<?php foreach($users as $user){ ?>
+									<?php if($user->user_id == $project->user_id){ ?>
+									<li class="list-inline-item">
+										<img src="<?php echo base_url(); ?>assets/files/users/<?php echo $user->userfile;?>" alt="">
+									</li>
+									<li class="list-inline-item"><?php echo $user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
+									<?php } ?>
+									<?php } ?>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<?php } ?>
+			<?php } ?>
+			</tbody>
+		</table>
+
 	</div>
 </section>
+
+<script>
+	$(document).ready(function () {
+		$('#myTable').DataTable({
+			"paging": true,
+			"lengthChange": false,
+			"lengthMenu": [3],
+			"searching": true,
+			"ordering": false,
+			"info": false,
+			"autoWidth": false,
+			"responsive": true,
+		});
+		$('#myTable_wrapper input').attr('class', 'form-control main');
+		$('#myTable_wrapper input').attr('style', 'height: 30px;');
+		$('#myTable_wrapper select').attr('class', 'form-control main');
+		$('#myTable_wrapper select').attr('style', 'height: 30px;');
+	});
+</script>
 
 <!-- ********************************
      *         QUOTES KEME          *
@@ -186,7 +209,7 @@
 
 <!-- ********************************
      *			PARTNERSHIP         *
-	 ******************************** -->
+	 ******************************** 
 <section class="section clients bg-gray">
 	<div class="container">
 		<div class="row">
@@ -215,7 +238,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 
 <!-- ********************************
@@ -332,22 +355,22 @@
 
 <!-- ********************************
      *			RESIDENTS           *
-	 ******************************** -->
+	 ********************************
 <section class="section cta-hire bg-gary">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<!-- Hire Title -->
+
 				<h2>We are hunting Passionate Residents</h2>
-				<!-- Job Description -->
+
 				<p>Be curious. Use data. Leverage imagination. Be an expert. Be an enthusiast. Be authentic. Know your competition. 
 				Hiring is the most important people function you have, and most of us aren’t as good at it as we think.
 				Refocusing your resources on hiring better will have a higher return than almost any training program you can develop. </p>
-				<!-- Action Button -->
+
 				<a href="<?php echo base_url(); ?>home/register" class="mt-3 btn btn-main-md">Register as a Resident</a>
 			</div>
 		</div>
 	</div>
-</section>
+</section>  -->
 
 <!--====  End of Section comment  ====-->

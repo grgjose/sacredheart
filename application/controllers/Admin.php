@@ -239,6 +239,13 @@ class Admin extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
+
+			$data['requests'] = $this->requests_model->request_retrieve();
+			$data['request_types'] = $this->requests_model->request_types_retrieve();
+			$data['users'] = $this->user_model->users_retrieve();
+			
+			$data['projects'] = $this->projects_model->project_retrieve();
+
 			$this->load->view('admin/plus/header', $data);
 			$this->load->view('admin/projects', $data);
 			$this->load->view('admin/plus/footer', $data);
@@ -246,6 +253,89 @@ class Admin extends CI_Controller {
 			$this->session->unset_userdata('error');
 			$this->session->unset_userdata('success');
 		}
+	}
+
+	public function add_project(){
+		
+		// Collect POST Data
+		$project_title = $this->input->post("project_title");
+		$project_date = $this->input->post("project_date");
+		$project_details = $this->input->post("project_details");
+		$project_userfile = $this->input->post("project_userfile");
+		$user_id = $this->session->userdata('user_id');
+
+		// Upload ID to a Path
+		$config['upload_path']          = './assets/files/projects/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
+		$config['file_name']			= time();
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('project_userfile'))
+		{
+			$project_userfile = $this->upload->data('file_name');
+		}
+
+		// Connect or Update Database
+		$this->projects_model->project_insert($project_title, $project_date, $project_details, $project_userfile, $user_id);
+
+		// Notif
+		$success = $project_title . " is Created Successfully!";
+		$this->session->set_userdata('success' , $success);
+
+		// Next Action
+		redirect('/admin/projects', 'refresh');
+	}
+
+	public function update_project(){
+		
+	    // Collect POST Data
+		$id = $this->input->post("id");
+		$project_title = $this->input->post("project_title");
+		$project_date = $this->input->post("project_date");
+		$project_details = $this->input->post("project_details");
+		$project_userfile = $this->input->post("project_userfile");
+		$user_id = $this->session->userdata('user_id');
+
+		// Upload ID to a Path
+		$config['upload_path']          = './assets/files/projects/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
+		$config['file_name']			= time();
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('project_userfile'))
+		{
+			$project_userfile = $this->upload->data('file_name');
+		}
+
+		// Connect or Update Database
+		$this->projects_model->project_update($id, $project_title, $project_date, $project_details, $project_userfile, $user_id);
+
+		// Notif
+		$success = $project_title . " is Updated Successfully!";
+		$this->session->set_userdata('success' , $success);
+
+		// Next Action
+		redirect('/admin/projects', 'refresh');
+	}
+
+	public function delete_project(){
+
+		// Collect POST Data
+		$id = $this->input->post('id');
+
+		// Connect or Update Database
+		$this->projects_model->project_delete($id);
+
+		// Notif
+		$success = "Deleted Successfully!";
+		$this->session->set_userdata('success' , $success);
+
+		// Next Action
+		redirect('/admin/projects', 'refresh');
 	}
 
 	// Chatbot
@@ -271,7 +361,7 @@ class Admin extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
-			$data['users'] = $this->user_model->users_retrieve();
+			$data['replies'] = $this->replies_model->reply_retrieve();
 
 			$this->load->view('admin/plus/header', $data);
 			$this->load->view('admin/chatbot', $data);
@@ -316,6 +406,33 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function edit_official(){
+		// Get Form Inputs
+		$id = $this->input->post('id');
+		$position = $this->input->post('position');
+		$dp_userfile = $this->input->post('prev_dp_userfile');
+
+		// Upload ID to a Path
+		$config['upload_path']          = './assets/files/officials/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
+		$config['file_name']			= time();
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('dp_userfile'))
+		{
+			$dp_userfile = $this->upload->data('file_name');
+		}
+
+		$success = "Official Updated";
+		$this->session->set_userdata('success' , $success);
+
+		$this->user_model->users_official_update($id, $position, $dp_userfile);
+
+		redirect('/admin/officials_tree', 'refresh');
+	}
+
 	// Users List
 
 	public function users_list(){
@@ -354,44 +471,80 @@ class Admin extends CI_Controller {
 
 		// Get Form Inputs
 		$password = $this->input->post('password');
+		$usertype = $this->input->post('usertype');
+		$email = $this->input->post('email');
 		$fname = $this->input->post('fname');
 		$mname = $this->input->post('mname');
 		$lname = $this->input->post('lname');
-		$email = $this->input->post('email');
 		$address = $this->input->post('address');
 		$contact = $this->input->post('contact');
+		$userfile = 'default.jpg';
 
 		// Upload ID to a Path
 		$config['upload_path']          = './assets/files/users/';
-		$config['allowed_types']        = 'pdf|gif|jpg|png';
-		$config['max_size']             = 100000;
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
 		$config['file_name']			= time();
 
 		$this->load->library('upload', $config);
 
-		if ( ! $this->upload->do_upload('userfile'))
+		if ($this->upload->do_upload('userfile'))
 		{
-			$error = "File Failed to Upload due to the following reasons" . $this->upload->display_errors();
-			$this->session->set_userdata('error' , $error);
-		}
-		else
-		{
-			$this->user_model->users_insert( 'user_'.time(), $password, 3,
-			$fname, $mname, $lname, $email, $address, $contact, $this->upload->data('file_name'));
+			$userfile = $this->upload->data('file_name');
 
-			$success = "Registration Filed Successfully, Please wait for the Officials to Approve it";
-			$this->session->set_userdata('success' , $success);
 		}
+		
+		$success = "User Created";
+		$this->session->set_userdata('success' , $success);
 
-		redirect('/home', 'refresh');
+		$this->user_model->users_insert($password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 1, '');
+
+		redirect('/admin/users_list', 'refresh');
 	}
 
 	public function edit_user(){
+		// Get Form Inputs
+		$id = $this->input->post('id');
+		$password = $this->input->post('password');
+		$usertype = $this->input->post('usertype');
+		$email = $this->input->post('email');
+		$fname = $this->input->post('fname');
+		$mname = $this->input->post('mname');
+		$lname = $this->input->post('lname');
+		$address = $this->input->post('address');
+		$contact = $this->input->post('contact');
+		$userfile = $this->input->post('prev_userfile');
 
+		// Upload ID to a Path
+		$config['upload_path']          = './assets/files/users/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000000;
+		$config['file_name']			= time();
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('userfile'))
+		{
+			$userfile = $this->upload->data('file_name');
+		}
+
+		$success = "User Updated";
+		$this->session->set_userdata('success' , $success);
+
+		$this->user_model->users_update($id, $password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 1, '');
+
+		redirect('/admin/users_list', 'refresh');
 	}
 
 	public function delete_user(){
+		$id = $this->input->post('id');
 
+		$success = "User Deleted";
+		$this->session->set_userdata('success' , $success);
+
+		$this->user_model->users_delete($id);
+
+		redirect('/admin/users_list', 'refresh');
 	}
 
 	// Services Table

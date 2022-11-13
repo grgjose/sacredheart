@@ -10,7 +10,7 @@ class Replies_model extends CI_Model {
 
 		public function reply_retrieve($reply_id = null){
 			if($reply_id !== null) { $this->db->where('reply_id', $reply_id); }
-			$this->db->order_by('date_created', 'DESC');
+			//$this->db->order_by('date_created', 'DESC');
             $query = $this->db->get('tbl_replies');
             $this->db->close();
             return $query->result();

@@ -58,6 +58,17 @@
 	  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
 	
+	$('#example3').DataTable({
+      "paging": true,
+      "lengthChange": false,
+	  "lengthMenu": [3],
+      "searching": true,
+      "ordering": false,
+      "info": false,
+      "autoWidth": false,
+      "responsive": true,
+	  
+    });
 
   });
 
@@ -72,6 +83,13 @@ var observer = new MutationObserver(function(mutations) {
 	$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
 });
 
+var observer2 = new MutationObserver(function(mutations) {
+	$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
+	$('#example3_filter').attr('style', 'color: white;'); 
+	$('#example3_info').attr('style', 'color: white;');
+	$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+});
+
 // Pass in the target node, as well as the observer options.
 observer.observe(target, {
     attributes:    true,
@@ -79,6 +97,11 @@ observer.observe(target, {
     characterData: true
 });
 
+observer2.observe(target, {
+    attributes:    true,
+    childList:     true,
+    characterData: true
+});
 
   	// Create an instance of Notyf
 	var notyf = new Notyf();
