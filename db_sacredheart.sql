@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2022 at 10:51 PM
+-- Generation Time: Nov 13, 2022 at 12:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -34,6 +34,7 @@ CREATE TABLE `tbl_assistance` (
   `assistance_purpose` varchar(1000) NOT NULL,
   `date_needed` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `remarks` varchar(10000) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -41,8 +42,8 @@ CREATE TABLE `tbl_assistance` (
 -- Dumping data for table `tbl_assistance`
 --
 
-INSERT INTO `tbl_assistance` (`assistance_id`, `user_id`, `assistance_type`, `assistance_purpose`, `date_needed`, `status`, `date_created`) VALUES
-(1, 6, '1', '123213', '2022-10-21', 0, '2022-11-09 10:54:31');
+INSERT INTO `tbl_assistance` (`assistance_id`, `user_id`, `assistance_type`, `assistance_purpose`, `date_needed`, `status`, `remarks`, `date_created`) VALUES
+(1, 6, '1', '123213', '2022-10-21', 0, '', '2022-11-09 10:54:31');
 
 -- --------------------------------------------------------
 
@@ -76,6 +77,7 @@ CREATE TABLE `tbl_complaints` (
   `complaint_description` varchar(250) NOT NULL,
   `complaint_letter` varchar(500) NOT NULL,
   `status` int(11) NOT NULL,
+  `remarks` varchar(10000) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -83,9 +85,9 @@ CREATE TABLE `tbl_complaints` (
 -- Dumping data for table `tbl_complaints`
 --
 
-INSERT INTO `tbl_complaints` (`complaint_id`, `user_id`, `complaint_description`, `complaint_letter`, `status`, `date_created`) VALUES
-(1, 6, '123123', '1666196054.txt', 1, '2022-11-09 10:54:26'),
-(2, 6, '12313123', '1666196237.txt', 0, '2022-10-19 16:17:17');
+INSERT INTO `tbl_complaints` (`complaint_id`, `user_id`, `complaint_description`, `complaint_letter`, `status`, `remarks`, `date_created`) VALUES
+(1, 6, '123123', '1666196054.txt', 1, '', '2022-11-09 10:54:26'),
+(2, 6, '12313123', '1666196237.txt', 0, '', '2022-10-19 16:17:17');
 
 -- --------------------------------------------------------
 
@@ -98,6 +100,30 @@ CREATE TABLE `tbl_logs` (
   `log_info` varchar(500) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_projects`
+--
+
+CREATE TABLE `tbl_projects` (
+  `project_id` int(11) NOT NULL,
+  `project_title` varchar(200) NOT NULL,
+  `project_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `project_details` varchar(10000) NOT NULL,
+  `project_userfile` varchar(200) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_projects`
+--
+
+INSERT INTO `tbl_projects` (`project_id`, `project_title`, `project_date`, `project_details`, `project_userfile`, `user_id`, `date_created`) VALUES
+(1, 'Street Mass', '2022-12-18 07:59:32', 'We have an upcoming street mass this December for our season of Christmas, This event will take place at Purok Street, Ynares Compound. The Mass starts at 7pm until Christmas.', 'event_01.jpg', 1, '2022-11-11 08:06:24'),
+(2, 'Brigada Eskwela', '2022-11-02 07:59:32', 'Baranggay Personnel Volunteers performed a well assessed project for the students of Sacred Heart Barangay, Here in our Baranggay we prioritized the welfare of our students. This will be performed on November 4, 2022. 9AM.', 'event_02.jpg', 1, '2022-11-11 08:06:24');
 
 -- --------------------------------------------------------
 
@@ -148,16 +174,53 @@ CREATE TABLE `tbl_replies` (
   `reply_id` int(11) NOT NULL,
   `reply` varchar(1000) NOT NULL,
   `reply_suggested` varchar(100) NOT NULL,
-  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp(),
+  `reply_from` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_replies`
 --
 
-INSERT INTO `tbl_replies` (`reply_id`, `reply`, `reply_suggested`, `date_created`) VALUES
-(1, 'How can I help you?', '2,3,4,5', '2022-10-24 12:35:17'),
-(2, 'I need help from the Barangay', '6,7', '2022-10-24 12:36:24');
+INSERT INTO `tbl_replies` (`reply_id`, `reply`, `reply_suggested`, `date_created`, `reply_from`) VALUES
+(1, 'I need Assistance', '2', '2022-11-10 07:19:44', 0),
+(2, 'What can I do to help?', '3,4,5', '2022-11-10 07:19:44', 1),
+(3, 'I need to know more about the barangay', '6', '2022-11-10 07:19:44', 0),
+(4, 'I need help in using the services of the barangay or navigating the website', '13', '2022-11-10 07:19:44', 0),
+(5, 'How do I login, register an account, or get verified?', '38', '2022-11-10 07:19:44', 0),
+(6, 'What do you want to know?', '7,8,9', '2022-11-10 07:19:44', 1),
+(7, 'Can you tell me more about Barangay Sacred Heart?', '10', '2022-11-10 07:19:44', 0),
+(8, 'What is the address of the Barangay hall or their Contact Number?', '11', '2022-11-10 07:19:44', 0),
+(9, 'Who are the Barangay Officials?', '12', '2022-11-10 07:19:44', 0),
+(10, 'Our contact details and address is located here [LINK]', '1', '2022-11-10 07:19:44', 1),
+(11, 'The members of our staff can be seen here [LINK]', '1', '2022-11-10 07:19:44', 1),
+(12, 'You can read more about us here [LINK], to see more info about our projects, you need to be a registered user', '1', '2022-11-10 07:19:44', 1),
+(13, 'Are you a registered resident of the barangay?', '14,15', '2022-11-10 07:19:44', 1),
+(14, 'Yes', '17', '2022-11-10 07:19:44', 0),
+(15, 'No', '16', '2022-11-10 07:19:44', 0),
+(16, 'You need to be a registered resident to use our services', '1', '2022-11-10 07:19:44', 1),
+(17, 'Do you have a registered account in our website?', '18,19', '2022-11-10 07:19:44', 1),
+(18, 'Yes', '21', '2022-11-10 07:19:44', 0),
+(19, 'No', '20', '2022-11-10 07:19:44', 0),
+(20, 'Go here [LINK] to Register an account, once registered, await for verification of account', '1', '2022-11-10 07:19:44', 1),
+(21, 'Are you logged in?', '22,23', '2022-11-10 07:19:44', 1),
+(22, 'Yes', '25', '2022-11-10 07:19:44', 0),
+(23, 'No', '24', '2022-11-10 07:19:44', 0),
+(24, 'Log in here [LINK] with your verified account', '1', '2022-11-10 07:19:44', 1),
+(25, 'What services do you need help with?', '26,27,28,29', '2022-11-10 07:19:44', 1),
+(26, 'What Programs/Projects does the Barangay offer?', '30', '2022-11-10 07:19:44', 0),
+(27, 'I need help Requesting a document from the Barangay', '31', '2022-11-10 07:19:44', 0),
+(28, 'I need assistance from the Barangay', '32', '2022-11-10 07:19:44', 0),
+(29, 'I want to file a Complaint', '33', '2022-11-10 07:19:44', 0),
+(30, 'We have an Ayuda Program[LINK] and a Senior Citizen Program[LINK]. For other programs, you can read more here[LINK]', '1', '2022-11-10 07:19:44', 1),
+(31, 'Go here [LINK] and choose the document you want to get, explain as to why, and the day you will retrieve it.', '1', '2022-11-10 07:19:44', 1),
+(32, 'Go here [LINK] and choose the assistance you need, explain as to why and what happened, and the day need the help.', '1', '2022-11-10 07:19:44', 1),
+(33, 'Go here [LINK] and type down your problem? If you have a complaint letter already, you may upload the file.', '1', '2022-11-10 07:19:44', 1),
+(34, 'Login?', '24', '2022-11-10 07:19:44', 0),
+(35, 'Register an account?', '20', '2022-11-10 07:19:44', 0),
+(36, 'Get account verified?', '36', '2022-11-10 07:19:44', 0),
+(37, 'After creating an account, you need to wait until your account is verified by checking your valid ID to prove you\'re a resident of the Barangay', '1', '2022-11-10 07:19:44', 1),
+(38, 'Which is it, Login, Register, or Verification?', '34,35,36', '2022-11-10 10:47:46', 1);
 
 -- --------------------------------------------------------
 
@@ -172,6 +235,7 @@ CREATE TABLE `tbl_requests` (
   `document_purpose` varchar(1000) NOT NULL,
   `date_needed` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
+  `remarks` varchar(10000) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -179,9 +243,9 @@ CREATE TABLE `tbl_requests` (
 -- Dumping data for table `tbl_requests`
 --
 
-INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `date_needed`, `status`, `date_created`) VALUES
-(1, 6, '1', 'Something', '2022-10-18', 0, '2022-11-09 13:27:22'),
-(2, 6, '1', '1231123', '2022-10-19', 1, '2022-11-09 10:51:49');
+INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `date_needed`, `status`, `remarks`, `date_created`) VALUES
+(1, 6, '1', 'Something', '2022-10-18', 1, '', '2022-11-11 08:54:09'),
+(2, 6, '1', '1231123', '2022-10-19', 1, '', '2022-11-09 10:51:49');
 
 -- --------------------------------------------------------
 
@@ -261,6 +325,7 @@ CREATE TABLE `tbl_users` (
   `approved` int(11) NOT NULL,
   `verification_code` varchar(100) NOT NULL,
   `reg_userfile` varchar(250) NOT NULL,
+  `position` varchar(250) NOT NULL,
   `dp_userfile` varchar(250) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -269,11 +334,13 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`, `fname`, `mname`, `lname`, `address`, `contact`, `userfile`, `approved`, `verification_code`, `reg_userfile`, `dp_userfile`, `date_created`) VALUES
-(1, 'admin', 'admin', 1, 'admin@gmail.com', '', '', '', '', '', 'default.jpg', 1, '', '', '', '2022-09-16 12:38:05'),
-(2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'John', 'F', 'Kenedy', 'Sulok', '093131313131', 'pat.jpg', 1, '', '', '', '2022-09-16 12:39:14'),
-(3, 'resident', 'resident', 3, 'resident@gmail.com', '', '', '', '', '', 'default.jpg', 1, '', '', '', '2022-09-16 12:39:14'),
-(6, 'user_1663763872', 'password', 3, 'georgelouisjose@gmail.com', 'George Louis', 'Martinez', 'Jose', 'Binangonan, Rizal', '09363362225', 'pat.jpg', 1, '', '', '', '2022-09-21 12:37:52');
+INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`, `fname`, `mname`, `lname`, `address`, `contact`, `userfile`, `approved`, `verification_code`, `reg_userfile`, `position`, `dp_userfile`, `date_created`) VALUES
+(1, 'admin', 'admin', 1, 'admin@gmail.com', 'Pat', 'Del', 'Rosario', 'Admin Hub', '92384023', '1668075732.jpg', 1, '', '', 'Punong Barangay', '1668076217.jpg', '2022-09-16 12:38:05'),
+(2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'John', 'F', 'Kenedy', 'Sulok', '093131313131', 'pat.jpg', 1, '', '', '', '', '2022-09-16 12:39:14'),
+(3, 'resident', 'resident', 3, 'resident@gmail.com', 'Hello3', 'Damn1', 'Purok', 'Dyan lang ako sa table', '084651', '1668191605.jpg', 1, '', '', '', '', '2022-09-16 12:39:14'),
+(6, 'user_1663763872', 'password', 3, 'georgelouisjose@gmail.com', 'George Louis', 'Martinez', 'Jose', 'Binangonan, Rizal', '09363362225', 'pat.jpg', 1, '', '', '', '', '2022-09-21 12:37:52'),
+(9, 'user_0', 'password', 3, 'that@gmail.com', 'Someone', '', 'Somewho', 'address', '834290582034', '1668071885.jpg', 1, '', '', '', '', '2022-11-10 09:18:05'),
+(10, 'user_10', 'pussy', 3, 'pussycat@pussy.com', 'Garfield', 'The', 'Cat', 'bahay caloocan ko', '920384093284', '1668074645.jpg', 1, '', '', '', '', '2022-11-10 09:48:11');
 
 -- --------------------------------------------------------
 
@@ -322,6 +389,12 @@ ALTER TABLE `tbl_complaints`
 --
 ALTER TABLE `tbl_logs`
   ADD PRIMARY KEY (`log_id`);
+
+--
+-- Indexes for table `tbl_projects`
+--
+ALTER TABLE `tbl_projects`
+  ADD PRIMARY KEY (`project_id`);
 
 --
 -- Indexes for table `tbl_receivers`
@@ -396,6 +469,12 @@ ALTER TABLE `tbl_logs`
   MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tbl_projects`
+--
+ALTER TABLE `tbl_projects`
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_receivers`
 --
 ALTER TABLE `tbl_receivers`
@@ -405,7 +484,7 @@ ALTER TABLE `tbl_receivers`
 -- AUTO_INCREMENT for table `tbl_replies`
 --
 ALTER TABLE `tbl_replies`
-  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tbl_requests`
@@ -429,7 +508,7 @@ ALTER TABLE `tbl_seniors`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_usertypes`

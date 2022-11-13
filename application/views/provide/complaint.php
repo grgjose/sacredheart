@@ -5,14 +5,14 @@
 <section class="section page-title">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 m-auto">
+			<div class="col-md-12 m-auto">
 				<!-- Page Title -->
-				<h1>List of Residents</h1>
+				<h1>List of Complaints</h1>
 				<!-- Page Description -->
 				<p>Our Barangay here in Quezon City, adheres to provide the best service possible for our residents. We want to give top priority on our residents' 
 				wellness and health. In order to do that, We provide many available options for their convenience.</p>
 
-				<br>
+				<br> <br><br>
 
 				 <table id="example2" class="table table-bordered table-hover">
                   <thead>

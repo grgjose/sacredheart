@@ -68,11 +68,12 @@
 							<li>
 								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>provide/complaints">View Complaints</a>
 							</li>
-							<!-- 
 							<li>
-								<a class="dropdown-item @@blog" href="<?php echo base_url(); ?>provide/information">Edit Barangay Info</a>
+								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>provide/assistance">View Assistance Requests</a>
 							</li>
-							-->
+							<li>
+								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>provide/requests">View Document Requests</a>
+							</li>
 						</ul>
 					</li>
 					<?php } else { ?>

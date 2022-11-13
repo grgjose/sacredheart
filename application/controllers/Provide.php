@@ -121,4 +121,85 @@ class Provide extends CI_Controller {
 			$this->session->unset_userdata('success');
 		}
 	}
+
+	public function assistance(){
+
+		if($this->session->userdata('usertype') != 2)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
+				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$data['assistance'] = $this->assistance_model->assistance_retrieve();
+			$data['assistance_types'] = $this->assistance_model->assistance_types_retrieve();
+
+			$data['users'] = $this->user_model->users_retrieve();
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('provide/assistance', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+	}
+
+	public function requests(){
+
+		if($this->session->userdata('usertype') != 2)
+		{
+			$error = "Register or Login First";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
+				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$data['requests'] = $this->requests_model->request_retrieve();
+			$data['request_types'] = $this->requests_model->request_types_retrieve();
+
+			$data['users'] = $this->user_model->users_retrieve();
+
+			$this->load->view('plus/header', $data);
+			$this->load->view('provide/request', $data);
+			$this->load->view('plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+	}
+
 }

@@ -82,7 +82,7 @@
 	$('#example2').DataTable({
       "paging": true,
       "lengthChange": true,
-	  "lengthMenu": [2],
+	  "lengthMenu": [4, 10, 20],
       "searching": true,
       "ordering": true,
       "info": true,
@@ -94,7 +94,7 @@
 	$('#example3').DataTable({
       "paging": true,
       "lengthChange": false,
-	  "lengthMenu": [3],
+	  "lengthMenu": [4],
       "searching": true,
       "ordering": false,
       "info": false,
@@ -199,7 +199,7 @@ observer2.observe(target, {
 			<div class="col-lg-6 mt-5 mt-lg-0">
 				<div class="block">
 					<!-- Image -->
-					<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/events/event_06.jpg" alt="Story-Image">
+					<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/projects/event_06.jpg" alt="Story-Image">
 					<!-- Heading -->
 					<h2>What we do</h2>
 					<!-- Story -->
@@ -237,7 +237,7 @@ observer2.observe(target, {
 
 <!-- ********************************
      *			PARTNERSHIP         *
-	 ******************************** -->
+	 ******************************** 
 <section class="section clients bg-gray">
 	<div class="container">
 		<div class="row">
@@ -266,7 +266,7 @@ observer2.observe(target, {
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 
 <!-- ********************************
@@ -383,22 +383,22 @@ observer2.observe(target, {
 
 <!-- ********************************
      *			RESIDENTS           *
-	 ******************************** -->
+	 ******************************** 
 <section class="section cta-hire bg-gary">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<!-- Hire Title -->
+
 				<h2>We are hunting Passionate Residents</h2>
-				<!-- Job Description -->
+			
 				<p>Be curious. Use data. Leverage imagination. Be an expert. Be an enthusiast. Be authentic. Know your competition. 
 				Hiring is the most important people function you have, and most of us aren’t as good at it as we think.
 				Refocusing your resources on hiring better will have a higher return than almost any training program you can develop. </p>
-				<!-- Action Button -->
+			
 				<a href="<?php echo base_url(); ?>home/register" class="mt-3 btn btn-main-md">Register as a Resident</a>
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 
 <!--====  End of Section comment  ====-->
