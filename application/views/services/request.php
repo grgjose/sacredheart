@@ -16,10 +16,9 @@
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Document Type:</label>
 							<select class="form-select form-control main" name="doctype" style="height: 50px;" aria-label="Select Document Type" required>
-							  <option value="Cedula" selected>Cedula</option>
-							  <option value="Barangay Clearance">Barangay Clearance</option>
-							  <option value="Business Clearance">Business Clearance</option>
-							  <option value="Barangay ID">Barangay ID</option>
+								<?php $ctr = 0; foreach($request_types as $type){ ?> 
+									<option value="<?php echo $type->request_type_id; ?>" <?php if($ctr == 0){ echo "selected"; } ?>><?php echo $type->request_type; $ctr = $ctr + 1;?></option>
+								<?php }?>
 							</select>
 						</div>
 						<!-- Message -->

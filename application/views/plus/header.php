@@ -27,16 +27,16 @@
 	<link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 	<link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	
 	<!-- CSS Custom -->
 	<link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 	
-	<!-- JQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 
 
 </head>
@@ -46,7 +46,7 @@
 	<nav class="navbar main-nav navbar-expand-lg px-2 px-sm-0 py-2 py-lg-0">
 		<div class="container">
 
-			<a class="navbar-brand" href="<?php echo base_url(); ?>"><img alt="logo" src="<?php echo base_url(); ?>assets/images/logo.png"></a> 
+			<a class="navbar-brand" href="<?php echo base_url(); ?>"><img alt="logo" src="<?php echo base_url(); ?>assets/files/info/<?php echo $info['logo']; ?>"></a> 
 			<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" 
 			data-target="#navbarNav" data-toggle="collapse" type="button"><span class="ti-menu"></span></button>
 
@@ -73,6 +73,9 @@
 							</li>
 							<li>
 								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>provide/requests">View Document Requests</a>
+							</li>
+							<li>
+								<a class="dropdown-item @@career" href="<?php echo base_url(); ?>provide/edit_barangay_info">Edit Barangay Info</a>
 							</li>
 						</ul>
 					</li>

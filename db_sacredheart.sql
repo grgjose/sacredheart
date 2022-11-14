@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2022 at 12:07 PM
+-- Generation Time: Nov 13, 2022 at 11:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -88,6 +88,38 @@ CREATE TABLE `tbl_complaints` (
 INSERT INTO `tbl_complaints` (`complaint_id`, `user_id`, `complaint_description`, `complaint_letter`, `status`, `remarks`, `date_created`) VALUES
 (1, 6, '123123', '1666196054.txt', 1, '', '2022-11-09 10:54:26'),
 (2, 6, '12313123', '1666196237.txt', 0, '', '2022-10-19 16:17:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_info`
+--
+
+CREATE TABLE `tbl_info` (
+  `info_id` int(11) NOT NULL,
+  `info_logo` varchar(100) NOT NULL,
+  `info_adv_logo` varchar(100) NOT NULL,
+  `info_mission` text NOT NULL,
+  `info_vision` text NOT NULL,
+  `info_gmap` text NOT NULL,
+  `info_location` text NOT NULL,
+  `info_number1` varchar(100) NOT NULL,
+  `info_number2` varchar(100) NOT NULL,
+  `info_home_userfile` varchar(100) NOT NULL,
+  `info_home_tagline` varchar(100) NOT NULL,
+  `info_home_greetings` text NOT NULL,
+  `info_youtube_link` text NOT NULL,
+  `info_about_userfile1` varchar(100) NOT NULL,
+  `info_about_userfile2` varchar(100) NOT NULL,
+  `info_about_userfile3` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_info`
+--
+
+INSERT INTO `tbl_info` (`info_id`, `info_logo`, `info_adv_logo`, `info_mission`, `info_vision`, `info_gmap`, `info_location`, `info_number1`, `info_number2`, `info_home_userfile`, `info_home_tagline`, `info_home_greetings`, `info_youtube_link`, `info_about_userfile1`, `info_about_userfile2`, `info_about_userfile3`) VALUES
+(1, 'logo.png', 'advocacy.jpg', 'To be able to provide quality service which will make Barangay Sacred Heart a model community where people live, work, and do business in a peaceful, drug-free and progressive environment.', 'In line with the Quezon City Local Government, the Barangay Sacred Heart envisions itself as a peaceful, drug-free, progressive local government unit in District IV Quezon City committed to the leadership formation, effective governance, working partnership with the constituents in building a better community.', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d573.8602585931006!2d121.04316399476372!3d14.630021857936802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b753b2a538db%3A0x61fd6796ee217d20!2sSacred%20Heart%20Barangay%20Hall!5e0!3m2!1sen!2sph!4v1664115324138!5m2!1sen!2sph', '3Building, Unit 2B, Forab, 121 Kamuning Rd,\r\nDiliman, Quezon City, Metro Manila', '(00) 789 456 7890 (GLOBE)', '(88) 016 725 0455 (SMART)', 'official_03.jpg', '#MALIGayangPaglilingkod', '\r\nWe adhere to provide best service possible', 'https://www.youtube.com/watch?v=6UDTMEQpW_w', 'official_01.jpg', 'official_02.jpg', 'official_03.jpg');
 
 -- --------------------------------------------------------
 
@@ -233,6 +265,7 @@ CREATE TABLE `tbl_requests` (
   `user_id` int(11) NOT NULL,
   `document_type` varchar(250) NOT NULL,
   `document_purpose` varchar(1000) NOT NULL,
+  `document_userfile` varchar(500) NOT NULL,
   `date_needed` varchar(100) NOT NULL,
   `status` int(11) NOT NULL,
   `remarks` varchar(10000) NOT NULL,
@@ -243,9 +276,9 @@ CREATE TABLE `tbl_requests` (
 -- Dumping data for table `tbl_requests`
 --
 
-INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `date_needed`, `status`, `remarks`, `date_created`) VALUES
-(1, 6, '1', 'Something', '2022-10-18', 1, '', '2022-11-11 08:54:09'),
-(2, 6, '1', '1231123', '2022-10-19', 1, '', '2022-11-09 10:51:49');
+INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `document_userfile`, `date_needed`, `status`, `remarks`, `date_created`) VALUES
+(1, 6, '1', 'Something', '', '2022-10-18', 1, '', '2022-11-11 08:54:09'),
+(2, 6, '1', '1231123', '', '2022-10-19', 1, '', '2022-11-09 10:51:49');
 
 -- --------------------------------------------------------
 
@@ -385,6 +418,12 @@ ALTER TABLE `tbl_complaints`
   ADD PRIMARY KEY (`complaint_id`);
 
 --
+-- Indexes for table `tbl_info`
+--
+ALTER TABLE `tbl_info`
+  ADD PRIMARY KEY (`info_id`);
+
+--
 -- Indexes for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
@@ -461,6 +500,12 @@ ALTER TABLE `tbl_assistance_types`
 --
 ALTER TABLE `tbl_complaints`
   MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tbl_info`
+--
+ALTER TABLE `tbl_info`
+  MODIFY `info_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_logs`

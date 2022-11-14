@@ -140,4 +140,6 @@ $autoload['model'] = array(
 	'receivers_model', 
 	'seniors_model', 
 	'projects_model',
+	'logs_model',
+	'info_model',
 	'replies_model');

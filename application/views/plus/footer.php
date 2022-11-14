@@ -1,61 +1,28 @@
 
 		<!-- ChatBot Section -->
-		<div class="row">
-			<div class="chatbox chatbox22 chatbox--tray">
+		<div id="chatbot_helper">
+			<div class="row">
+				<div class="chatbox chatbox22 chatbox--tray" >
 				
-				<!-- Chat Tab -->
-				<div class="chatbox__title">
-					<h6><a href="javascript:void()"> Chatbot Helper <span class="ti-comments-smiley"></span> </a></h6>
-
-					<!-- button class="chatbox__title__close">
-						<span>
-							<svg viewBox="0 0 12 12" width="12px" height="12px">
-								<line stroke="#FFFFFF" x1="11.75" y1="0.25" x2="0.25" y2="11.75"></line>
-								<line stroke="#FFFFFF" x1="11.75" y1="11.75" x2="0.25" y2="0.25"></line>
-							</svg>
-						</span>
-					</button -->
-				</div>
-
-				<!-- Chat Tab Content (Responsive) -->
-				<div class="chatbox__body">
-
-					<div class="chatbox__body__message chatbox__body__message--left">
-						<img src="<?php echo base_url(); ?>assets/files/users/pat.jpg" alt="Chatbot Pic">
-												
-						<div class="ul_section_full">
-							<ul class="ul_msg">
-								<li><strong>Chat Pat</strong></li>
-								<li>How can I help you?</li>
-							</ul>
-
-						</div>
+					<!-- Chat Tab -->
+					<div class="chatbox__title">
+						<h6><a href="#"> Chatbot Helper <span class="ti-comments-smiley"></span> </a></h6>
 					</div>
 
-					<div class="chatbox__body__message chatbox__body__message--right">
-						<!--img src="<?php echo base_url(); ?>assets/files/users/2x2.jpg" alt="Chatbot Pic" -->
-
-						<div class="ul_section_full">
-							<ul class="ul_msg">
-								<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </li>
-							</ul>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="panel-footer">
-					<div class="input-group">
-						<input id="btn-input" type="text" class="form-control input-sm chat_set_height" placeholder="Type your message here..." 
-						tabindex="0" dir="ltr" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" contenteditable="true" />
-							<span class="input-group-btn">
-								<button class="btn bt_bg btn-sm" id="btn-chat">
-									Send</button>
-							</span>
+					<!-- Chat Tab Content (Responsive) -->
+					<div class="chatbox__body">
+			
+						
 					</div>
 				</div>
 			</div>
+
 		</div>
+		<div id="chatbot_dump"></div>
+		
+		<script>
+			$(".chatbox__body").load('<?php echo base_url()."home/get_chatbot_replies"; ?>');
+		</script>
 
 		<!-- ChatBot CSS -->
 		<style>
@@ -67,7 +34,7 @@
 				width: 300px;
 				height: 400px;
 				background-color: #fff;
-				font-family: 'Lato', sans-serif;
+				font-family: 'Open Sans', sans-serif;
 
 				-webkit-transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
 				transition: all 600ms cubic-bezier(0.19, 1, 0.22, 1);
@@ -182,7 +149,7 @@
 
 			.chatbox__body,
 			.chatbox__credentials {
-				padding: 15px;
+				padding: 5px;
 				border-top: 0;
 				background-color:#DCDCDC;
 				border-left: 1px solid #ddd;
@@ -203,24 +170,28 @@
 
 			.chatbox__body {
 				overflow-y: auto;
+				padding: 15px;
 			}
 
 			.chatbox__body__message {
 				position: relative;
+				font-size: 15px;
+				padding-left: 10px;
+				
 			}
 
 			.chatbox__body__message p {
 				padding: 15px;
 				border-radius: 4px;
-				font-size: 14px;
+				
 				background-color: #fff;
 				-webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
 				box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
 			}
 
 			.chatbox__body__message img {
-				width: 40px;
-				height: 40px;
+				width: 50px;
+				height: 50px;
 				border-radius: 50%;
 				border: 2px solid #fcfcfc;
 				position: absolute;
@@ -258,6 +229,7 @@
 				border-bottom: none;
 				background-color: #fefefe;
 			}
+
 
 			.chatbox--empty {
 				height: 262px;
@@ -305,13 +277,14 @@
 				padding-right: 30px;
 				text-align: right;
 				border-radius: 4px;
-				font-size: 14px;
-				background-color: #fff;
-				-webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
-				box-shadow: 1px 1px rgba(100, 100, 100, 0.1); 
+				font-size: 5px;
+				background-color: lightblue;
+				/* -webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1); */
+				/* box-shadow: 1px 1px rgba(100, 100, 100, 0.1);  */
 				margin-bottom: 15px;
 				padding-bottom: 5px; 
 				padding-top:15px;
+				
 			}
 
 			.chatbox__body__message--left .ul_section_full {
@@ -322,10 +295,10 @@
 				padding-bottom: 5px;
 				margin-bottom: 15px;
 				border-radius: 4px;
-				font-size: 14px;
-				background-color: #fff;
-				-webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
-				box-shadow: 1px 1px rgba(100, 100, 100, 0.1);
+				font-size: 5px;
+				background-color: lightblue;
+				/* -webkit-box-shadow: 1px 1px rgba(100, 100, 100, 0.1);  */
+				/* box-shadow: 1px 1px rgba(100, 100, 100, 0.1); */
 			}
 
 			.ul_msg{padding:0;margin:0px}
@@ -335,7 +308,7 @@
 			.chatbox__body__message--right .chatbox_timing  {
 				position: absolute;
 				left: 10px;
-				font-size: 12px;
+				font-size: 5px;
 				top: 2px;
 			}
 
@@ -436,82 +409,89 @@
 
 		<!-- ChatBot Javascript -->
 		<script>
-			(function($) {
-				$(document).ready(function() {
-					var $chatbox = $('.chatbox'),
-						$chatboxTitle = $('.chatbox__title'),
-						$chatboxTitleClose = $('.chatbox__title__close'),
-						$chatboxCredentials = $('.chatbox__credentials');
+		
+			$(document).ready(function() {
+				var $chatbox = $('.chatbox'),
+					$chatboxTitle = $('.chatbox__title'),
+					$chatboxTitleClose = $('.chatbox__title__close'),
+					$chatboxCredentials = $('.chatbox__credentials');
 
-					$chatboxTitle.on('click', function() {
-						$chatbox.toggleClass('chatbox--tray');
-					});
-					$chatboxTitleClose.on('click', function(e) {
-						e.stopPropagation();
-						$chatbox.addClass('chatbox--closed');
-					});
-					$chatbox.on('transitionend', function() {
-						if ($chatbox.hasClass('chatbox--closed')) $chatbox.remove();
-					});
-        
+				$chatboxTitle.on('click', function() {
+					$chatbox.toggleClass('chatbox--tray');
 				});
-			})(jQuery);
+				$chatboxTitleClose.on('click', function(e) {
+					e.stopPropagation();
+					$chatbox.addClass('chatbox--closed');
+				});
+				$chatbox.on('transitionend', function() {
+					if ($chatbox.hasClass('chatbox--closed')) $chatbox.remove();
+				});
+        
+				
+			});
+
+			function set_reply(id){
+				$("#chatbot_dump").load('<?php echo base_url()."home/set_chatbot_reply/"; ?>'+id);
+				$(".chatbox__body").html('');
+				$(".chatbox__body").load('<?php echo base_url()."home/get_chatbot_replies"; ?>');
+			}
+
 		</script>
 
 		<!-- Footer Section -->
 
 	<footer>
 		<div class="footer-main">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-12 m-md-auto align-self-center">
-						<div class="block">
-							<a style="margin-left: 20px;" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="footer-logo"></a>
-				<!-- Social Site Icons -->
-				<ul class="social-icon list-inline">
-				  <li class="list-inline-item">
-					<a href="https://www.facebook.com/OfficialBarangaySacredHeart"><i class="ti-facebook"></i></a>
-				  </li>
-				  <li class="list-inline-item">
-					<a href="https://twitter.com/SKSacre?s=20&t=t487gkarG01J8WI9W8VbkA"><i class="ti-twitter"></i></a>
-				  </li>
-				  <li class="list-inline-item">
-					<a href="https://www.instagram.com/ilostcountph/"><i class="ti-instagram"></i></a>
-				  </li>
-				</ul>
-			  </div>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
-			  <div class="block-2">
-				<!-- heading -->
-				<h6>Product</h6>
-				<!-- links -->
-				<ul>
-				  <li><a href="<?php echo base_url(); ?>home/contacts">Teams</a></li>
-				  <li><a href="<?php echo base_url(); ?>home/about">Blogs</a></li>
-				  <li><a href="<?php echo base_url(); ?>home/contacts">FAQs</a></li>
-				</ul>
-			  </div>
-			</div>
-			<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
-			  <div class="block-2">
-				<!-- heading -->
-				<h6>Company</h6>
-				<!-- links -->
-				<ul>
-				  <li><a href="<?php echo base_url(); ?>home/about">About</a></li>
-				  <li><a href="<?php echo base_url(); ?>home/contacts">Contact</a></li>
-				  <li><a href="<?php echo base_url(); ?>home/contacts">Team</a></li>
-				  <li><a href="#" data-target="#TermsModal" data-toggle="modal">Privacy Policy</a></li>
-				</ul>
-			  </div>
-			</div>
-		  </div>
+		<div class="container">
+		<div class="row">
+		<div class="col-lg-4 col-md-12 m-md-auto align-self-center">
+		<div class="block">
+		<a style="margin-left: 20px;" href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/files/info/<?php echo $info['logo']; ?>" alt="footer-logo"></a>
+		<!-- Social Site Icons -->
+		<ul class="social-icon list-inline">
+		<li class="list-inline-item">
+		<a href="https://www.facebook.com/OfficialBarangaySacredHeart"><i class="ti-facebook"></i></a>
+		</li>
+		<li class="list-inline-item">
+		<a href="https://twitter.com/SKSacre?s=20&t=t487gkarG01J8WI9W8VbkA"><i class="ti-twitter"></i></a>
+		</li>
+		<li class="list-inline-item">
+		<a href="https://www.instagram.com/ilostcountph/"><i class="ti-instagram"></i></a>
+		</li>
+		</ul>
 		</div>
-	  </div>
-	  <div class="text-center bg-dark py-4">
+		</div>
+		<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+		<div class="block-2">
+		<!-- heading -->
+		<h6>Product</h6>
+		<!-- links -->
+		<ul>
+		<li><a href="<?php echo base_url(); ?>home/contacts">Teams</a></li>
+		<li><a href="<?php echo base_url(); ?>home/about">Blogs</a></li>
+		<li><a href="<?php echo base_url(); ?>home/contacts">FAQs</a></li>
+		</ul>
+		</div>
+		</div>
+		<div class="col-lg-2 col-md-3 col-6 mt-5 mt-lg-0">
+		<div class="block-2">
+		<!-- heading -->
+		<h6>Company</h6>
+		<!-- links -->
+		<ul>
+		<li><a href="<?php echo base_url(); ?>home/about">About</a></li>
+		<li><a href="<?php echo base_url(); ?>home/contacts">Contact</a></li>
+		<li><a href="<?php echo base_url(); ?>home/contacts">Team</a></li>
+		<li><a href="#" data-target="#TermsModal" data-toggle="modal">Privacy Policy</a></li>
+		</ul>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="text-center bg-dark py-4">
 		<small class="text-secondary">Copyright &copy; <script>document.write(new Date().getFullYear())</script>. Designed &amp; Developed by UST - IT Students </small class="text-secondary">
-	  </div>
+		</div>
 	</footer>
 
 
@@ -533,12 +513,10 @@
 
 	  <!-- Notyf Plugin -->
 	  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-
-
-
+	  
 	  <script src="js/script.js"></script>
 
-  
+
 	</body>
 
 	<script>
@@ -559,7 +537,6 @@
 		if(issuccess != ""){
 			notyf.success(issuccess);
 		}
-
 	</script>
 
 </html>

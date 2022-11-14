@@ -16,10 +16,9 @@
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Assistance Type:</label>
 							<select class="form-select form-control main" name="asst_type" aria-label="Select Assistance Type" required>
-							  <option selected>Financial Assistance</option>
-							  <option value="1">Man-power Assistance</option>
-							  <option value="2">Utility Assistance</option>
-							  <option value="3">Permission Assistance</option>
+								<?php $ctr = 0; foreach($assistance_types as $type){ ?> 
+									<option value="<?php echo $type->assistance_type_id; ?>" <?php if($ctr == 0){ echo "selected"; } ?>><?php echo $type->assistance_type; $ctr = $ctr + 1;?></option>
+								<?php }?>
 							</select>
 						</div>
 						<!-- Message -->

@@ -782,4 +782,38 @@ class Admin extends CI_Controller {
 		redirect('/admin/assistance_request_types', 'refresh');
 	}
 
+	// Logs
+
+	public function view_logs(){
+		if($this->session->usertype != 1)
+		{
+			$error = "Access Denied!";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$data['logs'] = $this->logs_model->log_retrieve();
+
+			$this->load->view('admin/plus/header', $data);
+			$this->load->view('admin/logs', $data);
+			$this->load->view('admin/plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+	}
+
 }

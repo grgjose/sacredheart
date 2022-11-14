@@ -272,6 +272,12 @@
                   <p>Users and Officials List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url() ?>admin/view_logs" class="nav-link">
+                  <i class="fas fa-stream nav-icon"></i>
+                  <p>View Logs</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">

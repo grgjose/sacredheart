@@ -12,6 +12,8 @@ class Home extends CI_Controller {
 	// Defeault Function (Shows Homepage)
 	public function index()
 	{
+		$this->session->set_userdata('chatbot_replies', '2');
+
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
@@ -26,6 +28,12 @@ class Home extends CI_Controller {
 		$data['user'] = $newdata;
 		$data['error'] = $this->session->userdata('error');
 		$data['success'] = $this->session->userdata('success');
+		
+		$data['info'] = $this->get_info();
+
+		$data['projects'] = $this->projects_model->project_retrieve();
+		$data['users'] = $this->user_model->users_retrieve();
+		$data['replies'] = $this->replies_model->reply_retrieve();
 
 		$this->load->view('plus/header', $data);
 		$this->load->view('home', $data);
@@ -116,6 +124,7 @@ class Home extends CI_Controller {
 		);
 
 		$data['user'] = $newdata;
+		$data['info'] = $this->get_info();
 
 		$this->load->view('plus/header', $data);
 		$this->load->view('reset', $data);
@@ -198,6 +207,7 @@ class Home extends CI_Controller {
 			);
 
 			$data['user'] = $newdata;
+			$data['info'] = $this->get_info();
 
 			$users = $this->user_model->users_retrieve();
 
@@ -242,7 +252,8 @@ class Home extends CI_Controller {
 		);
 
 		$data['user'] = $newdata;
-
+		$data['info'] = $this->get_info();
+		
 		$this->load->view('plus/header', $data);
 		$this->load->view('register', $data);
 		$this->load->view('plus/footer', $data);
@@ -274,8 +285,8 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			$this->user_model->users_insert( 'user_'.time(), $password, 3,
-			$fname, $mname, $lname, $email, $address, $contact, $this->upload->data('file_name'));
+
+			$this->user_model->users_insert($password, 3, $email, $fname, $mname, $lname, $address, $contact, 'default.jpg', 0, $this->upload->data('file_name'));
 
 			$success = "Registration Filed Successfully, Please wait for the Officials to Approve it";
 			$this->session->set_userdata('success' , $success);
@@ -303,6 +314,9 @@ class Home extends CI_Controller {
 		$data['error'] = $this->session->userdata('error');
 		$data['success'] = $this->session->userdata('success');
 
+		$data['users'] = $this->user_model->users_retrieve();
+		$data['info'] = $this->get_info();
+
 		$this->load->view('plus/header', $data);
 		$this->load->view('about', $data);
 		$this->load->view('plus/footer', $data);
@@ -329,6 +343,8 @@ class Home extends CI_Controller {
 		$data['user'] = $newdata;
 		$data['error'] = $this->session->userdata('error');
 		$data['success'] = $this->session->userdata('success');
+
+		$data['info'] = $this->get_info();
 
 		$this->load->view('plus/header', $data);
 		$this->load->view('contact', $data);
@@ -380,6 +396,8 @@ class Home extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+
+			$data['info'] = $this->get_info();
 
 			$data['complaints'] = $this->complaints_model->complaint_retrieve($this->session->userdata('user_id'));
 			$data['requests'] = $this->requests_model->request_retrieve($this->session->userdata('user_id'));
@@ -437,6 +455,8 @@ class Home extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+
+			$data['info'] = $this->get_info();
 
 			$this->load->view('plus/header', $data);
 			$this->load->view('profile', $data);
@@ -520,6 +540,49 @@ class Home extends CI_Controller {
 
 
 		redirect('/home/edit_info', 'refresh');
+	}
+
+	public function get_info(){
+		$result = $this->info_model->info_retrieve();
+
+		foreach($result as $r){
+			$myArr['logo'] = $r->info_logo;
+			$myArr['adv_logo'] = $r->info_adv_logo;
+			$myArr['mission'] = $r->info_mission;
+			$myArr['vision'] = $r->info_vision;
+			$myArr['gmap'] = $r->info_gmap;
+			$myArr['location'] = $r->info_location;
+			$myArr['number1'] = $r->info_number1;
+			$myArr['number2'] = $r->info_number2;
+			$myArr['home_userfile'] = $r->info_home_userfile;
+			$myArr['home_tagline'] = $r->info_home_tagline;
+			$myArr['home_greetings'] = $r->info_home_greetings;
+			$myArr['youtube_link'] = $r->info_youtube_link;
+			$myArr['about_userfile1'] = $r->info_about_userfile1;
+			$myArr['about_userfile2'] = $r->info_about_userfile2;
+			$myArr['about_userfile3'] = $r->info_about_userfile3;
+		}
+
+		return $myArr;
+
+	}
+
+	public function get_chatbot_replies(){
+		$data['chatbot_replies'] = $this->session->userdata('chatbot_replies');
+		$data['replies'] = $this->replies_model->reply_retrieve();
+		$this->load->view('plus/chatbot', $data);
+	}
+
+	public function set_chatbot_reply($reply_id = null){
+
+		$x = $this->session->userdata('chatbot_replies');
+		$x = $x . ',' . $reply_id;
+
+		$replies = $this->replies_model->reply_retrieve();
+
+		foreach($replies as $reply){ if($reply->reply_id == intval($reply_id)){ $x = $x .','.$reply->reply_suggested; break; }}
+
+		$this->session->set_userdata('chatbot_replies', $x);
 	}
 
 }

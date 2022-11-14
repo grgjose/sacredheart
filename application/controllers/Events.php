@@ -36,6 +36,8 @@ class Events extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
+			$data['info'] = $this->get_info();
+
 			$this->load->view('plus/header', $data);
 			$this->load->view('home', $data);
 			$this->load->view('plus/footer', $data);
@@ -71,6 +73,9 @@ class Events extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+
+			$data['info'] = $this->get_info();
+
 			$data['receivers'] = $this->receivers_model->receiver_retrieve();
 
 			$this->load->view('plus/header', $data);
@@ -108,6 +113,9 @@ class Events extends CI_Controller {
 			$data['user'] = $newdata;
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
+
+			$data['info'] = $this->get_info();
+
 			$data['seniors'] = $this->seniors_model->senior_retrieve();
 
 			$this->load->view('plus/header', $data);
@@ -145,6 +153,8 @@ class Events extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
+			$data['info'] = $this->get_info();
+
 			$data['projects'] = $this->projects_model->project_retrieve();
 			$data['users'] = $this->user_model->users_retrieve();
 
@@ -156,4 +166,30 @@ class Events extends CI_Controller {
 			$this->session->unset_userdata('success');
 		}
 	}
+
+	public function get_info(){
+		$result = $this->info_model->info_retrieve();
+
+		foreach($result as $r){
+			$myArr['logo'] = $r->info_logo;
+			$myArr['adv_logo'] = $r->info_adv_logo;
+			$myArr['mission'] = $r->info_mission;
+			$myArr['vision'] = $r->info_vision;
+			$myArr['gmap'] = $r->info_gmap;
+			$myArr['location'] = $r->info_location;
+			$myArr['number1'] = $r->info_number1;
+			$myArr['number2'] = $r->info_number2;
+			$myArr['home_userfile'] = $r->info_home_userfile;
+			$myArr['home_tagline'] = $r->info_home_tagline;
+			$myArr['home_greetings'] = $r->info_home_greetings;
+			$myArr['youtube_link'] = $r->info_youtube_link;
+			$myArr['about_userfile1'] = $r->info_about_userfile1;
+			$myArr['about_userfile2'] = $r->info_about_userfile2;
+			$myArr['about_userfile3'] = $r->info_about_userfile3;
+		}
+
+		return $myArr;
+
+	}
+
 }

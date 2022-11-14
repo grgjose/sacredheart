@@ -168,22 +168,21 @@
 
 <!-- ********************************
      *			RESIDENTS           *
-	 ******************************** -->
+	 ******************************** 
 <section class="section cta-hire bg-gary">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<!-- Hire Title -->
+				
 				<h2>We are hunting Passionate Residents</h2>
-				<!-- Job Description -->
+				
 				<p>Be curious. Use data. Leverage imagination. Be an expert. Be an enthusiast. Be authentic. Know your competition. 
 				Hiring is the most important people function you have, and most of us aren’t as good at it as we think.
 				Refocusing your resources on hiring better will have a higher return than almost any training program you can develop. </p>
-				<!-- Action Button -->
+				
 				<a href="<?php echo base_url(); ?>home/register" class="mt-3 btn btn-main-md">Register as a Resident</a>
 			</div>
 		</div>
 	</div>
-</section>
-
+</section> -->
 <!--====  End of Section comment  ====-->
