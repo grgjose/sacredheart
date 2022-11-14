@@ -8,11 +8,12 @@ class Requests_model extends CI_Model {
             $this->load->database();
         }    
     
-        public function request_insert($user_id, $document_type, $document_purpose, $date_needed){
+        public function request_insert($user_id, $document_type, $document_purpose, $userfile, $date_needed){
 			$data = array(
 				'user_id' => $user_id,
 				'document_type' => $document_type,
 				'document_purpose' => $document_purpose,
+				'document_userfile' => $userfile,
 				'date_needed' => $date_needed
 			);
 
@@ -29,10 +30,20 @@ class Requests_model extends CI_Model {
             return $query->result();
 		}
 
-		public function request_update($id, $status)
+		public function request_update($id, $status, $remarks)
 		{
+			$this->db->set('remarks', $remarks);
 			$this->db->set('status', $status);
+			$this->db->set('seen', $status);
 			$this->db->where('request_id', $id);
+			$this->db->update('tbl_requests'); 
+            $this->db->close();
+		}
+
+		public function request_seen($id)
+		{
+			$this->db->set('seen', 0);
+			$this->db->where('user_id', $id);
 			$this->db->update('tbl_requests'); 
             $this->db->close();
 		}

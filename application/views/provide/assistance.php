@@ -21,8 +21,10 @@
                     <th>Purpose</th>
                     <th>Complaintant</th>
                     <th>Date Needed</th>
+
                     <th>Status</th>
 					<th>Date Created</th>
+					<th>Remarks</th>
 					<th>Actions</th>
                   </tr>
                   </thead>
@@ -38,8 +40,10 @@
 					<?php if($assist->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $assist->date_created; ?></td>
+					<td><?php echo $assist->remarks; ?></td>
 					<td>
 						<button class="btn btn-<?php if($assist->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
+						data-toggle="modal" data-target="#<?php if($assist->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($assist->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $assist->assistance_id; ?>)" >
 						<?php if($assist->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
 						</button>
@@ -65,6 +69,21 @@
 				  color:#ccc;
 				}
 				</style>
+
+								<script>
+					function editFunc(id)
+					{
+						$('#EditModal #id').val(id);
+					
+					}
+
+					function delFunc(id)
+					{
+						$('#DeleteModal #id').val(id);
+					
+					}
+			    </script>
+
 				<script>
   $(function () {
     //$("#example1").DataTable({
@@ -133,6 +152,68 @@ observer2.observe(target, {
 		</div>
 	</div>
 </section>
+
+
+		<!-- Edit Modal -->
+		<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="EditModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Give Remarks</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				<?php $attributes = array('id' => 'EditModalForm'); echo form_open('provide/set_status_as_approved', $attributes); ?>
+					<div class="form-row">
+					<input type="hidden" id="type" name="type"  value="assistance">
+					<input type="hidden" id="id" name="id"  value="">
+
+					<div class="col">
+						<label>Remarks</label>
+						<textarea class="form-control" name="remarks" rows="3" required></textarea>
+					</div>
+					</div> <br>						
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Save" />
+				</div>
+				</form>
+			</div>
+			</div>
+		</div>
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Give Remarks</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				<?php $attributes = array('id' => 'DeleteModalForm'); echo form_open('provide/set_status_as_pending', $attributes); ?>
+					<div class="form-row">
+					<input type="hidden" id="type" name="type"  value="assistance">
+					<input type="hidden" id="id" name="id"  value="">
+					<div class="col">
+						<label>Remarks</label>
+						<textarea class="form-control" name="remarks" rows="3" required></textarea>
+					</div>
+					</div> <br>						
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Save" />
+				</div>
+				</form>
+			</div>
+			</div>
+		</div>
 
 	<!-- Login Window -->
 	<div aria-hidden="true" aria-labelledby="ViewResidentModal" class="modal fade" id="ViewResidentModal" role="dialog" tabindex="-1">

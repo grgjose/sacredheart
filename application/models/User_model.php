@@ -59,6 +59,27 @@ class User_model extends CI_Model {
             $this->db->close();
         }
 
+		public function users_update_validation_code($code, $email){
+            $this->db->set('validation_code', $code);
+			$this->db->where('email', $email);
+			$this->db->update('tbl_users'); 
+            $this->db->close();
+        }
+
+		public function users_update_approve($approved, $email){
+            $this->db->set('approved', $approved);
+			$this->db->where('email', $email);
+			$this->db->update('tbl_users'); 
+            $this->db->close();
+        }
+
+		public function users_update_approve_by_id($id, $approved){
+            $this->db->set('approved', $approved);
+			$this->db->where('user_id', $id);
+			$this->db->update('tbl_users'); 
+            $this->db->close();
+        }
+
 		public function users_update_password($password, $code, $email){
             $this->db->set('password', $password);
 			$this->db->set('verification_code', $code);

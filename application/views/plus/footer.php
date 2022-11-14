@@ -1,4 +1,6 @@
 
+
+		<?php if($user['usertype'] != 1 && $user['usertype'] != 2 ){ ?>
 		<!-- ChatBot Section -->
 		<div id="chatbot_helper">
 			<div class="row">
@@ -18,6 +20,9 @@
 			</div>
 
 		</div>
+		<?php } ?>
+
+
 		<div id="chatbot_dump"></div>
 		
 		<script>
@@ -434,6 +439,7 @@
 				$("#chatbot_dump").load('<?php echo base_url()."home/set_chatbot_reply/"; ?>'+id);
 				$(".chatbox__body").html('');
 				$(".chatbox__body").load('<?php echo base_url()."home/get_chatbot_replies"; ?>');
+				$(".chatbox__body").animate({ scrollTop: $('.chatbox__body').get(0).scrollHeight}, 1000);
 			}
 
 		</script>

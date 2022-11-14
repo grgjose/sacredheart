@@ -30,14 +30,24 @@ class Complaints_model extends CI_Model {
             return $query->result();
 		}
 
-		public function complaint_update($id, $status)
+		public function complaint_update($id, $status, $remarks)
 		{
+			$this->db->set('remarks', $remarks);
 			$this->db->set('status', $status);
+			$this->db->set('seen', $status);
 			$this->db->where('complaint_id', $id);
 			$this->db->update('tbl_complaints'); 
             $this->db->close();
 		}
 
+
+		public function complaint_seen($id)
+		{
+			$this->db->set('seen', 0);
+			$this->db->where('user_id', $id);
+			$this->db->update('tbl_complaints'); 
+            $this->db->close();
+		}
 
     }
 

@@ -2,14 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\application",
-    "\\application\\cache",
-    "\\application\\config",
-    "\\application\\controllers",
-    "\\application\\models",
-    "\\application\\views",
-    "\\application\\views\\plus",
-    "\\assets"
+    "\\application\\views\\admin\\plus"
   ],
-  "SelectedNode": "\\application\\config\\user_agents.php",
+  "SelectedNode": "\\assets",
   "PreviewInSolutionExplorer": false
 }

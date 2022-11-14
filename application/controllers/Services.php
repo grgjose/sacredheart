@@ -21,6 +21,20 @@ class Services extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $count = $count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $count = $count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $count = $count + 1; }}
+			}
+
+			$data['notif_count;'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -29,7 +43,8 @@ class Services extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -59,6 +74,20 @@ class Services extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -67,7 +96,8 @@ class Services extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -102,7 +132,20 @@ class Services extends CI_Controller {
 			$purpose = $this->input->post('purpose');
 			$date_needed = $this->input->post('docdate');
 
-			$this->requests_model->request_insert($this->session->userdata('user_id'), $doc_type, $purpose, $date_needed);
+			// Upload ID to a Path
+			$config['upload_path']          = './assets/files/payments/';
+			$config['allowed_types']        = '*';
+			$config['max_size']             = 1000000000;
+			$config['file_name']			= time();
+
+			$this->load->library('upload', $config);	
+
+			if ($this->upload->do_upload('userfile')){
+				$userfile = $this->upload->data('file_name');
+			}
+
+
+			$this->requests_model->request_insert($this->session->userdata('user_id'), $doc_type, $purpose, $userfile, $date_needed);
 			$this->session->set_userdata('success', 'Request Created. Please wait for 1-2 Working Days.');
 
 			redirect('/home', 'refresh');
@@ -120,6 +163,20 @@ class Services extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -128,7 +185,8 @@ class Services extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -196,6 +254,20 @@ class Services extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -204,7 +276,8 @@ class Services extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;

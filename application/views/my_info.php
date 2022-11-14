@@ -16,14 +16,16 @@
 					  <th class="col-md-5 col-xs-5 text-center">Date Requested</th>
 					  <th class="col-md-1 col-xs-2 text-center">Complaint Description</th>
 					  <th class="col-md-2 col-xs-2 text-center">Complaint Letter</th>
+					  <th class="col-md-2 col-xs-2 text-center">Remarks</th>
 					</tr>
 				  </thead>
 				  <tbody>
 					<?php foreach($complaints as $complaint) { ?>
-					<tr>
+					<trstyle="<?php if($complaint->seen == 1){ echo "background-color: yellow"; } ?>;">
 						<td style="height: 30px;" class="text-center"><?php echo $complaint->date_created; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $complaint->complaint_description; ?></td>
 						<td style="height: 30px;" class="text-center"><a href="<?php echo base_url() . $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
+						<td style="height: 30px;" class="text-center"><?php echo $complaint->remarks; ?></td>
 					</tr>
 					<?php } ?>
 				  </tbody>
@@ -63,15 +65,19 @@
 					  <th class="col-md-1 col-xs-2 text-center">Document Type</th>
 					  <th class="col-md-2 col-xs-2 text-center">Document Purpose</th>
 					  <th class="col-md-2 col-xs-2 text-center">Date Needed</th>
+					  <th class="col-md-2 col-xs-2 text-center">Remarks</th>
 					</tr>
 				  </thead>
 				  <tbody>
 					<?php foreach($requests as $request) { ?>
-					<tr>
+					<tr  style="<?php if($request->seen == 1){ echo "background-color: yellow"; } ?>;">
 						<td style="height: 30px;" class="text-center"><?php echo $request->date_created; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $request->document_type; ?></td>
+						<td style="height: 30px;" class="text-center">
+							<?php foreach($request_types as $type){ if($type->request_type_id == $request->document_type){ echo $type->request_type; break; }}?>
+						</td>
 						<td style="height: 30px;" class="text-center"><?php echo $request->document_purpose; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $request->date_needed; ?></td>
+						<td style="height: 30px;" class="text-center"><?php echo $request->remarks; ?></td>
 					</tr>
 					<?php } ?>
 				  </tbody>
@@ -112,15 +118,19 @@
 					  <th class="col-md-1 col-xs-2 text-center">Assistance Type</th>
 					  <th class="col-md-2 col-xs-2 text-center">Assistance Purpose</th>
 					  <th class="col-md-2 col-xs-2 text-center">Date Needed</th>
+					  <th class="col-md-2 col-xs-2 text-center">Remarks</th>
 					</tr>
 				  </thead>
 				  <tbody>
 					<?php foreach($assistance as $assist) { ?>
-					<tr>
+					<tr style="<?php if($assist->seen == 1){ echo "background-color: yellow"; } ?>;">
 						<td style="height: 30px;" class="text-center"><?php echo $assist->date_created; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $assist->assistance_type; ?></td>
+						<td style="height: 30px;" class="text-center">
+							<?php foreach($assistance_types as $type){ if($type->assistance_type_id == $assist->assitance_type){ echo $type->assistance_type; break; }}?>
+						</td>
 						<td style="height: 30px;" class="text-center"><?php echo $assist->assistance_purpose; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $assist->date_needed; ?></td>
+						<td style="height: 30px;" class="text-center"><?php echo $assist->remarks; ?></td>
 					</tr>
 					<?php } ?>
 				  </tbody>

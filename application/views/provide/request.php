@@ -20,8 +20,10 @@
                     <th>Purpose</th>
                     <th>Complaintant</th>
                     <th>Date Needed</th>
+					<th>Payment Proof</th>
                     <th>Status</th>
 					<th>Date Created</th>
+					<th>Remarks</th>
 					<th>Actions</th>
                   </tr>
                   </thead>
@@ -32,13 +34,16 @@
 					<td><?php echo $request->document_purpose; ?></td>
 					<td><?php foreach($users as $user){ if($user->user_id == $request->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
 					<td><?php echo $request->date_needed; ?></td>
+					<td><img src="<?php echo base_url().'assets/files/payments/'.$request->document_userfile; ?>" width="100px" height="180px"/></td>
                     <td id="status_<?php echo $request->request_id; ?>">
 					<?php if($request->status == 1){?> <span class="badge badge-success">Done</span> <?php }?>
 					<?php if($request->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $request->date_created; ?></td>
+					<td><?php echo $request->remarks; ?></td>
 					<td>
 						<button class="btn btn-<?php if($request->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
+						data-toggle="modal" data-target="#<?php if($request->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($request->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $request->request_id; ?>)" >
 						<?php if($request->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
 						</button>
@@ -51,88 +56,164 @@
 
 				<style>
 
-				.results tr[visible='false'],
-				.no-result{
-				  display:none;
-				}
+					.results tr[visible='false'],
+					.no-result{
+					  display:none;
+					}
 
-				.results tr[visible='true']{
-				  display:table-row;
-				}
+					.results tr[visible='true']{
+					  display:table-row;
+					}
 
-				.counter{
-				  padding:8px; 
-				  color:#ccc;
-				}
+					.counter{
+					  padding:8px; 
+					  color:#ccc;
+					}
 				</style>
+
 				<script>
-  $(function () {
-    //$("#example1").DataTable({
-    //  "responsive": true, "lengthChange": false, "autoWidth": false,
-    //  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+					function editFunc(id)
+					{
+						$('#EditModal #id').val(id);
+					
+					}
+
+					function delFunc(id)
+					{
+						$('#DeleteModal #id').val(id);
+					
+					}
+			    </script>
+
+				<script>
+					$(function () {
+					//$("#example1").DataTable({
+					//  "responsive": true, "lengthChange": false, "autoWidth": false,
+					//  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+					//}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    
-	$('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-	  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
+					$('#example2').DataTable({
+					"paging": true,
+					"lengthChange": true,
+					"searching": true,
+					"ordering": true,
+					"info": true,
+					"autoWidth": false,
+					"responsive": true,
+					"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+					}).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
 	
-	$('#example3').DataTable({
-      "paging": true,
-      "lengthChange": false,
-	  "lengthMenu": [3],
-      "searching": true,
-      "ordering": false,
-      "info": false,
-      "autoWidth": false,
-      "responsive": true,
+					$('#example3').DataTable({
+					"paging": true,
+					"lengthChange": false,
+					"lengthMenu": [3],
+					"searching": true,
+					"ordering": false,
+					"info": false,
+					"autoWidth": false,
+					"responsive": true,
 	  
-    });
+					});
 
-  });
+					});
 
-  // Select the target node.
-var target = document.querySelector('tbody')
+					  // Select the target node.
+					var target = document.querySelector('tbody')
 
-// Create an observer instance.
-var observer = new MutationObserver(function(mutations) {
-	$('#example2_length').attr('style', 'color: white; padding-right: 20px;');
-	$('#example2_filter').attr('style', 'color: white;'); 
-	$('#example2_info').attr('style', 'color: white;');
-	$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
-});
+					// Create an observer instance.
+					var observer = new MutationObserver(function(mutations) {
+						$('#example2_length').attr('style', 'color: white; padding-right: 20px;');
+						$('#example2_filter').attr('style', 'color: white;'); 
+						$('#example2_info').attr('style', 'color: white;');
+						$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+					});
 
-var observer2 = new MutationObserver(function(mutations) {
-	$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
-	$('#example3_filter').attr('style', 'color: white;'); 
-	$('#example3_info').attr('style', 'color: white;');
-	$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
-});
+					var observer2 = new MutationObserver(function(mutations) {
+						$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
+						$('#example3_filter').attr('style', 'color: white;'); 
+						$('#example3_info').attr('style', 'color: white;');
+						$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+					});
 
-// Pass in the target node, as well as the observer options.
-observer.observe(target, {
-    attributes:    true,
-    childList:     true,
-    characterData: true
-});
+					// Pass in the target node, as well as the observer options.
+					observer.observe(target, {
+						attributes:    true,
+						childList:     true,
+						characterData: true
+					});
 
-observer2.observe(target, {
-    attributes:    true,
-    childList:     true,
-    characterData: true
-});
+					observer2.observe(target, {
+						attributes:    true,
+						childList:     true,
+						characterData: true
+					});
 						
-				</script>
+			    </script>
 			</div>
 		</div>
 	</div>
 </section>
+
+		<!-- Edit Modal -->
+		<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="EditModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Give Remarks</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				<?php $attributes = array('id' => 'EditModalForm'); echo form_open('provide/set_status_as_approved', $attributes); ?>
+					<div class="form-row">
+					<input type="hidden" id="type" name="type"  value="requests">
+					<input type="hidden" id="id" name="id"  value="">
+
+					<div class="col">
+						<label>Remarks</label>
+						<textarea class="form-control" name="remarks" rows="3" required></textarea>
+					</div>
+					</div> <br>						
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Save" />
+				</div>
+				</form>
+			</div>
+			</div>
+		</div>
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Give Remarks</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				<?php $attributes = array('id' => 'DeleteModalForm'); echo form_open('provide/set_status_as_pending', $attributes); ?>
+					<div class="form-row">
+					<input type="hidden" id="type" name="type"  value="requests">
+					<input type="hidden" id="id" name="id"  value="">
+					<div class="col">
+						<label>Remarks</label>
+						<textarea class="form-control" name="remarks" rows="3" required></textarea>
+					</div>
+					</div> <br>						
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Save" />
+				</div>
+				</form>
+			</div>
+			</div>
+		</div>
 
 	<!-- Login Window -->
 	<div aria-hidden="true" aria-labelledby="ViewResidentModal" class="modal fade" id="ViewResidentModal" role="dialog" tabindex="-1">

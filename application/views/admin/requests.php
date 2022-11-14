@@ -39,6 +39,7 @@
                     <th>Date Needed</th>
                     <th>Status</th>
 					<th>Date Created</th>
+					<th>Remarks</th>
 					<th>Actions</th>
                   </tr>
                   </thead>
@@ -54,8 +55,10 @@
 					<?php if($request->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $request->date_created; ?></td>
+					<td><?php echo $request->remarks; ?></td>
 					<td>
 						<button class="btn btn-<?php if($request->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
+						data-toggle="modal" data-target="#<?php if($request->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($request->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $request->request_id; ?>)" >
 						<?php if($request->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
 						</button>
@@ -71,13 +74,13 @@
 				function editFunc(id)
 				{
 					$('#EditModal #id').val(id);
-					$('#EditModalForm').submit();
+					
 				}
 
 				function delFunc(id)
 				{
 					$('#DeleteModal #id').val(id);
-					$('#DeleteModalForm').submit();
+					
 				}
 
 			  </script>
@@ -146,7 +149,7 @@
 					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Give Remarks</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -156,6 +159,11 @@
 							<div class="form-row">
 							<input type="hidden" id="type" name="type"  value="requests">
 							<input type="hidden" id="id" name="id"  value="">
+
+							<div class="col">
+								<label>Remarks</label>
+								<textarea class="form-control" name="remarks" rows="3" required></textarea>
+							</div>
 							</div> <br>						
 						</div>
 						<div class="modal-footer">
@@ -172,7 +180,7 @@
 					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Give Remarks</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -182,6 +190,10 @@
 							<div class="form-row">
 							<input type="hidden" id="type" name="type"  value="requests">
 							<input type="hidden" id="id" name="id"  value="">
+							<div class="col">
+								<label>Remarks</label>
+								<textarea class="form-control" name="remarks" rows="3" required></textarea>
+							</div>
 							</div> <br>						
 						</div>
 						<div class="modal-footer">

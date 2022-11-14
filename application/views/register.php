@@ -47,7 +47,7 @@
 							<input id="submit" type="submit" class="btn btn-main-sm" value="Sign Up">
 						
 						<div class="new-acount">
-							<p><input type="checkbox" id="vehicle1" name="vehicle1" value="" required> &nbsp; By clicking this checkbox,<br> I agree to <a href="#" data-target="#TermsModal" data-toggle="modal">Terms of Conditions.</a> and <a href="#">Data Privacy</a></p>
+							<p><input type="checkbox" id="vehicle1" name="vehicle1" value="" required> &nbsp; By clicking this checkbox,<br> I agree to <a href="#" data-target="#TermsModal" data-toggle="modal">Terms of Conditions.</a> and <a href="#" data-target="#TermsModal" data-toggle="modal">Data Privacy</a></p>
 							<p>Anready have an account? <a href="#" data-target="#LoginModal" data-toggle="modal">SIGN IN</a></p>
 						</div>
 						<?php echo form_close();?>

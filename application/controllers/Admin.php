@@ -94,6 +94,7 @@ class Admin extends CI_Controller {
 		$date_to_receive = $this->input->post('date_to_receive');
 		$is_received = $this->input->post('is_received');
 
+		$this->logs_model->log_insert($fname.' '. $lname .' Receiver is Added. ');
 		$this->receivers_model->receiver_insert($fname, $mname, $lname, $age, $current_job, $date_to_receive, $is_received);
 
 		$success = $fname . " is Added Successfully!";
@@ -113,6 +114,7 @@ class Admin extends CI_Controller {
 		$date_to_receive = $this->input->post('date_to_receive');
 		$is_received = $this->input->post('is_received');
 
+		$this->logs_model->log_insert($fname.' '. $lname .' Receiver is Updated. ');
 		$this->receivers_model->receiver_update($receiver_id, $fname, $mname, $lname, $age, $current_job, $date_to_receive, $is_received);
 
 		$success = $fname . " is Updated Successfully!";
@@ -126,9 +128,13 @@ class Admin extends CI_Controller {
 		$receiver_id = $this->input->post('receiver_id');
 		$fname = $this->input->post('fname');
 
+
 		$this->receivers_model->receiver_delete($receiver_id);
 
 		$success = $fname . " is Deleted Successfully!";
+
+
+		$this->logs_model->log_insert($success);
 		$this->session->set_userdata('success' , $success);
 
 		redirect('/admin/ayuda_receivers', 'refresh');
@@ -177,6 +183,7 @@ class Admin extends CI_Controller {
 		$job = $this->input->post('job');
 		$senior_card_id = $this->input->post('senior_card_id');
 
+		$this->logs_model->log_insert($fname. ' '.$lname.' is an added senior citizen');
 		$this->seniors_model->senior_insert($fname, $mname, $lname, $age, $job, $senior_card_id);
 
 		$success = $fname . " is Added Successfully!";
@@ -195,6 +202,7 @@ class Admin extends CI_Controller {
 		$job = $this->input->post('job');
 		$senior_card_id = $this->input->post('senior_card_id');
 
+		$this->logs_model->log_insert($fname. ' '.$lname.' is an updated senior citizen');
 		$this->seniors_model->senior_update($senior_id, $fname, $mname, $lname, $age, $job, $senior_card_id);
 
 		$success = $fname . " is Updated Successfully!";
@@ -211,6 +219,7 @@ class Admin extends CI_Controller {
 		$this->seniors_model->senior_delete($senior_id);
 
 		$success = $fname . " is Deleted Successfully!";
+		$this->logs_model->log_insert($success);
 		$this->session->set_userdata('success' , $success);
 
 		redirect('/admin/senior_citizens', 'refresh');
@@ -278,6 +287,7 @@ class Admin extends CI_Controller {
 		}
 
 		// Connect or Update Database
+		$this->logs_model->log_insert($project_title.' project title is added');
 		$this->projects_model->project_insert($project_title, $project_date, $project_details, $project_userfile, $user_id);
 
 		// Notif
@@ -312,6 +322,7 @@ class Admin extends CI_Controller {
 		}
 
 		// Connect or Update Database
+		$this->logs_model->log_insert($project_title.' project title is updated');
 		$this->projects_model->project_update($id, $project_title, $project_date, $project_details, $project_userfile, $user_id);
 
 		// Notif
@@ -332,6 +343,7 @@ class Admin extends CI_Controller {
 
 		// Notif
 		$success = "Deleted Successfully!";
+		$this->logs_model->log_insert($success.' from project');
 		$this->session->set_userdata('success' , $success);
 
 		// Next Action
@@ -370,6 +382,16 @@ class Admin extends CI_Controller {
 			$this->session->unset_userdata('error');
 			$this->session->unset_userdata('success');
 		}
+	}
+
+	public function add_chatbot_reply(){
+		$reply = $this->input->post('reply');
+		$this->replies_model->reply_insert($reply);
+
+		$success = "Reply is Added";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/chatbot', 'refresh');
 	}
 
 	// Officials Tree (Infographics Purpose)
@@ -497,7 +519,7 @@ class Admin extends CI_Controller {
 		$success = "User Created";
 		$this->session->set_userdata('success' , $success);
 
-		$this->user_model->users_insert($password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 1, '');
+		$this->user_model->users_insert($password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 2, '');
 
 		redirect('/admin/users_list', 'refresh');
 	}
@@ -531,7 +553,7 @@ class Admin extends CI_Controller {
 		$success = "User Updated";
 		$this->session->set_userdata('success' , $success);
 
-		$this->user_model->users_update($id, $password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 1, '');
+		$this->user_model->users_update($id, $password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 2, '');
 
 		redirect('/admin/users_list', 'refresh');
 	}
@@ -606,6 +628,8 @@ class Admin extends CI_Controller {
 
 			$data['complaints'] = $this->complaints_model->complaint_retrieve();
 			$data['users'] = $this->user_model->users_retrieve();
+
+
 
 			$this->load->view('admin/plus/header', $data);
 			$this->load->view('admin/complaints', $data);
@@ -719,20 +743,24 @@ class Admin extends CI_Controller {
 	public function set_status_as_approved(){
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
 
 		if($type == "requests")
 		{
-			$this->requests_model->request_update($id, 1);
+			$this->logs_model->log_insert("approved a pending request");
+			$this->requests_model->request_update($id, 1, $remarks);
 			redirect('/admin/document_requests', 'refresh');
 		}
 		elseif($type == "complaints")
 		{
-			$this->complaints_model->complaint_update($id, 1);
+			$this->logs_model->log_insert("approved a pending complaint");
+			$this->complaints_model->complaint_update($id, 1, $remarks);
 			redirect('/admin/filed_complaints', 'refresh');
 		}
 		elseif($type == "assistance")
 		{
-			$this->assistance_model->assistance_update($id, 1);
+			$this->logs_model->log_insert("approved a pending assistance");
+			$this->assistance_model->assistance_update($id, 1, $remarks);
 			redirect('/admin/assistance_requests', 'refresh');
 		}
 	}
@@ -740,20 +768,21 @@ class Admin extends CI_Controller {
 	public function set_status_as_pending(){
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
 
 		if($type == "requests")
 		{
-			$this->requests_model->request_update($id, 0);
+			$this->requests_model->request_update($id, 0, $remarks);
 			redirect('/admin/document_requests', 'refresh');
 		}
 		elseif($type == "complaints")
 		{
-			$this->complaints_model->complaint_update($id, 0);
+			$this->complaints_model->complaint_update($id, 0, $remarks);
 			redirect('/admin/filed_complaints', 'refresh');
 		}
 		elseif($type == "assistance")
 		{
-			$this->assistance_model->assistance_update($id, 0);
+			$this->assistance_model->assistance_update($id, 0, $remarks);
 			redirect('/admin/assistance_requests', 'refresh');
 		}
 	}

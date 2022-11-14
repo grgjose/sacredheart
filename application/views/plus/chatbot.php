@@ -5,6 +5,7 @@
 <?php if($reply->reply_id == intval($record)){ ?>
 			
 
+
 <?php if($reply->reply_from == 1){ ?>
 
 <div class="chatbox__body__message chatbox__body__message--left">
@@ -18,7 +19,20 @@
 </div>
 </div>
 
-<?php if(count($records) == $ctr){ ?>
+<?php if(count($records) == $ctr && $record == '2' && count($records) > 1){ ?>
+
+<div class="chatbox__body__message chatbox__body__message--left">
+
+<img src="<?php echo base_url(); ?>assets/files/info/chatbot.jpg" alt="Chatbot Pic">
+												
+<div class="ul_section_full">
+	<ul class="ul_msg">
+		<li style="font-size: 13px; color: #010101;"><?php echo $reply->reply; ?></li>
+	</ul>
+</div>
+</div>
+
+<?php } elseif(count($records) == $ctr) { ?>
 <div class="chatbox__body__message chatbox__body__message--right">
 	<img src="<?php echo base_url(); ?>assets/files/users/default.jpg" alt="Chatbot Pic">
 

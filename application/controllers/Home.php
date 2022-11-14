@@ -13,6 +13,20 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$this->session->set_userdata('chatbot_replies', '2');
+		
+		$notif_count = 0;
+
+		if($this->session->userdata('logged_in') != null){
+			$complaints = $this->complaints_model->complaint_retrieve();
+			$assistance = $this->assistance_model->assistance_retrieve();
+			$requests = $this->requests_model->request_retrieve();
+
+			foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+		}
+
+		$data['notif_count'] = $notif_count;
 
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
@@ -22,7 +36,8 @@ class Home extends CI_Controller {
 			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
-			'logged_in' => $this->session->userdata('logged_in')
+			'logged_in' => $this->session->userdata('logged_in'),
+			'notif_count' => $notif_count
 		);
 
 		$data['user'] = $newdata;
@@ -34,6 +49,8 @@ class Home extends CI_Controller {
 		$data['projects'] = $this->projects_model->project_retrieve();
 		$data['users'] = $this->user_model->users_retrieve();
 		$data['replies'] = $this->replies_model->reply_retrieve();
+
+
 
 		$this->load->view('plus/header', $data);
 		$this->load->view('home', $data);
@@ -57,7 +74,7 @@ class Home extends CI_Controller {
 
 		foreach($users as $user)
 		{
-			if (($mail == $user->email) && ($pass == $user->password) && ($user->approved == 1))
+			if (($mail == $user->email) && ($pass == $user->password) && ($user->approved == 2))
 			{
 
 				$newdata = array(
@@ -90,6 +107,7 @@ class Home extends CI_Controller {
 		}
 		else 
 		{
+			$this->logs_model->log_insert($newdata['user_id'].' just logged in');
 			redirect('/home', 'refresh');
 		}
 
@@ -112,6 +130,20 @@ class Home extends CI_Controller {
 	// Reset Password Function
 	public function reset()
 	{
+		$notif_count = 0;
+
+		if($this->session->userdata('logged_in') != null){
+			$complaints = $this->complaints_model->complaint_retrieve();
+			$assistance = $this->assistance_model->assistance_retrieve();
+			$requests = $this->requests_model->request_retrieve();
+
+			foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+		}
+
+		$data['notif_count'] = $notif_count;
+
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
@@ -120,7 +152,8 @@ class Home extends CI_Controller {
 			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
-			'logged_in' => $this->session->userdata('logged_in')
+			'logged_in' => $this->session->userdata('logged_in'),
+			'notif_count' => $notif_count
 		);
 
 		$data['user'] = $newdata;
@@ -183,8 +216,8 @@ class Home extends CI_Controller {
 		}
 
 		$mail->smtpClose();
-		redirect('/home', 'refresh');
 
+		redirect('/home', 'refresh');
 	}
 
 	public function reset_password_now($code = null)
@@ -195,6 +228,20 @@ class Home extends CI_Controller {
 			redirect('/home', 'refresh');
 		} else {
 
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -203,7 +250,8 @@ class Home extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -240,6 +288,20 @@ class Home extends CI_Controller {
 	// Register Function
 	public function register()
 	{
+		$notif_count = 0;
+
+		if($this->session->userdata('logged_in') != null){
+			$complaints = $this->complaints_model->complaint_retrieve();
+			$assistance = $this->assistance_model->assistance_retrieve();
+			$requests = $this->requests_model->request_retrieve();
+
+			foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+		}
+
+		$data['notif_count'] = $notif_count;
+
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
@@ -248,7 +310,8 @@ class Home extends CI_Controller {
 			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
-			'logged_in' => $this->session->userdata('logged_in')
+			'logged_in' => $this->session->userdata('logged_in'),
+			'notif_count' => $notif_count
 		);
 
 		$data['user'] = $newdata;
@@ -272,8 +335,8 @@ class Home extends CI_Controller {
 
 		// Upload ID to a Path
 		$config['upload_path']          = './assets/files/registration/';
-		$config['allowed_types']        = 'pdf|gif|jpg|png';
-		$config['max_size']             = 100000;
+		$config['allowed_types']        = '*';
+		$config['max_size']             = 10000000;
 		$config['file_name']			= time();
 
 		$this->load->library('upload', $config);
@@ -290,15 +353,135 @@ class Home extends CI_Controller {
 
 			$success = "Registration Filed Successfully, Please wait for the Officials to Approve it";
 			$this->session->set_userdata('success' , $success);
+
+			$myEmail = $email;
+
+			//Generate Verification Code
+			$letters='abcdefghijklmnopqrstuvwxyz';			// a-z
+			$string='';										// declare empty string
+			for($x=0; $x<3; ++$x){							// loop three times
+				$string.=$letters[rand(0,25)].rand(0,9);	// concatenate one letter then one number
+			}
+
+			$this->user_model->users_update_validation_code($string, $myEmail);
+
+			$this->load->library('mailer');
+			$mail = $this->mailer->load();
+
+			$mail->isSMTP();
+
+			$mail->Host = "smtp.gmail.com";
+			$mail->SMTPAuth = true;
+			$mail->SMTPSecure = 'tls'; //ssl or tls
+			$mail->Port = 587; //465 or 587
+
+			$mail->Username = 'kendrickmallare.km@gmail.com';
+			$mail->Password = 'pofemwkzevfsjpvs';
+
+			$mail->setFrom('no-reply-sacredheart@gmail.com');
+			$mail->addAddress($myEmail);
+
+			$message = "<p>Good Day!</p>" 
+					 . "<p>I am one of the Developers of the Sacred Heart Barangay Information System.</p>"
+					 . "<p>Please use the link to validate your email regarding Registration!</p>"
+					 . "<p>Link: ". base_url() . "home/validate_email/" . $string . "</p>"
+					 . "<br><br>"
+					 . "<p>Thank you!</p>"
+					 . "<p>Kendrick Lamar</p>"
+					 . "<p>Software Developer</p>";
+
+			$mail->isHTML(TRUE);
+			$mail->Subject = 'Email Validation';
+			$mail->Body =  $message;
+
+			if(!$mail->send()){
+				$error = 'Mailer Error: '.$mail->ErrorInfo;
+				$this->session->set_userdata('error' , $error);
+			} else{
+				$success = "Please check your email for the email validation link. Thanks!";
+				$this->session->set_userdata('success' , $success);
+			}
+
+			$mail->smtpClose();
+
 		}
 
 		redirect('/home', 'refresh');
 	}
 
+	public function validate_email($code = null)
+	{
+		if($code == null){
+			$error = "Invalid Link!";
+			$this->session->set_userdata('error' , $error);
+			redirect('/home', 'refresh');
+		} else {
+
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
+			$newdata = array(
+				'user_id'  => $this->session->userdata('user_id'),
+				'username'  => $this->session->userdata('username'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
+			);
+
+			$data['user'] = $newdata;
+			$data['info'] = $this->get_info();
+
+			$users = $this->user_model->users_retrieve();
+
+			foreach($users as $user)
+			{
+				if($user->validation_code == $code)
+				{
+					$this->user_model->users_update_approve(1, $user->email); break;
+				}
+			}
+
+			$success = "Email Verified, Please wait for the Officials to Approve your Registration! Thanks!";
+			$this->session->set_userdata('success' , $success);
+
+			redirect('/home', 'refresh');
+		}
+	}
+
+
 	// About Function
 	// Shows more about Barangay Profile
 	public function about()
 	{
+		$notif_count = 0;
+
+		if($this->session->userdata('logged_in') != null){
+			$complaints = $this->complaints_model->complaint_retrieve();
+			$assistance = $this->assistance_model->assistance_retrieve();
+			$requests = $this->requests_model->request_retrieve();
+
+			foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+		}
+
+		$data['notif_count'] = $notif_count;
+
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
@@ -307,7 +490,8 @@ class Home extends CI_Controller {
 			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
-			'logged_in' => $this->session->userdata('logged_in')
+			'logged_in' => $this->session->userdata('logged_in'),
+			'notif_count' => $notif_count
 		);
 
 		$data['user'] = $newdata;
@@ -329,6 +513,20 @@ class Home extends CI_Controller {
 	// Shows more about Barangay Contact Personnel
 	public function contact()
 	{
+		$notif_count = 0;
+
+		if($this->session->userdata('logged_in') != null){
+			$complaints = $this->complaints_model->complaint_retrieve();
+			$assistance = $this->assistance_model->assistance_retrieve();
+			$requests = $this->requests_model->request_retrieve();
+
+			foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+			foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+		}
+
+		$data['notif_count'] = $notif_count;
+
 		$newdata = array(
 			'user_id'  => $this->session->userdata('user_id'),
 			'username'  => $this->session->userdata('username'),
@@ -337,7 +535,8 @@ class Home extends CI_Controller {
 			'lname'  => $this->session->userdata('lname'),
 			'usertype'  => $this->session->userdata('usertype'),
 			'email'     => $this->session->userdata('email'),
-			'logged_in' => $this->session->userdata('logged_in')
+			'logged_in' => $this->session->userdata('logged_in'),
+			'notif_count' => $notif_count
 		);
 
 		$data['user'] = $newdata;
@@ -364,6 +563,20 @@ class Home extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -372,7 +585,8 @@ class Home extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$info = $this->user_model->users_retrieve($this->session->userdata('user_id'));
@@ -401,7 +615,13 @@ class Home extends CI_Controller {
 
 			$data['complaints'] = $this->complaints_model->complaint_retrieve($this->session->userdata('user_id'));
 			$data['requests'] = $this->requests_model->request_retrieve($this->session->userdata('user_id'));
+			$data['request_types'] = $this->requests_model->request_types_retrieve();
 			$data['assistance'] = $this->assistance_model->assistance_retrieve($this->session->userdata('user_id'));
+			$data['assistance_types'] = $this->assistance_model->assistance_types_retrieve();
+
+			$this->complaints_model->complaint_seen($this->session->userdata('user_id'));
+			$this->requests_model->request_seen($this->session->userdata('user_id'));
+			$this->assistance_model->assistance_seen($this->session->userdata('user_id'));
 
 			$this->load->view('plus/header', $data);
 			$this->load->view('my_info', $data);
@@ -423,6 +643,20 @@ class Home extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -431,7 +665,8 @@ class Home extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$info = $this->user_model->users_retrieve($this->session->userdata('user_id'));
@@ -582,7 +817,17 @@ class Home extends CI_Controller {
 
 		foreach($replies as $reply){ if($reply->reply_id == intval($reply_id)){ $x = $x .','.$reply->reply_suggested; break; }}
 
+		$myArr = explode(',', $x);
+		$idx = count($myArr);
+
+		if($myArr[$idx - 1]=='2' && count($myArr)>1){ foreach($replies as $reply){ if($reply->reply_id == intval(2)){ $x = $x .','.$reply->reply_suggested; break; }}}
+
 		$this->session->set_userdata('chatbot_replies', $x);
 	}
+
+	public function drop_us_mail(){
+
+	}
+
 
 }

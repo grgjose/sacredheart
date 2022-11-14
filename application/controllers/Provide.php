@@ -57,6 +57,20 @@ class Provide extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -65,7 +79,8 @@ class Provide extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -83,7 +98,17 @@ class Provide extends CI_Controller {
 			$this->session->unset_userdata('error');
 			$this->session->unset_userdata('success');
 		}
+	}
 
+	public function user_destiny(){
+		$id = $this->input->post('id');
+		$type = $this->input->post('type');
+
+		if($type == "approve"){ $this->user_model->users_update_approve_by_id($id, 2); $success = "User is Fully Validated";}
+		if($type == "reject"){ $this->user_model->users_delete($id); $success = "User is Rejected";}
+		 $this->session->set_userdata('success' , $success);
+		
+		redirect('provide/verification', 'refresh');
 	}
 
 	public function complaints(){
@@ -97,6 +122,20 @@ class Provide extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -105,7 +144,8 @@ class Provide extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -137,6 +177,20 @@ class Provide extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -145,7 +199,8 @@ class Provide extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -179,6 +234,20 @@ class Provide extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -187,7 +256,8 @@ class Provide extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -220,6 +290,20 @@ class Provide extends CI_Controller {
 		}
 		else
 		{
+			$notif_count = 0;
+
+			if($this->session->userdata('logged_in') != null){
+				$complaints = $this->complaints_model->complaint_retrieve();
+				$assistance = $this->assistance_model->assistance_retrieve();
+				$requests = $this->requests_model->request_retrieve();
+
+				foreach($complaints as $complaint){ if($complaint->seen == 1 && $this->session->userdata('user_id') == $complaint->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($assistance as $assist){ if($assist->seen == 1 && $this->session->userdata('user_id') == $assist->user_id){ $notif_count = $notif_count + 1; }}
+				foreach($requests as $request){ if($request->seen == 1 && $this->session->userdata('user_id') == $request->user_id){ $notif_count = $notif_count + 1; }}
+			}
+
+			$data['notif_count'] = $notif_count;
+
 			$newdata = array(
 				'user_id'  => $this->session->userdata('user_id'),
 				'username'  => $this->session->userdata('username'),
@@ -228,7 +312,8 @@ class Provide extends CI_Controller {
 				'lname'  => $this->session->userdata('lname'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
-				'logged_in' => $this->session->userdata('logged_in')
+				'logged_in' => $this->session->userdata('logged_in'),
+				'notif_count' => $notif_count
 			);
 
 			$data['user'] = $newdata;
@@ -338,6 +423,54 @@ class Provide extends CI_Controller {
 
 		redirect('provide/edit_barangay_info','refresh');
 	}
+
+	public function set_status_as_approved(){
+		$type = $this->input->post('type');
+		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
+
+		if($type == "requests")
+		{
+			$this->logs_model->log_insert("approved a pending request");
+			$this->requests_model->request_update($id, 1, $remarks);
+			redirect('/provide/requests', 'refresh');
+		}
+		elseif($type == "complaints")
+		{
+			$this->logs_model->log_insert("approved a pending complaint");
+			$this->complaints_model->complaint_update($id, 1, $remarks);
+			redirect('/provide/complaints', 'refresh');
+		}
+		elseif($type == "assistance")
+		{
+			$this->logs_model->log_insert("approved a pending assistance");
+			$this->assistance_model->assistance_update($id, 1, $remarks);
+			redirect('/provide/assistance', 'refresh');
+		}
+	}
+
+	public function set_status_as_pending(){
+		$type = $this->input->post('type');
+		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
+
+		if($type == "requests")
+		{
+			$this->requests_model->request_update($id, 0, $remarks);
+			redirect('/provide/requests', 'refresh');
+		}
+		elseif($type == "complaints")
+		{
+			$this->complaints_model->complaint_update($id, 0, $remarks);
+			redirect('/provide/complaints', 'refresh');
+		}
+		elseif($type == "assistance")
+		{
+			$this->assistance_model->assistance_update($id, 0, $remarks);
+			redirect('/provide/assistance', 'refresh');
+		}
+	}
+
 
 	public function get_info(){
 		$result = $this->info_model->info_retrieve();

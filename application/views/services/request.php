@@ -10,8 +10,9 @@
 				<h2 class="mb-5 text-center">Enter Document Details</h2>
 			</div>
 			<div class="col-12">
-				<?php echo form_open('services/upload_request'); ?>
+				<?php echo form_open_multipart('services/upload_request'); ?>
 					<div class="row">
+
 						<!-- Name -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Document Type:</label>
@@ -21,6 +22,7 @@
 								<?php }?>
 							</select>
 						</div>
+
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Document Purpose:</label>
@@ -31,6 +33,12 @@
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Date Needed:</label>
 							<input class="form-control main" type="date" name="docdate" required/>
+						</div>
+
+						<!-- Message -->
+						<div class="col-md-12 mb-2">
+							<label class="form-label">Proof of Payment (Screenshot of Gcash Receipt or any like) (See Contact Page for Gcash Numbers)</label>
+							<input class="form-control form-control-file main" type="file" name="userfile" style="padding-bottom:15px;" required/>
 						</div>
 
 						<!-- Submit Button -->

@@ -39,6 +39,7 @@
                     <th>Date Needed</th>
                     <th>Status</th>
 					<th>Date Created</th>
+					<th>Remarks</th>
 					<th>Actions</th>
                   </tr>
                   </thead>
@@ -54,8 +55,10 @@
 					<?php if($assist->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $assist->date_created; ?></td>
+					<td><?php echo $complaint->remarks; ?></td>
 					<td>
 						<button class="btn btn-<?php if($assist->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
+						data-toggle="modal" data-target="#<?php if($request->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($assist->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $assist->assistance_id; ?>)" >
 						<?php if($assist->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
 						</button>
@@ -71,13 +74,13 @@
 				function editFunc(id)
 				{
 					$('#EditModal #id').val(id);
-					$('#EditModalForm').submit();
+					
 				}
 
 				function delFunc(id)
 				{
 					$('#DeleteModal #id').val(id);
-					$('#DeleteModalForm').submit();
+					
 				}
 
 			  </script>
@@ -156,6 +159,10 @@
 							<div class="form-row">
 							<input type="hidden" id="type" name="type"  value="assistance">
 							<input type="hidden" id="id" name="id"  value="">
+							<div class="col">
+								<label>Remarks</label>
+								<textarea class="form-control" name="remarks" rows="3" required></textarea>
+							</div>
 							</div> <br>						
 						</div>
 						<div class="modal-footer">
@@ -182,6 +189,10 @@
 							<div class="form-row">
 							<input type="hidden" id="type" name="type"  value="assistance">
 							<input type="hidden" id="id" name="id"  value="">
+							<div class="col">
+								<label>Remarks</label>
+								<textarea class="form-control" name="remarks" rows="3" required></textarea>
+							</div>
 							</div> <br>						
 						</div>
 						<div class="modal-footer">

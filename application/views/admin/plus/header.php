@@ -263,7 +263,7 @@
               <li class="nav-item">
                 <a href="<?php echo base_url() ?>admin/officials_tree" class="nav-link">
                   <i class="fas fa-sitemap nav-icon"></i>
-                  <p>Baranggay Officials Tree</p>
+                  <p>Barangay Officials Tree</p>
                 </a>
               </li>
               <li class="nav-item">

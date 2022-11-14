@@ -103,66 +103,17 @@
 				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Add Reply</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						  <span aria-hidden="true">&times;</span>
 						</button>
 					  </div>
 					  <div class="modal-body">
-						<?php echo form_open_multipart('admin/add_user'); ?>
+						<?php echo form_open_multipart('admin/add_chatbot_reply'); ?>
 						  <div class="form-row">
 							<div class="col">
-							  <label for="fname">First Name</label>
-							  <input type="text" class="form-control" id="fname" name="fname" placeholder="First name" required>
-							</div>
-							<div class="col">
-							  <label for="mname">Middle Name</label>
-							  <input type="text" class="form-control" id="mname" name="mname" placeholder="Middle name">
-							</div>
-							<div class="col">
-							  <label for="lname">Last Name</label>
-							  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="usertype">Usertype</label>
-							  <select class="form-control" id="usertype" name="usertype" placeholder="Usertype" required>
-								<option value="3" selected>Resident</option>
-								<option value="2">Official</option>
-								<option value="1">Admin</option>
-							  </select>
-							</div>
-							<div class="col">
-							  <label for="email">Email</label>
-							  <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="password">Password</label>
-							  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-							</div>
-							<div class="col">
-							  <label for="c_password">Confirm Password</label>
-							  <input type="password" class="form-control" id="c_password" name="c_password" placeholder="Confirm Password" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="address">Address</label>
-							  <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="contact">Contact</label>
-							  <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact #" required>
-							</div>
-							<div class="col">
-							  <label for="userfile">Picture</label>
-							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
-							   style="padding-bottom: 15px;">
+							  <label for="reply">Reply</label>
+							  <input type="text" class="form-control" id="reply" name="reply" placeholder="Reply" required>
 							</div>
 						  </div> <br>
 					  </div>

@@ -16,6 +16,17 @@ class Replies_model extends CI_Model {
             return $query->result();
         }
 
+		public function reply_insert($reply){
+
+			$data = array(
+				'reply' => $reply
+			);
+
+			$this->db->insert('tbl_replies', $data);
+			$this->db->close();
+            return true;
+		}
+
   }
 
 ?>

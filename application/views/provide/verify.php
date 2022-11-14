@@ -26,7 +26,8 @@
                     <th>Last Name</th -->
                     <th>Address</th>
                     <th>Contact #</th>
-
+					<th>Approved</th>
+					<th>Actions</th>
 
 
                   </tr>
@@ -44,9 +45,17 @@
 					<td id="lname_<?php echo $user->user_id; ?>"><?php echo $user->lname; ?></td>
 					<td id="address_<?php echo $user->user_id; ?>"><?php echo $user->address; ?></td>
 					<td id="contact_<?php echo $user->user_id; ?>"><?php echo $user->contact; ?></td>
-					
 
+					<td id="approved_<?php echo $user->user_id; ?>">
+						<?php if($user->approved == 0){ echo "Email not yet validated"; } ?>
+						<?php if($user->approved == 1){ echo "Email is validated"; } ?>
+						<?php if($user->approved == 2){ echo "Fully Validated"; } ?>
+					</td>
 
+					<td>
+						<button class="btn btn-success btn-sm" onclick="approveFunc(<?php echo $user->user_id; ?>)"> Approve</button> <br> <br>
+						<button class="btn btn-danger btn-sm" onclick="rejectFunc(<?php echo $user->user_id; ?>)"> Reject</button>
+					</td>
 
                   </tr>
                   <?php } ?>
@@ -54,6 +63,29 @@
                   </tfoot>
                 </table>
 
+				<div style="display: none;" id="submitForm">
+					<?php $attributes = array('id' => 'EditModalForm'); echo form_open('provide/user_destiny', $attributes); ?>
+						<input type="hidden" name="id" id="id" value="" >
+						<input type="hidden" name="type" id="type" value="" >
+					<?php echo form_close(); ?>
+				</div>
+
+
+				<script>
+					
+				function approveFunc(id){
+					$('#EditModalForm #id').val(id);
+					$('#EditModalForm #type').val("approve");
+					$('#EditModalForm').submit();
+				}
+
+				function rejectFunc(id){
+					$('#EditModalForm #id').val(id);
+					$('#EditModalForm #type').val("reject");
+					$('#EditModalForm').submit();
+				}
+
+				</script>
 
 
 				<style>
@@ -72,6 +104,10 @@
 				  color:#ccc;
 				}
 				</style>
+
+
+
+
 				<script>
   $(function () {
     //$("#example1").DataTable({
