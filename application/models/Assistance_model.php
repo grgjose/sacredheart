@@ -65,6 +65,17 @@ class Assistance_model extends CI_Model {
             return true;
 		}
 
+		public function assistance_types_update($id, $type){
+			$data = array(
+				'assistance_type' => $type
+			);
+
+			$this->db->where('assistance_type_id', $id);
+			$this->db->update('tbl_assistance_types', $data);
+			$this->db->close();
+            return true;
+		}
+
 		public function assistance_types_delete($id)
 		{
 			$this->db->where('assistance_type_id', $id);

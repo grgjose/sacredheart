@@ -46,10 +46,21 @@
 					<td><?php echo $type->request_type; ?></td>
 					<td><?php echo $type->date_created; ?></td>
 					<td>
+						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
+						onclick="editFunc(<?php echo $type->request_type_id; ?>,'<?php echo $type->request_type; ?>')" >
+						<span class="fas fa-pen"></span>
+						</button>
+
+						<?php $show = true; foreach($requests as $request){?>
+						<?php if($type->request_type_id == intval($request->document_type)){ $show = false; break; }?>
+						<?php }?>
+
+						<?php if($show == true){ ?>
 						<button class="btn btn-danger text-justify text-center" data-toggle="modal" data-target="#DeleteModal"
 						onclick="delFunc(<?php echo $type->request_type_id; ?>)" >
 						<span class="fas fa-times"></span>
 						</button>
+						<?php }?>
 					</td>
 
                   </tr>
@@ -59,10 +70,10 @@
               </div>
 
 			  <script>
-				function editFunc(id)
+				function editFunc(id, ar)
 				{
 					$('#EditModal #id').val(id);
-					$('#EditModalForm').submit();
+					$('#EditModal #dr_type').val(ar);
 				}
 
 				function delFunc(id)
@@ -105,16 +116,19 @@
 					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Edit Document Request Type</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 						</div>
 						<div class="modal-body">
-						<?php $attributes = array('id' => 'EditModalForm'); echo form_open('admin/set_status_as_approved', $attributes); ?>
+						<?php $attributes = array('id' => 'EditModalForm'); echo form_open('admin/edit_dr_type', $attributes); ?>
 							<div class="form-row">
-							<input type="hidden" id="type" name="type"  value="Document">
 							<input type="hidden" id="id" name="id"  value="">
+								<div class="col">
+									<label>Assistance Type</label>
+									<input type="text" id="dr_type" name="dr_type" class="form-control">
+								</div>
 							</div> <br>						
 						</div>
 						<div class="modal-footer">

@@ -66,102 +66,22 @@
 					<p>If cartoon bluebirds were real, a couple of 'em would be sitting on your shoulders singing right now.</p>
 				</div>
 			</div>
+
+			<?php foreach($users as $user){ if($user->usertype == 2 && $user->dp_userfile != ""){ ?>
 			<div class="col-xl-3 col-lg-4 col-sm-6">
 				<div class="block text-center">
 					<!-- Investor Image -->
 					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_04.jpg" alt="investor">
+						<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/officials/<?php echo $user->dp_userfile; ?>" alt="investor">
 					</div>
 					<!-- Company -->
-					<h3>Sacred Heart</h3>
+					<h3><?php echo $user->fname.' '.$user->mname.' '.$user->lname; ?></h3>
 					<!--  -->
-					<p>Barangay Official</p>
+					<p><?php echo $user->position; ?></p>
 				</div>
 			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_05.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_06.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_07.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_08.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_09.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_10.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_11.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
+			<?php }} ?>
+			
 		</div>
 	</div>
 </section>

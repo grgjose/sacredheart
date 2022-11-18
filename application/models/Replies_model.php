@@ -16,13 +16,27 @@ class Replies_model extends CI_Model {
             return $query->result();
         }
 
-		public function reply_insert($reply){
+		public function reply_insert($reply, $reply_from){
 
 			$data = array(
-				'reply' => $reply
+				'reply' => $reply,
+				'reply_from' => $reply_from
 			);
 
 			$this->db->insert('tbl_replies', $data);
+			$this->db->close();
+            return true;
+		}
+
+
+		public function reply_update($id, $reply_suggested){
+
+			$data = array(
+				'reply_suggested' => $reply_suggested
+			);
+
+			$this->db->where('reply_id', $id);
+			$this->db->update('tbl_replies', $data);
 			$this->db->close();
             return true;
 		}

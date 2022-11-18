@@ -10,8 +10,7 @@ class Home extends CI_Controller {
     }
 
 	// Defeault Function (Shows Homepage)
-	public function index()
-	{
+	public function index(){
 		$this->session->set_userdata('chatbot_replies', '2');
 		
 		$notif_count = 0;
@@ -61,8 +60,7 @@ class Home extends CI_Controller {
 	}
 
 	// Login Function
-	public function login()
-	{
+	public function login(){
 
 		// Get Email & Password from UI
 		$mail = $this->input->post('email');
@@ -85,6 +83,7 @@ class Home extends CI_Controller {
 						'lname'  => $user->lname,
 						'usertype'  => $user->usertype,
 						'email'     => $user->email,
+						'userfile'     => $user->userfile,
 						'logged_in' => TRUE
 				);
 

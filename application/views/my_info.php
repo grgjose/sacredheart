@@ -5,7 +5,7 @@
 <section class="section page-title">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 m-auto">
+			<div class="col-md-12 m-auto">
 				<!-- Page Title -->
 				<h1>Filed Complaints</h1>
 				<br> <br> 
@@ -13,10 +13,10 @@
 				<table id="myTable" class="table table-hover table-bordered results" style="font-size: 13px;" width="100%">
 				  <thead>
 					<tr>
-					  <th class="col-md-5 col-xs-5 text-center">Date Requested</th>
-					  <th class="col-md-1 col-xs-2 text-center">Complaint Description</th>
-					  <th class="col-md-2 col-xs-2 text-center">Complaint Letter</th>
-					  <th class="col-md-2 col-xs-2 text-center">Remarks</th>
+					  <th class="text-center">Date Requested</th>
+					  <th class="text-center">Complaint Description</th>
+					  <th class="text-center">Complaint Letter</th>
+					  <th style="width: 300px;" class="text-center">Remarks</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -53,7 +53,7 @@
 <section class="section page-title">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 m-auto">
+			<div class="col-sm-12 m-auto">
 				<!-- Page Title -->
 				<h1>Document Requested</h1>
 				<br> <br> 
@@ -61,11 +61,11 @@
 				<table id="myTable1" class="table table-hover table-bordered results" style="font-size: 13px;" width="100%">
 				  <thead>
 					<tr>
-					  <th class="col-md-5 col-xs-5 text-center">Date Requested</th>
-					  <th class="col-md-1 col-xs-2 text-center">Document Type</th>
-					  <th class="col-md-2 col-xs-2 text-center">Document Purpose</th>
-					  <th class="col-md-2 col-xs-2 text-center">Date Needed</th>
-					  <th class="col-md-2 col-xs-2 text-center">Remarks</th>
+					  <th class="text-center">Date Requested</th>
+					  <th class="text-center">Document Type</th>
+					  <th class="text-center">Document Purpose</th>
+					  <th class="text-center">Date Needed</th>
+					  <th style="width: 300px;" class="text-center">Remarks</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -106,7 +106,7 @@
 <section class="section page-title">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 m-auto">
+			<div class="col-sm-12 m-auto">
 				<!-- Page Title -->
 				<h1>Filed Assistance Requests</h1>
 				<br> <br> 
@@ -114,11 +114,11 @@
 				<table id="myTable2" class="table table-hover table-bordered results" style="font-size: 13px;" width="100%">
 				  <thead>
 					<tr>
-					  <th class="col-md-5 col-xs-5 text-center">Date Requested</th>
-					  <th class="col-md-1 col-xs-2 text-center">Assistance Type</th>
-					  <th class="col-md-2 col-xs-2 text-center">Assistance Purpose</th>
-					  <th class="col-md-2 col-xs-2 text-center">Date Needed</th>
-					  <th class="col-md-2 col-xs-2 text-center">Remarks</th>
+					  <th class="text-center">Date Requested</th>
+					  <th class="text-center">Assistance Type</th>
+					  <th class="text-center">Assistance Purpose</th>
+					  <th class="text-center">Date Needed</th>
+					  <th style="width: 300px;" class="text-center">Remarks</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -126,7 +126,7 @@
 					<tr style="<?php if($assist->seen == 1){ echo "background-color: yellow"; } ?>;">
 						<td style="height: 30px;" class="text-center"><?php echo $assist->date_created; ?></td>
 						<td style="height: 30px;" class="text-center">
-							<?php foreach($assistance_types as $type){ if($type->assistance_type_id == $assist->assitance_type){ echo $type->assistance_type; break; }}?>
+							<?php foreach($assistance_types as $type){ if($type->assistance_type_id == $assist->assistance_type){ echo $type->assistance_type; break; }}?>
 						</td>
 						<td style="height: 30px;" class="text-center"><?php echo $assist->assistance_purpose; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $assist->date_needed; ?></td>

@@ -105,6 +105,7 @@ class Events extends CI_Controller {
 			$data['success'] = $this->session->userdata('success');
 
 			$data['info'] = $this->get_info();
+			$data['users'] = $this->user_model->users_retrieve();
 
 			$data['receivers'] = $this->receivers_model->receiver_retrieve();
 
@@ -115,7 +116,6 @@ class Events extends CI_Controller {
 			$this->session->unset_userdata('error');
 			$this->session->unset_userdata('success');
 		}
-
 	}
 
 	public function senior_citizen(){
@@ -160,6 +160,7 @@ class Events extends CI_Controller {
 			$data['success'] = $this->session->userdata('success');
 
 			$data['info'] = $this->get_info();
+			$data['users'] = $this->user_model->users_retrieve();
 
 			$data['seniors'] = $this->seniors_model->senior_retrieve();
 

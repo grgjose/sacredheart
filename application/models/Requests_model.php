@@ -65,6 +65,17 @@ class Requests_model extends CI_Model {
             return true;
 		}
 
+		public function request_types_update($id, $type){
+			$data = array(
+				'request_type' => $type
+			);
+
+			$this->db->where('request_type_id', $id);
+			$this->db->update('tbl_request_types', $data);
+			$this->db->close();
+            return true;
+		}
+
 		public function request_types_delete($id)
 		{
 			$this->db->where('request_type_id', $id);

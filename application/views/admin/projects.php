@@ -66,9 +66,11 @@
 						
 						<cite>
 						    Posted by <?php foreach($users as $user){ if($user->user_id == $project->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?> 
-							on <?php echo $project->date_created; ?>
+							on <?php echo $project->date_created; ?> <?php if($project->archive == 1){ ?> (This post is Archived) <?php } ?>
 						</cite> <br>
+
 						
+
 						<i id="project_title_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_title; ?></i>
 						<i id="project_date_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_date; ?></i>
 						<i id="project_details_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_details; ?></i>
@@ -82,6 +84,10 @@
 						<button class="btn btn-danger text-justify text-center" data-toggle="modal" data-target="#DeleteModal"
 						onclick="delFunc(<?php echo $project->project_id; ?>)">
 						Delete Post
+						</button>
+						<button class="btn btn-light text-justify text-center" data-toggle="modal" data-target="#ArchiveModal"
+						onclick="archFunc(<?php echo $project->project_id; ?>)">
+							<?php if($project->archive == 1){ ?> Undo Archive <?php } else { ?> Archive Post <?php } ?>
 						</button>
 						<br> <br>
 					</td>
@@ -117,6 +123,12 @@
 				function delFunc(id)
 				{
 					$('#DeleteModal #id').val(id);
+				}
+
+				function archFunc(id)
+				{
+					$('#ArchiveModal #id').val(id);
+					$('#ArchiveModalForm').submit();
 				}
 
 			  </script>
@@ -241,6 +253,31 @@
 					</div>
 				</div>
 
+			  <!-- Archive Modal -->
+				<div class="modal fade" id="ArchiveModal" tabindex="-1" role="dialog" aria-labelledby="ArchiveModal" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+						<div class="modal-body">
+						<?php $attributes = array('id' => 'ArchiveModalForm'); echo form_open('admin/archive_project', $attributes); ?>
+							<div class="form-row">
+							<input type="hidden" id="id" name="id"  value="">
+						
+							</div> <br>	
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-primary" value="Save" />
+						</div>
+						</form>
+					</div>
+					</div>
+				</div>
               <!-- /.card-body -->
             </div>
 

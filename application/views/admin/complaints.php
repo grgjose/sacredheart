@@ -56,7 +56,7 @@
 					<td><?php echo $complaint->remarks; ?></td>
 					<td>
 						<button class="btn btn-<?php if($complaint->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
-						data-toggle="modal" data-target="#<?php if($request->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
+						data-toggle="modal" data-target="#<?php if($complaint->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($complaint->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $complaint->complaint_id; ?>)" >
 						<?php if($complaint->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
 						</button>

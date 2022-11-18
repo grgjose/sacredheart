@@ -56,6 +56,18 @@ class Projects_model extends CI_Model {
             return true;
         }
 
+		// c r *U d
+		public function project_archive($id, $val){
+			$data = array(
+				'archive' => $val
+			);
+
+			$this->db->where('project_id', $id);
+			$this->db->update('tbl_projects', $data);
+			$this->db->close();
+            return true;
+        }
+
   }
 
 ?>

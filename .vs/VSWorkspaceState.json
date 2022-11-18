@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\application",
-    "\\application\\views\\admin\\plus"
+    "\\application\\views",
+    "\\application\\views\\events"
   ],
-  "SelectedNode": "\\assets",
+  "SelectedNode": "\\application\\views\\events\\program.php",
   "PreviewInSolutionExplorer": false
 }

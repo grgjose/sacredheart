@@ -10,8 +10,7 @@ class Services extends CI_Controller {
     }
 
 	// Defeault Function (Shows Admin Page)
-	public function index()
-	{
+	public function index(){
 		if($this->session->usertype != 1)
 		{
 			$error = "Register or Login First";
@@ -62,7 +61,6 @@ class Services extends CI_Controller {
 		}
 	}
 
-
 	public function request_document(){
 
 		if($this->session->logged_in == false)
@@ -105,6 +103,7 @@ class Services extends CI_Controller {
 			$data['success'] = $this->session->userdata('success');
 
 			$data['info'] = $this->get_info();
+			$data['users'] = $this->user_model->users_retrieve();
 
 			$data['request_types'] = $this->requests_model->request_types_retrieve();
 
@@ -194,6 +193,7 @@ class Services extends CI_Controller {
 			$data['success'] = $this->session->userdata('success');
 
 			$data['info'] = $this->get_info();
+			$data['users'] = $this->user_model->users_retrieve();
 
 			$this->load->view('plus/header', $data);
 			$this->load->view('services/complaint', $data);
@@ -285,6 +285,8 @@ class Services extends CI_Controller {
 			$data['success'] = $this->session->userdata('success');
 
 			$data['info'] = $this->get_info();
+			$data['users'] = $this->user_model->users_retrieve();
+
 
 			$data['assistance_types'] = $this->assistance_model->assistance_types_retrieve();
 

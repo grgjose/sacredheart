@@ -76,7 +76,7 @@
 							</li>
 						</ul>
 					</li>
-					<?php } else { ?>
+					<?php } elseif($user['usertype'] == 3) { ?>
 					<!-- Headbar Navigation (For Normal Users) -->
 					<li class="nav-item dropdown @@services">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Services <span><i class="ti-angle-down"></i></span></a> 
@@ -94,6 +94,8 @@
 						</ul>
 					</li>
 					<?php } ?>
+
+					<?php if($user['usertype'] == 2 || $user['usertype'] == 3){?>
 					<li class="nav-item dropdown @@events">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Events <span><i class="ti-angle-down"></i></span></a> 
 						<!-- Dropdown list -->
@@ -109,6 +111,7 @@
 							</li>
 						</ul>
 					</li>
+					<?php } ?>
 
 					<li class="nav-item @@about">
 						<a class="nav-link" href="<?php echo base_url(); ?>home/about">About</a>

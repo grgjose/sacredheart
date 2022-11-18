@@ -25,6 +25,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -66,6 +70,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -156,6 +164,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -241,6 +253,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -350,6 +366,36 @@ class Admin extends CI_Controller {
 		redirect('/admin/projects', 'refresh');
 	}
 
+	public function archive_project(){
+
+		// Collect POST Data
+		$id = $this->input->post('id');
+		$val = 1; 
+
+		$projects = $this->projects_model->project_retrieve();
+
+		foreach($projects as $project){ 
+			if($project->project_id == $id){ 
+				if($project->archive == 1){ 
+					$val = 0; 
+				} else { 
+					$val = 1; 
+				} break; 
+			}
+		}
+
+		// Connect or Update Database
+		$this->projects_model->project_archive($id, $val);
+
+		// Notif
+		//$success = "Archived Successfully!";
+		//$this->logs_model->log_insert($success.' from project');
+		//$this->session->set_userdata('success' , $success);
+
+		// Next Action
+		redirect('/admin/projects', 'refresh');
+	}
+
 	// Chatbot
 
 	public function chatbot(){
@@ -366,6 +412,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -386,12 +436,56 @@ class Admin extends CI_Controller {
 
 	public function add_chatbot_reply(){
 		$reply = $this->input->post('reply');
-		$this->replies_model->reply_insert($reply);
+		$reply_from = $this->input->post('reply_from');
+		$this->replies_model->reply_insert($reply, $reply_from);
 
 		$success = "Reply is Added";
 		$this->session->set_userdata('success', $success);
 
 		redirect('/admin/chatbot', 'refresh');
+	}
+
+	public function inc_chatbot_reply(){
+		$id =  $this->input->post('id');
+		$inc_reply = $this->input->post('inc_reply');
+
+		$replies = $this->replies_model->reply_retrieve();
+		foreach($replies as $reply){ if($reply->reply_id == $id){ $suggested = $reply->reply_suggested; break; }}
+		
+		$suggested = $suggested . "," . $inc_reply;
+
+		$this->replies_model->reply_update(intval($id), $suggested);
+
+		$success = "Reply ID: ". $id . " is now updated";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/chatbot', 'refresh');
+	}
+
+	public function dec_chatbot_reply(){
+		$id =  $this->input->post('id');
+		$dec_reply = $this->input->post('dec_reply');
+
+		$replies = $this->replies_model->reply_retrieve();
+		foreach($replies as $reply){ if($reply->reply_id == $id){ $suggested = $reply->reply_suggested; break; }}
+		
+		$arr = explode(',', $suggested); $suggested = ""; $ctr = 0;
+
+		foreach($arr as $x){
+
+			if($x != $dec_reply){
+				if($ctr > 0) { $suggested = $suggested . ','; }
+				$suggested = $suggested . $x;
+			} $ctr = $ctr + 1;
+		}
+
+		$this->replies_model->reply_update($id, $suggested);
+
+		$success = "Reply ID: ". $id . " is now updated";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/chatbot', 'refresh');
+
 	}
 
 	// Officials Tree (Infographics Purpose)
@@ -410,6 +504,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -471,6 +569,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -585,6 +687,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -619,6 +725,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -654,6 +764,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -688,6 +802,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -695,6 +813,7 @@ class Admin extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
+			$data['requests'] = $this->requests_model->request_retrieve();
 			$data['request_types'] = $this->requests_model->request_types_retrieve();
 
 			$this->load->view('admin/plus/header', $data);
@@ -720,6 +839,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
@@ -727,6 +850,7 @@ class Admin extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
+			$data['assistance'] = $this->assistance_model->assistance_retrieve();
 			$data['assistance_types'] = $this->assistance_model->assistance_types_retrieve();
 
 			$this->load->view('admin/plus/header', $data);
@@ -793,6 +917,13 @@ class Admin extends CI_Controller {
 		redirect('/admin/document_request_types', 'refresh');
 	}
 
+	public function edit_dr_type(){
+		$id = $this->input->post('id');
+		$putaragis = $this->input->post('dr_type');
+		$this->requests_model->request_types_update($id, $putaragis);
+		redirect('/admin/document_request_types', 'refresh');
+	}
+
 	public function delete_dr_type(){
 		$putaragis = $this->input->post('id');
 		$this->requests_model->request_types_delete($putaragis);
@@ -802,6 +933,13 @@ class Admin extends CI_Controller {
 	public function add_ar_type(){
 		$putaragis = $this->input->post('ar_type');
 		$this->assistance_model->assistance_types_insert($putaragis);
+		redirect('/admin/assistance_request_types', 'refresh');
+	}
+
+	public function edit_ar_type(){
+		$id = $this->input->post('id');
+		$putaragis = $this->input->post('ar_type');
+		$this->assistance_model->assistance_types_update($id, $putaragis);
 		redirect('/admin/assistance_request_types', 'refresh');
 	}
 
@@ -827,6 +965,10 @@ class Admin extends CI_Controller {
 				'username'  => $this->session->userdata('username'),
 				'usertype'  => $this->session->userdata('usertype'),
 				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
 				'logged_in' => $this->session->userdata('logged_in')
 			);
 
