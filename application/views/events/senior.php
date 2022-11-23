@@ -18,8 +18,7 @@
 				  <thead>
 					<tr>
 					  <th class="col-md-5 col-xs-5 text-center">Name / Surname</th>
-					  <th class="col-md-1 col-xs-2 text-center">Age</th>
-					  <th class="col-md-2 col-xs-2 text-center">Job</th>
+					  <th class="col-md-1 col-xs-2 text-center">Year</th>
 
 
 					</tr>
@@ -28,8 +27,7 @@
 					<?php foreach($seniors as $senior) { ?>
 					<tr>
 						<td style="height: 30px;" class="text-center"><?php echo $senior->fname . ' ' . $senior->mname . ' ' . $senior->lname; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $senior->age; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $senior->job; ?></td>
+						<td style="height: 30px;" class="text-center"><?php echo $senior->year; ?></td>
 
 
 					</tr>

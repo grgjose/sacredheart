@@ -175,7 +175,7 @@
 				<input type="hidden" id="id" name="id"  value="">
 				<div class="col">
 					<label>Profile Picture</label>
-					<input type="file" name="userfile" class="form-control form-control-file" style="padding-bottom: 35px;" required>
+					<input type="file" accept="image/*" name="userfile" class="form-control form-control-file" style="padding-bottom: 35px;" required>
 				</div>
 			</div> <br>						
 		</div>

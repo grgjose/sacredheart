@@ -18,13 +18,14 @@ class Projects_model extends CI_Model {
         }
 
 		// *C r u d
-		public function project_insert($project_title, $project_date, $project_details, $project_userfile, $user_id){ 	
+		public function project_insert($project_title, $project_date, $project_details, $project_userfile, $user_id, $official_id){ 	
 			$data = array(
 				'project_title' => $project_title,
 				'project_date' => $project_date,
 				'project_details' => $project_details,
 				'project_userfile' => $project_userfile,
-				'user_id' => $user_id
+				'user_id' => $user_id,
+				'official_id' => $official_id
 			);
 
 			$this->db->insert('tbl_projects', $data);
@@ -33,13 +34,14 @@ class Projects_model extends CI_Model {
         }
 
 		// c r *U d
-		public function project_update($id, $project_title, $project_date, $project_details, $project_userfile, $user_id){
+		public function project_update($id, $project_title, $project_date, $project_details, $project_userfile, $user_id, $official_id){
 			$data = array(
 				'project_title' => $project_title,
 				'project_date' => $project_date,
 				'project_details' => $project_details,
 				'project_userfile' => $project_userfile,
-				'user_id' => $user_id
+				'user_id' => $user_id,
+				'official_id' => $official_id
 			);
 
 			$this->db->where('project_id', $id);

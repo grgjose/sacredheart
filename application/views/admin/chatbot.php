@@ -269,7 +269,7 @@
 							</div>
 							<div class="col">
 							  <label for="userfile">Picture</label>
-							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
+							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" accept="image/*"
 							   style="padding-bottom: 15px;">
 							</div>
 						  </div> <br>

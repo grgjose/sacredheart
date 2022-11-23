@@ -39,6 +39,7 @@
                     <th>Last Name</th>
                     <th>Age</th>
                     <th>Current/Previous Job</th>
+					<th>Year</th>
 					<th>Date Created</th>
 					<th>Actions</th>
                   </tr>
@@ -52,6 +53,7 @@
 					<td id="lname_<?php echo $senior->senior_id; ?>"><?php echo $senior->lname; ?></td>
 					<td id="age_<?php echo $senior->senior_id; ?>"><?php echo $senior->age; ?></td>
 					<td id="job_<?php echo $senior->senior_id; ?>"><?php echo $senior->job; ?></td>
+					<td id="year_<?php echo $senior->senior_id; ?>"><?php echo $senior->year; ?></td>
 					<td id="date_created_<?php echo $senior->senior_id; ?>"><?php echo $senior->date_created; ?></td>
 					<td>
 						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
@@ -79,6 +81,7 @@
 					$('#EditModal #lname').val($("#lname_"+id).html());
 					$('#EditModal #age').val($("#age_"+id).html());
 					$('#EditModal #job').val($("#job_"+id).html());
+					$('#EditModal #year').val($("#year_"+id).html());
 					$('#EditModal #senior_card_id').val($("#senior_card_id_"+id).html());
 
 				}
@@ -129,6 +132,10 @@
 							</div>
 						  </div> <br>
 						  <div class="form-row">
+							<div class="col">
+							  <label for="year">Year</label>
+							  <input type="text" class="form-control" id="year" name="year" placeholder="Year" required>
+							</div>
 							<div class="col">
 							  <label for="senior_card_id">Senior Card ID</label>
 							  <input type="text" class="form-control" id="senior_card_id" name="senior_card_id" placeholder="Senior Card ID" required>
@@ -182,6 +189,10 @@
 							</div>
 						  </div> <br>
 						  <div class="form-row">
+							<div class="col">
+							  <label for="year">Year</label>
+							  <input type="text" class="form-control" id="year" name="year" placeholder="Year" required>
+							</div>
 							<div class="col">
 							  <label for="senior_card_id">Senior Card ID</label>
 							  <input type="text" class="form-control" id="senior_card_id" name="senior_card_id" placeholder="Senior Card ID" required>

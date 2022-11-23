@@ -187,8 +187,8 @@ class Home extends CI_Controller {
 		$mail->SMTPSecure = 'tls'; //ssl or tls
 		$mail->Port = 587; //465 or 587
 
-		$mail->Username = 'kendrickmallare.km@gmail.com';
-		$mail->Password = 'pofemwkzevfsjpvs';
+		$mail->Username = 'kendrickmallare@gmail.com';
+		$mail->Password = 'ycldnnncsflreirj';
 
 		$mail->setFrom('no-reply-sacredheart@gmail.com');
 		$mail->addAddress($myEmail);
@@ -374,8 +374,8 @@ class Home extends CI_Controller {
 			$mail->SMTPSecure = 'tls'; //ssl or tls
 			$mail->Port = 587; //465 or 587
 
-			$mail->Username = 'kendrickmallare.km@gmail.com';
-			$mail->Password = 'pofemwkzevfsjpvs';
+			$mail->Username = 'kendrickmallare@gmail.com';
+			$mail->Password = 'ycldnnncsflreirj';
 
 			$mail->setFrom('no-reply-sacredheart@gmail.com');
 			$mail->addAddress($myEmail);
@@ -795,10 +795,10 @@ class Home extends CI_Controller {
 			$myArr['about_userfile1'] = $r->info_about_userfile1;
 			$myArr['about_userfile2'] = $r->info_about_userfile2;
 			$myArr['about_userfile3'] = $r->info_about_userfile3;
+			$myArr['about_census'] = $r->info_about_census;
 		}
 
 		return $myArr;
-
 	}
 
 	public function get_chatbot_replies(){

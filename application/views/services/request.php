@@ -32,14 +32,14 @@
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Date Needed:</label>
-							<input class="form-control main" type="date" name="docdate" required/>
+							<input class="form-control main" type="date" min="<?php echo date("Y-m-d"); ?>" name="docdate" required/>
 						</div>
 
 						<!-- Message -->
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Proof of Payment (Screenshot of Gcash Receipt or any like) (See Contact Page for Gcash Numbers)</label>
 							<input class="form-control form-control-file main" type="file" name="userfile" 
-							style="padding-bottom:15px;" accept="image/*"  required/>
+							style="padding-bottom:15px;" accept="image/*" required/>
 						</div>
 
 						<!-- Submit Button -->

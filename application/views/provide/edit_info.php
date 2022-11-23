@@ -84,6 +84,13 @@
 
 					<div class="form-row">
 						<div class="col">
+							<label for="about_census">Census (Count of Residents)</label>
+							<textarea class="form-control" name="about_census" id="about_census" style="resize:none;" rows="1" required ><?php echo $info['about_census']; ?></textarea>
+						</div>
+					</div> <br>
+
+					<div class="form-row">
+						<div class="col">
 							<img src="<?php echo base_url(); ?>assets/files/info/<?php echo $info['home_userfile']; ?>" width="340px" height="250px" style="border: 1px solid black; margin-bottom: 5px;" /> <br>
 							<a href="#" data-toggle="modal" data-target="#ImageUploadModal" onclick="uploadFunc('home_userfile')">Click to change Home Banner Image</a>
 						</div>
@@ -136,7 +143,7 @@
 							<div class="col">
 							  <label for="userfile">Image</label>
 							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="" 
-							   style="padding-bottom: 15px;" required>
+							   style="padding-bottom: 15px;" accept="image/*" required>
 							</div>
 						  </div> <br>
 					  </div>

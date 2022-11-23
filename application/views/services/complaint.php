@@ -22,7 +22,7 @@
 						<div class="col-md-12 mb-2">
 							<label class="form-label">Complaint Letter File:</label>
 							<input class="form-control main" name="userfile" type="file" style="height: 60px;" 
-							size="100000000" accept=".doc, .docx, .pdf" >
+							size="100000000" accept="application/pdf,application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
 						</div>
 
 						<!-- Submit Button -->

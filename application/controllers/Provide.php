@@ -10,8 +10,7 @@ class Provide extends CI_Controller {
     }
 
 	// Defeault Function (Shows Admin Page)
-	public function index()
-	{
+	public function index(){
 		if($this->session->userdata('usertype') != 2)
 		{
 			$error = "Register or Login First";
@@ -44,7 +43,6 @@ class Provide extends CI_Controller {
 			$this->session->unset_userdata('success');
 		}
 	}
-
 
 	public function verification(){
 
@@ -101,13 +99,29 @@ class Provide extends CI_Controller {
 	}
 
 	public function user_destiny(){
+
 		$id = $this->input->post('id');
 		$type = $this->input->post('type');
 
-		if($type == "approve"){ $this->user_model->users_update_approve_by_id($id, 2); $success = "User is Fully Validated";}
-		if($type == "reject"){ $this->user_model->users_delete($id); $success = "User is Rejected";}
-		 $this->session->set_userdata('success' , $success);
+		$user_id = $this->session->userdata("user_id");
+		$fname = $this->session->userdata("fname");
+
+		$users = $this->user_model->users_retrieve();
+		foreach($users as $user){if($user->user_id == $id){ $nameOfUser = $user->fname.' '.$user->mname.' '.$user->lname; break; }}
+
+		if($type == "approve"){ 
+			$this->logs_model->log_insert("The user ". $nameOfUser . " is approved by User ID: ".$this->session->userdata("user_id")." Name: ".$fname);
+			$this->user_model->users_update_approve_by_id($id, 2); 
+			$success = "User is Fully Validated";
+		}
 		
+		if($type == "reject"){ 
+			$this->logs_model->log_insert("The user ". $nameOfUser . " is rejected by User ID: ".$this->session->userdata("user_id")." Name: ".$fname);
+			$this->user_model->users_delete($id); 
+			$success = "User is Rejected";
+		}
+		
+		$this->session->set_userdata('success' , $success);
 		redirect('provide/verification', 'refresh');
 	}
 
@@ -346,6 +360,7 @@ class Provide extends CI_Controller {
 		$home_greetings = $this->input->post('home_greetings');
 		$home_tagline = $this->input->post('home_tagline');
 		$youtube_link = $this->input->post('youtube_link');
+		$about_census = $this->input->post('about_census');
 
 		$data = array(
 			'info_logo' => $info['logo'],
@@ -363,6 +378,7 @@ class Provide extends CI_Controller {
 			'info_about_userfile1' => $info['about_userfile1'],
 			'info_about_userfile2' => $info['about_userfile2'],
 			'info_about_userfile3' => $info['about_userfile3'],
+			'info_about_census' => $about_census,
 		);
 
 		$this->info_model->info_update($data);
@@ -414,6 +430,7 @@ class Provide extends CI_Controller {
 			'info_about_userfile1' => $info['about_userfile1'],
 			'info_about_userfile2' => $info['about_userfile2'],
 			'info_about_userfile3' => $info['about_userfile3'],
+			'info_about_census' => $info['about_census'],
 		);
 
 		$this->info_model->info_update($data);
@@ -471,7 +488,6 @@ class Provide extends CI_Controller {
 		}
 	}
 
-
 	public function get_info(){
 		$result = $this->info_model->info_retrieve();
 
@@ -491,10 +507,10 @@ class Provide extends CI_Controller {
 			$myArr['about_userfile1'] = $r->info_about_userfile1;
 			$myArr['about_userfile2'] = $r->info_about_userfile2;
 			$myArr['about_userfile3'] = $r->info_about_userfile3;
+			$myArr['about_census'] = $r->info_about_census;
 		}
 
 		return $myArr;
-
 	}
 
 }

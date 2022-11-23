@@ -125,7 +125,7 @@
 				<div class="quote-slider">
 					<div class="item mb-4">
 						<!-- Quote -->
-						<h2>What you see is what you get, nothing more, nothing less.</h2>
+						<h2>Now we have almost <?php echo $info['about_census']; ?> Residents</h2>
 						<!-- Company -->
 						<cite class="ml-0">-Kendrick Lamar</cite>
 					</div>

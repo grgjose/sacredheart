@@ -193,10 +193,11 @@ class Admin extends CI_Controller {
 		$lname = $this->input->post('lname');
 		$age = $this->input->post('age');
 		$job = $this->input->post('job');
+		$year = $this->input->post('year');
 		$senior_card_id = $this->input->post('senior_card_id');
 
 		$this->logs_model->log_insert($fname. ' '.$lname.' is an added senior citizen');
-		$this->seniors_model->senior_insert($fname, $mname, $lname, $age, $job, $senior_card_id);
+		$this->seniors_model->senior_insert($fname, $mname, $lname, $age, $job, $senior_card_id, $year);
 
 		$success = $fname . " is Added Successfully!";
 		$this->session->set_userdata('success' , $success);
@@ -212,10 +213,11 @@ class Admin extends CI_Controller {
 		$lname = $this->input->post('lname');
 		$age = $this->input->post('age');
 		$job = $this->input->post('job');
+		$year = $this->input->post('year');
 		$senior_card_id = $this->input->post('senior_card_id');
 
 		$this->logs_model->log_insert($fname. ' '.$lname.' is an updated senior citizen');
-		$this->seniors_model->senior_update($senior_id, $fname, $mname, $lname, $age, $job, $senior_card_id);
+		$this->seniors_model->senior_update($senior_id, $fname, $mname, $lname, $age, $job, $senior_card_id, $year);
 
 		$success = $fname . " is Updated Successfully!";
 		$this->session->set_userdata('success' , $success);
@@ -288,6 +290,7 @@ class Admin extends CI_Controller {
 		$project_details = $this->input->post("project_details");
 		$project_userfile = $this->input->post("project_userfile");
 		$user_id = $this->session->userdata('user_id');
+		$official_id = $this->input->post("official_id");
 
 		// Upload ID to a Path
 		$config['upload_path']          = './assets/files/projects/';
@@ -304,7 +307,7 @@ class Admin extends CI_Controller {
 
 		// Connect or Update Database
 		$this->logs_model->log_insert($project_title.' project title is added');
-		$this->projects_model->project_insert($project_title, $project_date, $project_details, $project_userfile, $user_id);
+		$this->projects_model->project_insert($project_title, $project_date, $project_details, $project_userfile, $user_id, $official_id);
 
 		// Notif
 		$success = $project_title . " is Created Successfully!";
@@ -323,6 +326,7 @@ class Admin extends CI_Controller {
 		$project_details = $this->input->post("project_details");
 		$project_userfile = $this->input->post("project_userfile");
 		$user_id = $this->session->userdata('user_id');
+		$official_id = $this->input->post("official_id");
 
 		// Upload ID to a Path
 		$config['upload_path']          = './assets/files/projects/';
@@ -339,7 +343,7 @@ class Admin extends CI_Controller {
 
 		// Connect or Update Database
 		$this->logs_model->log_insert($project_title.' project title is updated');
-		$this->projects_model->project_update($id, $project_title, $project_date, $project_details, $project_userfile, $user_id);
+		$this->projects_model->project_update($id, $project_title, $project_date, $project_details, $project_userfile, $user_id, $official_id);
 
 		// Notif
 		$success = $project_title . " is Updated Successfully!";
@@ -628,6 +632,7 @@ class Admin extends CI_Controller {
 
 	public function edit_user(){
 		// Get Form Inputs
+
 		$id = $this->input->post('id');
 		$password = $this->input->post('password');
 		$usertype = $this->input->post('usertype');
@@ -638,6 +643,9 @@ class Admin extends CI_Controller {
 		$address = $this->input->post('address');
 		$contact = $this->input->post('contact');
 		$userfile = $this->input->post('prev_userfile');
+
+		$users = $this->user_model->users_retrieve();
+		foreach($users as $user){if($user->user_id == $id){ $approved = $user->approved; break; }}
 
 		// Upload ID to a Path
 		$config['upload_path']          = './assets/files/users/';
@@ -655,7 +663,7 @@ class Admin extends CI_Controller {
 		$success = "User Updated";
 		$this->session->set_userdata('success' , $success);
 
-		$this->user_model->users_update($id, $password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, 2, '');
+		$this->user_model->users_update($id, $password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, $approved, '');
 
 		redirect('/admin/users_list', 'refresh');
 	}
@@ -669,6 +677,33 @@ class Admin extends CI_Controller {
 		$this->user_model->users_delete($id);
 
 		redirect('/admin/users_list', 'refresh');
+	}
+
+	public function user_destiny(){
+
+		$id = $this->input->post('id');
+		$type = $this->input->post('type');
+
+		$user_id = $this->session->userdata("user_id");
+		$fname = $this->session->userdata("fname");
+
+		$users = $this->user_model->users_retrieve();
+		foreach($users as $user){if($user->user_id == $id){ $nameOfUser = $user->fname.' '.$user->mname.' '.$user->lname; break; }}
+
+		if($type == "approve"){ 
+			$this->logs_model->log_insert("The user ". $nameOfUser . " is approved by User ID: ".$this->session->userdata("user_id")." Name: ".$fname);
+			$this->user_model->users_update_approve_by_id($id, 2); 
+			$success = "User is Fully Validated";
+		}
+		
+		if($type == "reject"){ 
+			$this->logs_model->log_insert("The user ". $nameOfUser . " is rejected by User ID: ".$this->session->userdata("user_id")." Name: ".$fname);
+			$this->user_model->users_delete($id); 
+			$success = "User is Rejected";
+		}
+		
+		$this->session->set_userdata('success' , $success);
+		redirect('admin/users_list', 'refresh');
 	}
 
 	// Services Table
@@ -868,23 +903,27 @@ class Admin extends CI_Controller {
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
 		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
 
 		if($type == "requests")
 		{
 			$this->logs_model->log_insert("approved a pending request");
-			$this->requests_model->request_update($id, 1, $remarks);
+			$this->requests_model->request_update($id, 1, "");
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, 1);
 			redirect('/admin/document_requests', 'refresh');
 		}
 		elseif($type == "complaints")
 		{
 			$this->logs_model->log_insert("approved a pending complaint");
-			$this->complaints_model->complaint_update($id, 1, $remarks);
+			$this->complaints_model->complaint_update($id, 1, "");
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, 1);
 			redirect('/admin/filed_complaints', 'refresh');
 		}
 		elseif($type == "assistance")
 		{
 			$this->logs_model->log_insert("approved a pending assistance");
-			$this->assistance_model->assistance_update($id, 1, $remarks);
+			$this->assistance_model->assistance_update($id, 1, "");
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, 1);
 			redirect('/admin/assistance_requests', 'refresh');
 		}
 	}
@@ -893,34 +932,96 @@ class Admin extends CI_Controller {
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
 		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
 
 		if($type == "requests")
 		{
-			$this->requests_model->request_update($id, 0, $remarks);
+			$this->logs_model->log_insert("approved a pending request");
+			$this->requests_model->request_update($id, 0, "");
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, 0);
 			redirect('/admin/document_requests', 'refresh');
 		}
 		elseif($type == "complaints")
 		{
-			$this->complaints_model->complaint_update($id, 0, $remarks);
+			$this->logs_model->log_insert("approved a pending complaint");
+			$this->complaints_model->complaint_update($id, 0, "");
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, 0);
 			redirect('/admin/filed_complaints', 'refresh');
 		}
 		elseif($type == "assistance")
 		{
-			$this->assistance_model->assistance_update($id, 0, $remarks);
+			$this->logs_model->log_insert("approved a pending assistance");
+			$this->assistance_model->assistance_update($id, 0, "");
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, 0);
 			redirect('/admin/assistance_requests', 'refresh');
 		}
 	}
 
+	public function add_remark(){
+		$type = $this->input->post('type');
+		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
+		$status = $this->input->post('status');
+
+		if($type == "requests")
+		{
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/admin/document_requests', 'refresh');
+		}
+		elseif($type == "complaints")
+		{
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/admin/filed_complaints', 'refresh');
+
+		}
+		elseif($type == "assistance")
+		{
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/admin/assistance_requests', 'refresh');
+		}
+	}
+
+	public function view_remarks($id = null, $tp = null){
+		
+		$type = "";
+
+		if($tp == 1){ $type = "requests"; }
+		if($tp == 2){ $type = "complaints"; }
+		if($tp == 3){ $type = "assistance"; }
+
+		$data['users'] = $this->user_model->users_retrieve();
+
+		if($type == "requests")
+		{
+			$data['remarks'] = $this->requests_model->request_remarks_retrieve($id);
+		}
+		elseif($type == "complaints")
+		{
+			$data['remarks'] = $this->complaints_model->complaint_remarks_retrieve($id);
+		}
+		elseif($type == "assistance")
+		{
+			$data['remarks'] = $this->assistance_model->assistance_remarks_retrieve($id);
+		}
+
+		$this->load->view('admin/remarks_table', $data);
+	}
+
+	// Services Types Table Actions
+
 	public function add_dr_type(){
 		$putaragis = $this->input->post('dr_type');
-		$this->requests_model->request_types_insert($putaragis);
+		$putaragis2 = $this->input->post('price');
+		$this->requests_model->request_types_insert($putaragis, $putaragis2);
 		redirect('/admin/document_request_types', 'refresh');
 	}
 
 	public function edit_dr_type(){
 		$id = $this->input->post('id');
 		$putaragis = $this->input->post('dr_type');
-		$this->requests_model->request_types_update($id, $putaragis);
+		$putaragis2 = $this->input->post('price');
+		$this->requests_model->request_types_update($id, $putaragis, $putaragis2);
 		redirect('/admin/document_request_types', 'refresh');
 	}
 

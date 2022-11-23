@@ -8,6 +8,7 @@ class Assistance_model extends CI_Model {
             $this->load->database();
         }    
     
+		//tbl_assistance
         public function assistance_insert($user_id, $assistance_type, $assistance_purpose, $date_needed){
 			$data = array(
 				'user_id' => $user_id,
@@ -21,7 +22,6 @@ class Assistance_model extends CI_Model {
             return true;
         }
 
-		
 		public function assistance_retrieve($id = null){
 			if($id !== null) { $this->db->where('user_id', intval($id)); }
             $this->db->order_by('date_created', 'DESC');
@@ -48,6 +48,7 @@ class Assistance_model extends CI_Model {
             $this->db->close();
 		}
 
+		//tbl_assistance_types
 		public function assistance_types_retrieve($id = null){
 			if($id !== null) { $this->db->where('assistance_type_id', intval($id)); }
 			$query = $this->db->get('tbl_assistance_types');
@@ -80,6 +81,48 @@ class Assistance_model extends CI_Model {
 		{
 			$this->db->where('assistance_type_id', $id);
 			$this->db->delete('tbl_assistance_types');
+			return true;
+		}
+
+		//tbl_assistance_remarks
+		public function assistance_remarks_retrieve($id = null){
+			if($id !== null) { $this->db->where('assistance_id', intval($id)); }
+			$query = $this->db->get('tbl_assistance_remarks');
+            $this->db->close();
+            return $query->result();
+		}
+
+		public function assistance_remarks_insert($id, $user_id, $remark, $status){
+			$data = array(
+				'assistance_id' => $id,
+				'user_id' => $user_id,
+				'remark' => $remark,
+				'status' => $status
+			);
+
+			$this->db->insert('tbl_assistance_remarks', $data);
+			$this->db->close();
+            return true;
+		}
+
+		public function assistance_remarks_update($id, $user_id, $remark, $status){
+			$data = array(
+				'assistance_id' => $id,
+				'user_id' => $user_id,
+				'remark' => $remark,
+				'status' => $status
+			);
+
+			$this->db->where('assistance_remark_id', $id);
+			$this->db->update('tbl_assistance_remarks', $data);
+			$this->db->close();
+            return true;
+		}
+
+		public function assistance_remarks_delete($id)
+		{
+			$this->db->where('assistance_remark_id', $id);
+			$this->db->delete('tbl_assistance_remarks');
 			return true;
 		}
 

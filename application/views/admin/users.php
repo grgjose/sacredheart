@@ -64,8 +64,9 @@
 					<td id="address_<?php echo $user->user_id; ?>"><?php echo $user->address; ?></td>
 					<td id="contact_<?php echo $user->user_id; ?>"><?php echo $user->contact; ?></td>
 					<td>
-						<?php if($user->approved == 1){?> <span class="badge badge-success">Approved</span> <?php }?>
-						<?php if($user->approved == 0){?> <span class="badge badge-danger">Not yet Approved</span> <?php }?>
+						<?php if($user->approved == 2){?> <span class="badge badge-success">Approved</span> <?php }?>
+						<?php if($user->approved == 1){?> <span class="badge badge-warning">Pending for Approval</span> <?php }?>
+						<?php if($user->approved == 0){?> <span class="badge badge-danger">Email not yet verified</span> <?php }?>
 					</td>
 					<td id="date_created_<?php echo $user->user_id; ?>"><?php echo $user->date_created; ?></td>
 					<td>
@@ -77,13 +78,21 @@
 						<button class="btn btn-danger text-justify text-center" data-toggle="modal" data-target="#DeleteModal" 
 						style="width: 30px; height: 30px; margin: 5px;"
 						onclick="delFunc(<?php echo $user->user_id; ?>)">
-							<span class="fas fa-times" style="display: flex; justify-content: center; align-items: center; font-size: 12px;"></span>
+							<span class="fas fa-trash" style="display: flex; justify-content: center; align-items: center; font-size: 12px;"></span>
 						</button>
-						<button class="btn btn-success text-justify text-center" data-toggle="modal" data-target="#ApproveModal" 
+						<?php if($user->approved < 2){ ?>
+						<button class="btn btn-success text-justify text-center" 
 						style="width: 30px; height: 30px; margin: 5px;"
 						onclick="approveFunc(<?php echo $user->user_id; ?>)">
 							<span class="fas fa-check" style="display: flex; justify-content: center; align-items: center; font-size: 12px;"></span>
 						</button>
+
+						<button class="btn btn-danger text-justify text-center"
+						style="width: 30px; height: 30px; margin: 5px;"
+						onclick="rejectFunc(<?php echo $user->user_id; ?>)">
+							<span class="fas fa-times" style="display: flex; justify-content: center; align-items: center; font-size: 12px;"></span>
+						</button>
+						<?php } ?>
 					</td>
 
                   </tr>
@@ -119,6 +128,18 @@
 
 				function delFunc(id){
 					$('#DeleteModal #id').val(id);
+				}
+
+				function approveFunc(id){
+					$('#ApproveModalForm #id').val(id);
+					$('#ApproveModalForm #type').val("approve");
+					$('#ApproveModalForm').submit();
+				}
+
+				function rejectFunc(id){
+					$('#ApproveModalForm #id').val(id);
+					$('#ApproveModalForm #type').val("reject");
+					$('#ApproveModalForm').submit();
 				}
 			  </script>
 
@@ -185,7 +206,7 @@
 							</div>
 							<div class="col">
 							  <label for="userfile">Picture</label>
-							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
+							  <input type="file" accept="image/*" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
 							   style="padding-bottom: 15px;">
 							</div>
 						  </div> <br>
@@ -263,7 +284,7 @@
 							</div>
 							<div class="col">
 							  <label for="userfile">Picture</label>
-							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
+							  <input type="file" accept="image/*" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
 							   style="padding-bottom: 15px;">
 							   <input type="hidden" id="prev_userfile" name="prev_userfile" value="" />
 							</div>
@@ -307,70 +328,22 @@
 				</div>
 
 			  <!-- Approve Modal -->
-				<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="AddModal" aria-hidden="true">
+				<div class="modal fade" id="ApproveModal" tabindex="-1" role="dialog" aria-labelledby="ApproveModal" aria-hidden="true">
 				  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Approve User</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						  <span aria-hidden="true">&times;</span>
 						</button>
 					  </div>
 					  <div class="modal-body">
-						<?php echo form_open_multipart('admin/add_user'); ?>
-						  <div class="form-row">
+						<?php $attributes = array('id' => 'ApproveModalForm'); echo form_open('admin/user_destiny', $attributes); ?>
+						<input type="hidden" id="id" name="id" value="" required>
+						<input type="hidden" id="type" name="type" value="" required>
+						<div class="form-row">
 							<div class="col">
-							  <label for="fname">First Name</label>
-							  <input type="text" class="form-control" id="fname" name="fname" placeholder="First name" required>
-							</div>
-							<div class="col">
-							  <label for="mname">Middle Name</label>
-							  <input type="text" class="form-control" id="mname" name="mname" placeholder="Middle name">
-							</div>
-							<div class="col">
-							  <label for="lname">Last Name</label>
-							  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last name" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="usertype">Usertype</label>
-							  <select class="form-control" id="usertype" name="usertype" placeholder="Usertype" required>
-								<option value="3" selected>Resident</option>
-								<option value="2">Official</option>
-								<option value="1">Admin</option>
-							  </select>
-							</div>
-							<div class="col">
-							  <label for="email">Email</label>
-							  <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="password">Password</label>
-							  <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-							</div>
-							<div class="col">
-							  <label for="c_password">Confirm Password</label>
-							  <input type="password" class="form-control" id="c_password" name="c_password" placeholder="Confirm Password" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="address">Address</label>
-							  <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
-							</div>
-						  </div> <br>
-						  <div class="form-row">
-							<div class="col">
-							  <label for="contact">Contact</label>
-							  <input type="text" class="form-control" id="contact" name="contact" placeholder="Contact #" required>
-							</div>
-							<div class="col">
-							  <label for="userfile">Picture</label>
-							  <input type="file" class="form-control-file form-control-sm" id="userfile" name="userfile" placeholder="Profile Pic" 
-							   style="padding-bottom: 15px;">
+							  <label for="fname">Confirm Action?</label>
 							</div>
 						  </div> <br>
 					  </div>

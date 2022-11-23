@@ -55,12 +55,25 @@
 					<?php if($assist->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $assist->date_created; ?></td>
-					<td><?php echo $assist->remarks; ?></td>
 					<td>
-						<button class="btn btn-<?php if($assist->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
+						<button class="btn btn-info text-justify text-center" 
+						data-toggle="modal" data-target="#ViewRemarksModal"
+						onclick="viewRemarksFunc(<?php echo $assist->assistance_id; ?>)" >
+						View Remarks</span>
+						</button>
+					</td>
+					<td>
+						<button style="width:150px;"
+						class="btn btn-<?php if($assist->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
 						data-toggle="modal" data-target="#<?php if($assist->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($assist->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $assist->assistance_id; ?>)" >
 						<?php if($assist->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
+						</button>
+						
+						<button class="btn btn-warning text-justify text-center" 
+						data-toggle="modal" data-target="#AddRemarkModal"
+						onclick="addRemarkFunc(<?php echo $assist->assistance_id; ?>,<?php echo $assist->status; ?>)" >
+						Add Remarks</span>
 						</button>
 					</td>
 
@@ -81,6 +94,18 @@
 				{
 					$('#DeleteModal #id').val(id);
 					
+				}
+
+				function addRemarkFunc(id, st)
+				{
+					$('#AddRemarkModal #id').val(id);
+					$('#AddRemarkModal #status').val(st);
+				}
+
+				function viewRemarksFunc(id)
+				{
+					$('#view-remarks-modal-body').html('');
+					$('#view-remarks-modal-body').load('<?php echo base_url()."admin/view_remarks/"; ?>' + String(id) + '/3');
 				}
 
 			  </script>
@@ -124,7 +149,7 @@
 						  <div class="form-row">
 							<div class="col">
 							  <label for="date_to_receive">Date To Receive</label>
-							  <input type="date" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive" required>
+							  <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive" required>
 							</div>
 							<div class="col">
 							  <label for="is_received">Is Received</label>
@@ -149,7 +174,7 @@
 					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Set as Completed Remark</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -179,7 +204,7 @@
 					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Edit Ayuda Receiver</h5>
+						<h5 class="modal-title" id="exampleModalLabel">Set as Pending Remark</h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -198,6 +223,58 @@
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						<input type="submit" class="btn btn-primary" value="Save" />
+						</div>
+						</form>
+					</div>
+					</div>
+				</div>
+
+			  <!-- Add Remark Modal -->
+				<div class="modal fade" id="AddRemarkModal" tabindex="-1" role="dialog" aria-labelledby="AddRemarkModal" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Add Remarks</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+						<div class="modal-body">
+						<?php $attributes = array('id' => 'AddRemarkForm'); echo form_open('admin/add_remark', $attributes); ?>
+							<div class="form-row">
+							<input type="hidden" id="type" name="type"  value="assistance">
+							<input type="hidden" id="id" name="id"  value="">
+							<input type="hidden" id="status" name="status"  value="">
+							<div class="col">
+								<label>Remarks</label>
+								<textarea class="form-control" name="remarks" rows="3" required></textarea>
+							</div>
+							</div> <br>						
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-primary" value="Save" />
+						</div>
+						</form>
+					</div>
+					</div>
+				</div>
+
+			  <!-- View Remark Modal -->
+				<div class="modal fade" id="ViewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="ViewRemarksModal" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">View Remarks</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+						<div id="view-remarks-modal-body" class="modal-body">
+							
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 						</div>
 						</form>
 					</div>

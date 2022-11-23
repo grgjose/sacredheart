@@ -35,6 +35,7 @@
                   <tr>
                     <th>ID</th>
                     <th>Document Type</th>
+					<th>Document Price</th>
 					<th>Date Created</th>
 					<th>Actions</th>
                   </tr>
@@ -44,10 +45,11 @@
                   <tr>
                     <td><?php echo $type->request_type_id; ?></td>
 					<td><?php echo $type->request_type; ?></td>
+					<td><?php echo $type->request_price; ?></td>
 					<td><?php echo $type->date_created; ?></td>
 					<td>
 						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
-						onclick="editFunc(<?php echo $type->request_type_id; ?>,'<?php echo $type->request_type; ?>')" >
+						onclick="editFunc(<?php echo $type->request_type_id; ?>,'<?php echo $type->request_type; ?>','<?php echo $type->request_price; ?>')" >
 						<span class="fas fa-pen"></span>
 						</button>
 
@@ -70,10 +72,11 @@
               </div>
 
 			  <script>
-				function editFunc(id, ar)
+				function editFunc(id, ar, pr)
 				{
 					$('#EditModal #id').val(id);
 					$('#EditModal #dr_type').val(ar);
+					$('#EditModal #price').val(pr);
 				}
 
 				function delFunc(id)
@@ -99,6 +102,12 @@
 							<div class="col">
 							  <label for="ar_type">Document Request Type</label>
 							  <input type="text" class="form-control" id="dr_type" name="dr_type" placeholder="Document Request Type" required>
+							</div>
+						  </div> <br>
+						  <div class="form-row">
+							<div class="col">
+							  <label for="price">Document Request Price</label>
+							  <input type="text" class="form-control" id="price" name="price" placeholder="Document Request Price" required>
 							</div>
 						  </div> <br>
 					  </div>
@@ -129,7 +138,13 @@
 									<label>Assistance Type</label>
 									<input type="text" id="dr_type" name="dr_type" class="form-control">
 								</div>
-							</div> <br>						
+							</div> <br>		
+							<div class="form-row">
+							<div class="col">
+							  <label for="price">Document Request Price</label>
+							  <input type="text" class="form-control" id="price" name="price" placeholder="Document Request Price" required>
+							</div>
+						  </div> <br>
 						</div>
 						<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -76,6 +76,7 @@
 						<i id="project_details_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_details; ?></i>
 						<i id="project_userfile_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_userfile; ?></i>
 						<i id="user_id_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->user_id; ?></i>
+						<i id="official_id_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->official_id; ?></i>
 						
 						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
 						onclick="editFunc(<?php echo $project->project_id; ?>,'<?php echo $project->project_userfile; ?>')">
@@ -118,6 +119,7 @@
 					$('#EditModal #project_date').val(myArr[0].trim());
 					$('#EditModal #project_details').val($('#project_details_' + id).html());
 					$('#EditModal #prev_project_userfile').val($('#project_userfile_' + id).html());
+					$('#EditModal #official_id').val($('#official_id_' + id).html());
 				}
 
 				function delFunc(id)
@@ -152,7 +154,7 @@
 							</div>
 							<div class="col">
 							  <label for="project_date">Project Date</label>
-							  <input type="date" class="form-control" id="project_date" name="project_date" placeholder="When will it occur?">
+							  <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="project_date" name="project_date" placeholder="When will it occur?">
 							</div>
 						  </div> <br>
 						  <div class="form-row">
@@ -165,8 +167,18 @@
 						  <div class="form-row">
 							<div class="col">
 							  <label for="project_file">Project Image</label>
-							  <input type="file" class="form-control form-control-file form-control-sm" style="padding-bottom: 35px;" 
+							  <input type="file" accept="image/*" class="form-control form-control-file form-control-sm" style="padding-bottom: 35px;" 
 							  id="project_userfile" name="project_userfile" placeholder="Project Image" required>
+							</div>
+							<div class="col">
+							  <label for="official_id">Assign Project Lead</label>
+							  <select name="official_id" class="form-control" required>
+								<?php foreach($users as $user){ ?>
+								<?php if($user->usertype == 2){ ?>
+									<option value="<?php echo $user->user_id; ?>" ><?php echo $user->fname.' '.$user->mname.' '.$user->lname; ?></option>
+								<?php } ?>
+								<?php } ?>
+							  </select>
 							</div>
 						  </div> <br>
 					  </div>
@@ -199,7 +211,7 @@
 							</div>
 							<div class="col">
 							  <label for="project_date">Project Date</label>
-							  <input type="date" class="form-control" id="project_date" name="project_date" placeholder="When will it occur?" required>
+							  <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="project_date" name="project_date" placeholder="When will it occur?" required>
 							</div>
 						  </div> <br>
 						  <div class="form-row">
@@ -212,9 +224,19 @@
 						  <div class="form-row">
 							<div class="col">
 							  <label for="project_file">Project Image</label>
-							  <input type="file" class="form-control form-control-file form-control-sm" style="padding-bottom: 35px;" 
+							  <input type="file" accept="image/*" class="form-control form-control-file form-control-sm" style="padding-bottom: 35px;" 
 							  id="project_userfile" name="project_userfile" placeholder="Project Image">
 							  <input type="hidden" id="prev_project_userfile" name="project_userfile" value="">
+							</div>
+							<div class="col">
+							  <label for="official_id">Assign Project Lead</label>
+							  <select name="official_id" id="official_id" class="form-control" required>
+								<?php foreach($users as $user){ ?>
+								<?php if($user->usertype == 2){ ?>
+									<option value="<?php echo $user->user_id; ?>" ><?php echo $user->fname.' '.$user->mname.' '.$user->lname; ?></option>
+								<?php } ?>
+								<?php } ?>
+							  </select>
 							</div>
 						  </div> <br>
 					  </div>

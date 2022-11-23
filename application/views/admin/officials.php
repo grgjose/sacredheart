@@ -103,7 +103,7 @@
 						  <div class="form-row">
 							<div class="col">
 							  <label for="prev_dp_userfile">Display Picture</label>
-							  <input type="file" class="form-control-file form-control-sm" id="dp_userfile" name="dp_userfile" placeholder="Display Picture" 
+							  <input type="file" accept="image/*" class="form-control-file form-control-sm" id="dp_userfile" name="dp_userfile" placeholder="Display Picture" 
 							   style="padding-bottom: 15px;">
 							   <input type="hidden" id="prev_dp_userfile" name="prev_dp_userfile" value="" />
 							</div>

@@ -2,9 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\application",
-    "\\application\\views",
-    "\\application\\views\\events"
+    "\\application\\controllers"
   ],
-  "SelectedNode": "\\application\\views\\events\\program.php",
+  "SelectedNode": "\\application\\controllers\\Admin.php",
   "PreviewInSolutionExplorer": false
 }

@@ -16,13 +16,14 @@ class Seniors_model extends CI_Model {
             return $query->result();
         }
 
-		public function senior_insert($fname, $mname, $lname, $age, $job, $senior_card_id){
+		public function senior_insert($fname, $mname, $lname, $age, $job, $senior_card_id, $year){
 			$data = array(
 				'fname' => $fname,
 				'mname' => $mname,
 				'lname' => $lname,
 				'age' => $age,
 				'job' => $job,
+				'year' => $year,
 				'senior_card_id' => $senior_card_id,
 			);
 
@@ -31,13 +32,14 @@ class Seniors_model extends CI_Model {
             return true;
         }
 
-		public function senior_update($senior_id, $fname, $mname, $lname, $age, $job, $senior_card_id){
+		public function senior_update($senior_id, $fname, $mname, $lname, $age, $job, $senior_card_id, $year){
 			$data = array(
 				'fname' => $fname,
 				'mname' => $mname,
 				'lname' => $lname,
 				'age' => $age,
 				'job' => $job,
+				'year' => $year,
 				'senior_card_id' => $senior_card_id,
 			);
 

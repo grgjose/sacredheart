@@ -139,7 +139,7 @@
 						  <div class="form-row">
 							<div class="col">
 							  <label for="date_to_receive">Date To Receive</label>
-							  <input type="date" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive" required>
+							  <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive" required>
 							</div>
 							<div class="col">
 							  <label for="is_received">Is Received</label>
@@ -199,7 +199,7 @@
 						  <div class="form-row">
 							<div class="col">
 							  <label for="date_to_receive">Date To Receive</label>
-							  <input type="date" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive">
+							  <input type="date" min="<?php echo date("Y-m-d"); ?>" class="form-control" id="date_to_receive" name="date_to_receive" placeholder="Date To Receive">
 							</div>
 							<div class="col">
 							  <label for="is_received">Is Received</label>

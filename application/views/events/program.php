@@ -31,7 +31,7 @@
 			</thead>
 			<tbody>
 			<?php foreach($projects as $project){ ?>
-			<?php if((strtotime($project->project_date) >= Time()) && ($project->archive == 0)){ ?>
+			<?php if((strtotime($project->project_date) >= Time()) && ($project->project_archive == 0)){ ?>
 			<tr>
 				<td style="height: 30px;" class="text-center">
 					<div class="row">

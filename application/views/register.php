@@ -41,7 +41,7 @@
 							<input class="form-control main numberic-only" id="contact" name="contact" type="text" placeholder="Contact #" required>
 							<!-- Password -->
 							<label class="form-label">Any ID with Address</label>
-							<input class="form-control form-control-sm" id="userfile" name="userfile" type="file" style="height: 40px;" size="100000" required>
+							<input class="form-control form-control-sm" id="userfile" name="userfile" type="file" accept="image/*" style="height: 40px;" size="100000" required>
 							<br>
 							<!-- Submit Button -->
 							<input id="submit" type="submit" class="btn btn-main-sm" value="Sign Up">
