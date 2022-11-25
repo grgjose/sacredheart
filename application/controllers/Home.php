@@ -631,6 +631,60 @@ class Home extends CI_Controller {
 		}
 	}
 
+	public function add_remark(){
+		$type = $this->input->post('type');
+		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
+		$status = $this->input->post('status');
+
+		$success = "Remark added";
+		$this->session->set_userdata("success", $success);
+
+		if($type == "requests")
+		{
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/home/my_info', 'refresh');
+		}
+		elseif($type == "complaints")
+		{
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/home/my_info', 'refresh');
+
+		}
+		elseif($type == "assistance")
+		{
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/home/my_info', 'refresh');
+		}
+	}
+
+	public function view_remarks($id = null, $tp = null){
+		
+		$type = "";
+
+		if($tp == 1){ $type = "requests"; }
+		if($tp == 2){ $type = "complaints"; }
+		if($tp == 3){ $type = "assistance"; }
+
+		$data['users'] = $this->user_model->users_retrieve();
+
+		if($type == "requests")
+		{
+			$data['remarks'] = $this->requests_model->request_remarks_retrieve($id);
+		}
+		elseif($type == "complaints")
+		{
+			$data['remarks'] = $this->complaints_model->complaint_remarks_retrieve($id);
+		}
+		elseif($type == "assistance")
+		{
+			$data['remarks'] = $this->assistance_model->assistance_remarks_retrieve($id);
+		}
+
+		$this->load->view('admin/remarks_table', $data);
+	}
+
 	public function edit_info(){
 
 		if($this->session->usertype != 3)

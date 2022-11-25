@@ -25,7 +25,18 @@
 						<td style="height: 30px;" class="text-center"><?php echo $complaint->date_created; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $complaint->complaint_description; ?></td>
 						<td style="height: 30px;" class="text-center"><a href="<?php echo base_url() . $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
-						<td style="height: 30px;" class="text-center"><?php echo $complaint->remarks; ?></td>
+						<td style="height: 30px;" class="text-center">
+							<button class="btn btn-info text-justify text-center" 
+							data-toggle="modal" data-target="#ViewRemarksModal"
+							onclick="viewRemarksFunc(<?php echo $complaint->complaint_id; ?>,2)" >
+							<span class="ti-eye"></span>
+							</button>
+							<button class="btn btn-warning text-justify text-center" 
+							data-toggle="modal" data-target="#AddRemarkModal"
+							onclick="addRemarkFunc(<?php echo $complaint->complaint_id; ?>,<?php echo $complaint->status; ?>,'complaints')" >
+							<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
+							</button>
+						</td>
 					</tr>
 					<?php } ?>
 				  </tbody>
@@ -77,7 +88,18 @@
 						</td>
 						<td style="height: 30px;" class="text-center"><?php echo $request->document_purpose; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $request->date_needed; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $request->remarks; ?></td>
+						<td style="height: 30px;" class="text-center">
+						<button class="btn btn-info text-justify text-center" 
+						data-toggle="modal" data-target="#ViewRemarksModal"
+						onclick="viewRemarksFunc(<?php echo $request->request_id; ?>,1)" >
+						<span class="ti-eye"></span>
+						</button>
+						<button class="btn btn-warning text-justify text-center" 
+						data-toggle="modal" data-target="#AddRemarkModal"
+						onclick="addRemarkFunc(<?php echo $request->request_id; ?>,<?php echo $request->status; ?>,'requests')" >
+						<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
+						</button>
+						</td>
 					</tr>
 					<?php } ?>
 				  </tbody>
@@ -130,7 +152,18 @@
 						</td>
 						<td style="height: 30px;" class="text-center"><?php echo $assist->assistance_purpose; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $assist->date_needed; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $assist->remarks; ?></td>
+						<td style="height: 30px;" class="text-center">
+						<button class="btn btn-info text-justify text-center" 
+						data-toggle="modal" data-target="#ViewRemarksModal"
+						onclick="viewRemarksFunc(<?php echo $assist->assistance_id; ?>,3)" >
+						<span class="ti-eye"></span>
+						</button>
+						<button class="btn btn-warning text-justify text-center" 
+						data-toggle="modal" data-target="#AddRemarkModal"
+						onclick="addRemarkFunc(<?php echo $assist->assistance_id; ?>,<?php echo $assist->status; ?>,'assistance')" >
+						<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
+						</button>
+						</td>
 					</tr>
 					<?php } ?>
 				  </tbody>
@@ -152,8 +185,83 @@
 	</div>
 </section>
 
+<script>
+	function editFunc(id)
+	{
+		$('#EditModal #id').val(id);
+					
+	}
 
+	function delFunc(id)
+	{
+		$('#DeleteModal #id').val(id);
+					
+	}
+	function addRemarkFunc(id, st, tp)
+	{
+		$('#AddRemarkModal #id').val(id);
+		$('#AddRemarkModal #type').val(tp);
+		$('#AddRemarkModal #status').val(st);
+	}
 
+	function viewRemarksFunc(id, tp)
+	{
+		$('#view-remarks-modal-body').html('');
+		$('#view-remarks-modal-body').load('<?php echo base_url()."home/view_remarks/"; ?>' + String(id) + '/' + String(tp));
+	}
+</script>
+
+<!-- Add Remark Modal -->
+<div class="modal fade" id="AddRemarkModal" tabindex="-1" role="dialog" aria-labelledby="AddRemarkModal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Add Remarks</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+		<?php $attributes = array('id' => 'AddRemarkForm'); echo form_open('home/add_remark', $attributes); ?>
+			<div class="form-row">
+			<input type="hidden" id="type" name="type"  value="complaints">
+			<input type="hidden" id="id" name="id"  value="">
+			<input type="hidden" id="status" name="status"  value="">
+			<div class="col">
+				<label>Remarks</label>
+				<textarea class="form-control" name="remarks" rows="3" required></textarea>
+			</div>
+			</div> <br>						
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<input type="submit" class="btn btn-primary" value="Save" />
+		</div>
+		</form>
+	</div>
+	</div>
+</div>
+
+<!-- View Remark Modal -->
+<div class="modal fade" id="ViewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="ViewRemarksModal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">View Remarks</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div id="view-remarks-modal-body" class="modal-body">
+							
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+		</form>
+	</div>
+	</div>
+</div>
 
 
 

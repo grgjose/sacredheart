@@ -3,9 +3,9 @@
      *             INTRO            *
 	 ******************************** -->
 <section class="section page-title">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 m-auto">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-lg-10">
 				<!-- Page Title -->
 				<h1>List of Residents</h1>
 				<!-- Page Description -->
@@ -53,8 +53,10 @@
 					</td>
 
 					<td>
-						<button class="btn btn-success btn-sm" onclick="approveFunc(<?php echo $user->user_id; ?>)"> Approve</button> <br> <br>
+						<?php if($user->approved < 2){ ?>
+						<button class="btn btn-success btn-sm" onclick="approveFunc(<?php echo $user->user_id; ?>)"> Approve</button> <br>
 						<button class="btn btn-danger btn-sm" onclick="rejectFunc(<?php echo $user->user_id; ?>)"> Reject</button>
+						<?php } ?>
 					</td>
 
                   </tr>
@@ -317,124 +319,24 @@ observer2.observe(target, {
 					<p>If cartoon bluebirds were real, a couple of 'em would be sitting on your shoulders singing right now.</p>
 				</div>
 			</div>
+
+			<?php foreach($users as $user){ if($user->usertype == 2 && $user->dp_userfile != ""){ ?>
 			<div class="col-xl-3 col-lg-4 col-sm-6">
 				<div class="block text-center">
 					<!-- Investor Image -->
 					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_04.jpg" alt="investor">
+						<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/officials/<?php echo $user->dp_userfile; ?>" alt="investor">
 					</div>
 					<!-- Company -->
-					<h3>Sacred Heart</h3>
+					<h3><?php echo $user->fname.' '.$user->mname.' '.$user->lname; ?></h3>
 					<!--  -->
-					<p>Barangay Official</p>
+					<p><?php echo $user->position; ?></p>
 				</div>
 			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_05.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_06.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_07.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_08.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_09.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_10.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
-			<div class="col-xl-3 col-lg-4 col-sm-6">
-				<div class="block text-center">
-					<!-- Investor Image -->
-					<div class="image shadow hover-zoom">
-						<img class="img-fluid" src="<?php echo base_url(); ?>assets/images/officials/official_11.jpg" alt="investor">
-					</div>
-					<!-- Company -->
-					<h3>Sacred Heart</h3>
-					<!--  -->
-					<p>Barangay Official</p>
-				</div>
-			</div>
+			<?php }} ?>
+			
 		</div>
 	</div>
 </section>
-
-<!-- ********************************
-     *			RESIDENTS           *
-	 ******************************** 
-<section class="section cta-hire bg-gary">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 text-center">
-
-				<h2>We are hunting Passionate Residents</h2>
-			
-				<p>Be curious. Use data. Leverage imagination. Be an expert. Be an enthusiast. Be authentic. Know your competition. 
-				Hiring is the most important people function you have, and most of us aren’t as good at it as we think.
-				Refocusing your resources on hiring better will have a higher return than almost any training program you can develop. </p>
-			
-				<a href="<?php echo base_url(); ?>home/register" class="mt-3 btn btn-main-md">Register as a Resident</a>
-			</div>
-		</div>
-	</div>
-</section> -->
 
 <!--====  End of Section comment  ====-->

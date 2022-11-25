@@ -3,9 +3,9 @@
      *             INTRO            *
 	 ******************************** -->
 <section class="section page-title">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 m-auto">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-lg-10">
 				<!-- Page Title -->
 				<h1>List of Document Requests</h1>
 				<!-- Page Description -->
@@ -17,6 +17,7 @@
                   <thead>
                   <tr>
                     <th>Document Type</th>
+					<th>Document Price</th>
                     <th>Purpose</th>
                     <th>Complaintant</th>
                     <th>Date Needed</th>
@@ -31,6 +32,7 @@
 					<?php foreach($requests as $request){ ?>
                   <tr>
                     <td><?php foreach($request_types as $type){ if($request->document_type == $type->request_type_id){ echo $type->request_type; break; } } ?></td>
+					<td><?php foreach($request_types as $type){ if($request->document_type == $type->request_type_id){ echo $type->request_price; break; } } ?></td>
 					<td><?php echo $request->document_purpose; ?></td>
 					<td><?php foreach($users as $user){ if($user->user_id == $request->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
 					<td><?php echo $request->date_needed; ?></td>
@@ -40,12 +42,23 @@
 					<?php if($request->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $request->date_created; ?></td>
-					<td><?php echo $request->remarks; ?></td>
+					<td>
+						<button class="btn btn-info text-justify text-center" 
+						data-toggle="modal" data-target="#ViewRemarksModal"
+						onclick="viewRemarksFunc(<?php echo $request->request_id; ?>)" >
+						<span class="ti-eye"></span>
+						</button>
+					</td>
 					<td>
 						<button class="btn btn-<?php if($request->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
 						data-toggle="modal" data-target="#<?php if($request->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($request->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $request->request_id; ?>)" >
 						<?php if($request->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
+						</button>
+						<button class="btn btn-warning text-justify text-center" 
+						data-toggle="modal" data-target="#AddRemarkModal"
+						onclick="addRemarkFunc(<?php echo $request->request_id; ?>,<?php echo $request->status; ?>)" >
+						<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
 						</button>
 					</td>
 
@@ -82,6 +95,17 @@
 					{
 						$('#DeleteModal #id').val(id);
 					
+					}
+					function addRemarkFunc(id, st)
+					{
+						$('#AddRemarkModal #id').val(id);
+						$('#AddRemarkModal #status').val(st);
+					}
+
+					function viewRemarksFunc(id)
+					{
+						$('#view-remarks-modal-body').html('');
+						$('#view-remarks-modal-body').load('<?php echo base_url()."admin/view_remarks/"; ?>' + String(id) + '/1');
 					}
 			    </script>
 
@@ -209,6 +233,58 @@
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				<input type="submit" class="btn btn-primary" value="Save" />
+				</div>
+				</form>
+			</div>
+			</div>
+		</div>
+
+		<!-- Add Remark Modal -->
+		<div class="modal fade" id="AddRemarkModal" tabindex="-1" role="dialog" aria-labelledby="AddRemarkModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Add Remarks</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				<?php $attributes = array('id' => 'AddRemarkForm'); echo form_open('provide/add_remark', $attributes); ?>
+					<div class="form-row">
+					<input type="hidden" id="type" name="type"  value="requests">
+					<input type="hidden" id="id" name="id"  value="">
+					<input type="hidden" id="status" name="status"  value="">
+					<div class="col">
+						<label>Remarks</label>
+						<textarea class="form-control" name="remarks" rows="3" required></textarea>
+					</div>
+					</div> <br>						
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<input type="submit" class="btn btn-primary" value="Save" />
+				</div>
+				</form>
+			</div>
+			</div>
+		</div>
+
+		<!-- View Remark Modal -->
+		<div class="modal fade" id="ViewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="ViewRemarksModal" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">View Remarks</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div id="view-remarks-modal-body" class="modal-body">
+							
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 				</form>
 			</div>

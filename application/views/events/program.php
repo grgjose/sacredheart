@@ -56,7 +56,17 @@
 									<li class="list-inline-item">
 										<img src="<?php echo base_url(); ?>assets/files/users/<?php echo $user->userfile;?>" alt="">
 									</li>
-									<li class="list-inline-item"><?php echo $user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
+									<li class="list-inline-item"><?php echo "Posted by: ".$user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
+									<?php } ?>
+									<?php } ?>
+								</ul>
+								<ul class="list-inline meta">
+									<?php foreach($users as $user){ ?>
+									<?php if($user->user_id == $project->official_id){ ?>
+									<li class="list-inline-item">
+										<img src="<?php echo base_url(); ?>assets/files/users/<?php echo $user->userfile;?>" alt="">
+									</li>
+									<li class="list-inline-item"><?php echo "Assigned Official: ". $user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
 									<?php } ?>
 									<?php } ?>
 								</ul>
@@ -150,7 +160,17 @@
 									<li class="list-inline-item">
 										<img src="<?php echo base_url(); ?>assets/files/users/<?php echo $user->userfile;?>" alt="">
 									</li>
-									<li class="list-inline-item"><?php echo $user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
+									<li class="list-inline-item"><?php echo "Posted by: ".$user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
+									<?php } ?>
+									<?php } ?>
+								</ul>
+								<ul class="list-inline meta">
+									<?php foreach($users as $user){ ?>
+									<?php if($user->user_id == $project->official_id){ ?>
+									<li class="list-inline-item">
+										<img src="<?php echo base_url(); ?>assets/files/users/<?php echo $user->userfile;?>" alt="">
+									</li>
+									<li class="list-inline-item"><?php echo "Assigned Official: ". $user->fname.' '.$user->mname.' '.$user->lname; break;?> , <?php echo $user->position; break;?></li>
 									<?php } ?>
 									<?php } ?>
 								</ul>

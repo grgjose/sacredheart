@@ -445,23 +445,27 @@ class Provide extends CI_Controller {
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
 		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
 
 		if($type == "requests")
 		{
 			$this->logs_model->log_insert("approved a pending request");
-			$this->requests_model->request_update($id, 1, $remarks);
+			$this->requests_model->request_update($id, 1, "");
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, 1);
 			redirect('/provide/requests', 'refresh');
 		}
 		elseif($type == "complaints")
 		{
 			$this->logs_model->log_insert("approved a pending complaint");
-			$this->complaints_model->complaint_update($id, 1, $remarks);
+			$this->complaints_model->complaint_update($id, 1, "");
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, 1);
 			redirect('/provide/complaints', 'refresh');
 		}
 		elseif($type == "assistance")
 		{
 			$this->logs_model->log_insert("approved a pending assistance");
-			$this->assistance_model->assistance_update($id, 1, $remarks);
+			$this->assistance_model->assistance_update($id, 1, "");
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, 1);
 			redirect('/provide/assistance', 'refresh');
 		}
 	}
@@ -470,22 +474,84 @@ class Provide extends CI_Controller {
 		$type = $this->input->post('type');
 		$id = $this->input->post('id');
 		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
 
 		if($type == "requests")
 		{
-			$this->requests_model->request_update($id, 0, $remarks);
+			$this->logs_model->log_insert("approved a pending request");
+			$this->requests_model->request_update($id, 0, "");
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, 0);
 			redirect('/provide/requests', 'refresh');
 		}
 		elseif($type == "complaints")
 		{
-			$this->complaints_model->complaint_update($id, 0, $remarks);
+			$this->logs_model->log_insert("approved a pending complaint");
+			$this->complaints_model->complaint_update($id, 0, "");
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, 0);
 			redirect('/provide/complaints', 'refresh');
 		}
 		elseif($type == "assistance")
 		{
-			$this->assistance_model->assistance_update($id, 0, $remarks);
+			$this->logs_model->log_insert("approved a pending assistance");
+			$this->assistance_model->assistance_update($id, 0, "");
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, 0);
 			redirect('/provide/assistance', 'refresh');
 		}
+	}
+
+	public function add_remark(){
+		$type = $this->input->post('type');
+		$id = $this->input->post('id');
+		$remarks = $this->input->post('remarks');
+		$user_id = $this->session->userdata('user_id');
+		$status = $this->input->post('status');
+
+		$success = "Remark added";
+		$this->session->set_userdata("success", $success);
+
+		if($type == "requests")
+		{
+			$this->requests_model->request_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/provide/requests', 'refresh');
+		}
+		elseif($type == "complaints")
+		{
+			$this->complaints_model->complaint_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/provide/complaints', 'refresh');
+
+		}
+		elseif($type == "assistance")
+		{
+			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, $status);
+			redirect('/provide/assistance', 'refresh');
+		}
+
+	}
+
+	public function view_remarks($id = null, $tp = null){
+		
+		$type = "";
+
+		if($tp == 1){ $type = "requests"; }
+		if($tp == 2){ $type = "complaints"; }
+		if($tp == 3){ $type = "assistance"; }
+
+		$data['users'] = $this->user_model->users_retrieve();
+
+		if($type == "requests")
+		{
+			$data['remarks'] = $this->requests_model->request_remarks_retrieve($id);
+		}
+		elseif($type == "complaints")
+		{
+			$data['remarks'] = $this->complaints_model->complaint_remarks_retrieve($id);
+		}
+		elseif($type == "assistance")
+		{
+			$data['remarks'] = $this->assistance_model->assistance_remarks_retrieve($id);
+		}
+
+		$this->load->view('admin/remarks_table', $data);
 	}
 
 	public function get_info(){

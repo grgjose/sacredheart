@@ -18,8 +18,7 @@
 				  <thead>
 					<tr>
 					  <th class="col-md-5 col-xs-5 text-center">Name / Surname</th>
-					  <th class="col-md-1 col-xs-2 text-center">Age</th>
-					  <th class="col-md-2 col-xs-2 text-center">Job</th>
+
 					  <th class="col-md-2 col-xs-2 text-center">Date To Receive</th>
 					  <th class="col-md-5 col-xs-4 text-center">Is Received</th>
 					</tr>
@@ -28,8 +27,7 @@
 					<?php foreach($receivers as $receiver) { ?>
 					<tr>
 						<td style="height: 30px;" class="text-center"><?php echo $receiver->fname . ' ' . $receiver->mname . ' ' . $receiver->lname; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $receiver->age; ?></td>
-						<td style="height: 30px;" class="text-center"><?php echo $receiver->current_job; ?></td>
+
 						<td style="height: 30px;" class="text-center"><?php echo $receiver->date_to_receive; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $receiver->is_received; ?></td>
 					</tr>

@@ -3,9 +3,9 @@
      *             INTRO            *
 	 ******************************** -->
 <section class="section page-title">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 m-auto">
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-lg-10">
 				<!-- Page Title -->
 				<h1>List of Assistance Requests</h1>
 				<!-- Page Description -->
@@ -40,12 +40,23 @@
 					<?php if($assist->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
 					</td>
 					<td><?php echo $assist->date_created; ?></td>
-					<td><?php echo $assist->remarks; ?></td>
+					<td>
+						<button class="btn btn-info text-justify text-center" 
+						data-toggle="modal" data-target="#ViewRemarksModal"
+						onclick="viewRemarksFunc(<?php echo $assist->assistance_id; ?>)" >
+						<span class="ti-eye"></span>
+						</button>
+					</td>
 					<td>
 						<button class="btn btn-<?php if($assist->status == 1){ echo "danger"; } else { echo "success"; }?> text-justify text-center" 
 						data-toggle="modal" data-target="#<?php if($assist->status == 1){ echo "DeleteModal"; } else { echo "EditModal"; }?>"
 						onclick="<?php if($assist->status == 1){ echo "delFunc"; } else { echo "editFunc"; }?>(<?php echo $assist->assistance_id; ?>)" >
 						<?php if($assist->status == 1){ echo "Set as Pending"; } else { echo "Set as Completed"; }?>  &nbsp;</span>
+						</button>
+						<button class="btn btn-warning text-justify text-center" 
+						data-toggle="modal" data-target="#AddRemarkModal"
+						onclick="addRemarkFunc(<?php echo $assist->assistance_id; ?>,<?php echo $assist->status; ?>)" >
+						<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
 						</button>
 					</td>
 
@@ -55,22 +66,22 @@
                 </table>
 				<style>
 
-				.results tr[visible='false'],
-				.no-result{
-				  display:none;
-				}
+					.results tr[visible='false'],
+					.no-result{
+					  display:none;
+					}
 
-				.results tr[visible='true']{
-				  display:table-row;
-				}
+					.results tr[visible='true']{
+					  display:table-row;
+					}
 
-				.counter{
-				  padding:8px; 
-				  color:#ccc;
-				}
+					.counter{
+					  padding:8px; 
+					  color:#ccc;
+					}
 				</style>
 
-								<script>
+				<script>
 					function editFunc(id)
 					{
 						$('#EditModal #id').val(id);
@@ -82,70 +93,81 @@
 						$('#DeleteModal #id').val(id);
 					
 					}
+					function addRemarkFunc(id, st)
+					{
+						$('#AddRemarkModal #id').val(id);
+						$('#AddRemarkModal #status').val(st);
+					}
+
+					function viewRemarksFunc(id)
+					{
+						$('#view-remarks-modal-body').html('');
+						$('#view-remarks-modal-body').load('<?php echo base_url()."admin/view_remarks/"; ?>' + String(id) + '/3');
+					}
 			    </script>
 
 				<script>
-  $(function () {
-    //$("#example1").DataTable({
-    //  "responsive": true, "lengthChange": false, "autoWidth": false,
-    //  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    //}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+					  $(function () {
+						//$("#example1").DataTable({
+						//  "responsive": true, "lengthChange": false, "autoWidth": false,
+						//  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+						//}).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    
-	$('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-	  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
+						$('#example2').DataTable({
+						  "paging": true,
+						  "lengthChange": true,
+						  "searching": true,
+						  "ordering": true,
+						  "info": true,
+						  "autoWidth": false,
+						  "responsive": true,
+						  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+						}).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');;
 	
-	$('#example3').DataTable({
-      "paging": true,
-      "lengthChange": false,
-	  "lengthMenu": [3],
-      "searching": true,
-      "ordering": false,
-      "info": false,
-      "autoWidth": false,
-      "responsive": true,
+						$('#example3').DataTable({
+						  "paging": true,
+						  "lengthChange": false,
+						  "lengthMenu": [3],
+						  "searching": true,
+						  "ordering": false,
+						  "info": false,
+						  "autoWidth": false,
+						  "responsive": true,
 	  
-    });
+						});
 
-  });
+					  });
 
-  // Select the target node.
-var target = document.querySelector('tbody')
+					  // Select the target node.
+						var target = document.querySelector('tbody')
 
-// Create an observer instance.
-var observer = new MutationObserver(function(mutations) {
-	$('#example2_length').attr('style', 'color: white; padding-right: 20px;');
-	$('#example2_filter').attr('style', 'color: white;'); 
-	$('#example2_info').attr('style', 'color: white;');
-	$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
-});
+						// Create an observer instance.
+						var observer = new MutationObserver(function(mutations) {
+							$('#example2_length').attr('style', 'color: white; padding-right: 20px;');
+							$('#example2_filter').attr('style', 'color: white;'); 
+							$('#example2_info').attr('style', 'color: white;');
+							$('#example2_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+						});
 
-var observer2 = new MutationObserver(function(mutations) {
-	$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
-	$('#example3_filter').attr('style', 'color: white;'); 
-	$('#example3_info').attr('style', 'color: white;');
-	$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
-});
+						var observer2 = new MutationObserver(function(mutations) {
+							$('#example3_length').attr('style', 'color: white; padding-right: 20px;');
+							$('#example3_filter').attr('style', 'color: white;'); 
+							$('#example3_info').attr('style', 'color: white;');
+							$('#example3_paginate li').attr('style', 'padding: 0; margin: 0; color: white;'); 
+						});
 
-// Pass in the target node, as well as the observer options.
-observer.observe(target, {
-    attributes:    true,
-    childList:     true,
-    characterData: true
-});
+						// Pass in the target node, as well as the observer options.
+						observer.observe(target, {
+							attributes:    true,
+							childList:     true,
+							characterData: true
+						});
 
-observer2.observe(target, {
-    attributes:    true,
-    childList:     true,
-    characterData: true
-});
+						observer2.observe(target, {
+							attributes:    true,
+							childList:     true,
+							characterData: true
+						});
 						
 				</script>
 			</div>
@@ -214,6 +236,60 @@ observer2.observe(target, {
 			</div>
 			</div>
 		</div>
+
+
+	<!-- Add Remark Modal -->
+	<div class="modal fade" id="AddRemarkModal" tabindex="-1" role="dialog" aria-labelledby="AddRemarkModal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Add Remarks</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+			<?php $attributes = array('id' => 'AddRemarkForm'); echo form_open('provide/add_remark', $attributes); ?>
+				<div class="form-row">
+				<input type="hidden" id="type" name="type"  value="assistance">
+				<input type="hidden" id="id" name="id"  value="">
+				<input type="hidden" id="status" name="status"  value="">
+				<div class="col">
+					<label>Remarks</label>
+					<textarea class="form-control" name="remarks" rows="3" required></textarea>
+				</div>
+				</div> <br>						
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<input type="submit" class="btn btn-primary" value="Save" />
+			</div>
+			</form>
+		</div>
+		</div>
+	</div>
+
+	<!-- View Remark Modal -->
+	<div class="modal fade" id="ViewRemarksModal" tabindex="-1" role="dialog" aria-labelledby="ViewRemarksModal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">View Remarks</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div id="view-remarks-modal-body" class="modal-body">
+							
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			</div>
+			</form>
+		</div>
+		</div>
+	</div>
+
 
 	<!-- Login Window -->
 	<div aria-hidden="true" aria-labelledby="ViewResidentModal" class="modal fade" id="ViewResidentModal" role="dialog" tabindex="-1">

@@ -18,7 +18,7 @@
 							<label class="form-label">Document Type:</label>
 							<select class="form-select form-control main" name="doctype" style="height: 50px;" aria-label="Select Document Type" required>
 								<?php $ctr = 0; foreach($request_types as $type){ ?> 
-									<option value="<?php echo $type->request_type_id; ?>" <?php if($ctr == 0){ echo "selected"; } ?>><?php echo $type->request_type; $ctr = $ctr + 1;?></option>
+									<option value="<?php echo $type->request_type_id; ?>" <?php if($ctr == 0){ echo "selected"; } ?>><?php echo $type->request_type .' &nbsp; &nbsp; &nbsp; Price: '.$type->request_price; $ctr = $ctr + 1;?></option>
 								<?php }?>
 							</select>
 						</div>
