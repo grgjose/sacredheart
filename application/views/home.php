@@ -154,32 +154,22 @@
 
 <?php $ctr = $ctr + 1; } ?>
 
-<section class="feature section pt-0">
-	<div class="container">
-		<div class="row">
-
-		</div>
-	</div>
-</section>
-
 <!--
 
 ********************************
 *      PROMOTIONAL VIDEO       *
 ******************************** 
 
--->
+
 
 <section class="video-promo section bg-1">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="content-block">
-					<!-- Heading -->
+
 					<h2>Watch this Video</h2>
-					<!-- Promotional Speech -->
 					<p>Let us show you how we do things here in our Barangay!</p>
-					<!-- Popup Video -->
 					<a data-fancybox href="<?php echo $info['youtube_link']; ?>">
 						<i class="ti-control-play video"></i>
 					</a>
@@ -189,7 +179,7 @@
 	</div>
 </section>
 
-
+-->
 <!-- 
 
 ********************************
@@ -198,7 +188,7 @@
 
 -->
 
-<section class="section testimonial" id="testimonial">
+<section class="section testimonial" id="testimonial" style="background-color:#F5F5F5;">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">

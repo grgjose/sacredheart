@@ -127,7 +127,7 @@
 						<!-- Quote -->
 						<h2>Now we have almost <?php echo $info['about_census']; ?> Residents</h2>
 						<!-- Company -->
-						<cite class="ml-0">-Kendrick Lamar</cite>
+						<cite class="ml-0">- Sacred Heart Census</cite>
 					</div>
 				</div>
 			</div>

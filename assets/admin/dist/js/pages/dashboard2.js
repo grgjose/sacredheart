@@ -99,14 +99,16 @@ $(function () {
   }
   var pieOptions = {
     legend: {
-      display: false
+      maintainAspectRatio : false,
+      responsive : true,
+      display: true
     }
   }
   // Create pie or douhnut chart
   // You can switch between pie and douhnut using the method below.
   // eslint-disable-next-line no-unused-vars
   var pieChart = new Chart(pieChartCanvas, {
-    type: 'doughnut',
+    type: 'pie',
     data: pieData,
     options: pieOptions
   })

@@ -43,7 +43,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 								    <input type="hidden" id="type" name="type" value="fname">
-									<input type="text" class="form-control main" id="fname" name="fname" value="<?php echo $profile['fname']; ?>">
+									<input type="text" class="form-control main" id="fname" name="fname" value="<?php echo $profile['fname']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['fname']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>
@@ -59,7 +59,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 								    <input type="hidden" id="type" name="type" value="mname">
-									<input type="text" class="form-control main" id="mname"  name="mname"  value="<?php echo $profile['mname']; ?>">
+									<input type="text" class="form-control main" id="mname"  name="mname"  value="<?php echo $profile['mname']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['mname']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>
@@ -75,7 +75,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 								    <input type="hidden" id="type" name="type" value="lname">
-									<input type="text" class="form-control main" id="lname" name="lname" value="<?php echo $profile['lname']; ?>">
+									<input type="text" class="form-control main" id="lname" name="lname" value="<?php echo $profile['lname']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['lname']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>
@@ -91,7 +91,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 								    <input type="hidden" id="type" name="type" value="email">
-									<input type="email" class="form-control main" id="email" name="email" value="<?php echo $profile['email']; ?>">
+									<input type="email" class="form-control main" id="email" name="email" value="<?php echo $profile['email']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['email']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>
@@ -108,7 +108,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 									<input type="hidden" id="type" name="type" value="password">
-									<input type="password" class="form-control main" id="password" name="password" value="<?php echo $profile['password']; ?>">
+									<input type="password" class="form-control main" id="password" name="password" value="<?php echo $profile['password']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['password']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>
@@ -124,7 +124,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 									<input type="hidden" id="type" name="type" value="address">
-									<input type="text" class="form-control main" id="address" name="address" value="<?php echo $profile['address']; ?>">
+									<input type="text" class="form-control main" id="address" name="address" value="<?php echo $profile['address']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['address']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>
@@ -141,7 +141,7 @@
 								</div>
 								<div class="col-lg-9 col-sm-12">
 									<input type="hidden" id="type" name="type" value="contact">
-									<input type="text" class="form-control main" id="contact" name="contact" value="<?php echo $profile['contact']; ?>">
+									<input type="text" class="form-control main" id="contact" name="contact" value="<?php echo $profile['contact']; ?>" required>
 								</div>
 								<div class="col-lg-1 col-sm-12">
 									<button id="<?php echo $profile['contact']; ?>_btn" type="submit" class="btn btn-outline-info btn-lg col-sm-12"><i class="ti-write"></i></button>

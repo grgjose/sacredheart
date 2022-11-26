@@ -36,7 +36,7 @@
 					<?php foreach($users as $user){ ?>
 					<?php if($user->usertype == 3){ ?>
                   <tr>
-				    <td id="userfile_<?php echo $user->user_id; ?>"><img src="<?php echo base_url() ?>assets/files/users/<?php echo $user->userfile; ?>" width="100" height="100" ></td>
+				    <td id="userfile_<?php echo $user->user_id; ?>"><img src="<?php echo base_url() ?>assets/files/registration/<?php echo $user->reg_userfile; ?>" width="100" height="100" ></td>
 					<td id="username_<?php echo $user->user_id; ?>"><?php echo $user->username; ?></td>
 
 					<td id="email_<?php echo $user->user_id; ?>"><?php echo $user->email; ?></td>

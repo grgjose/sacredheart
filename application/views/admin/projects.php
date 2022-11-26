@@ -86,7 +86,7 @@
 						onclick="delFunc(<?php echo $project->project_id; ?>)">
 						Delete Post
 						</button>
-						<button class="btn btn-light text-justify text-center" data-toggle="modal" data-target="#ArchiveModal"
+						<button class="btn btn-light text-justify text-center"
 						onclick="archFunc(<?php echo $project->project_id; ?>)">
 							<?php if($project->archive == 1){ ?> Undo Archive <?php } else { ?> Archive Post <?php } ?>
 						</button>

@@ -156,7 +156,7 @@
 							  <label for="fname">Select Reply to Add</label>
 							  <select class="form-control" name="inc_reply" required>
 								<?php $ctr = 0; foreach($replies as $reply){ ?>
-									<option style="height: 150px;" class="<?php if($reply->$reply_from == 1){ echo 'chatbot_option'; } else{echo 'human_option';} ?>"
+									<option style="height: 150px;" class="<?php if($reply->reply_from == 1){ echo 'chatbot_option'; } else{echo 'human_option';} ?>"
 									 id="inc_option_<?php echo $reply->reply_id; ?>" 
 									 value="<?php echo $reply->reply_id; ?>"><?php echo $reply->reply; ?></option>
 								<?php } ?>
