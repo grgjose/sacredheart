@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2022 at 05:55 AM
+-- Generation Time: Nov 27, 2022 at 12:32 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -76,7 +76,8 @@ CREATE TABLE `tbl_assistance_remarks` (
 --
 
 INSERT INTO `tbl_assistance_remarks` (`assistance_remark_id`, `assistance_id`, `user_id`, `remark`, `status`, `date_created`) VALUES
-(1, 11, 1, 'okay', 0, '2022-11-21 01:49:21');
+(1, 11, 1, 'okay', 0, '2022-11-21 01:49:21'),
+(2, 11, 1, 'no', 0, '2022-11-26 23:09:31');
 
 -- --------------------------------------------------------
 
@@ -276,7 +277,11 @@ INSERT INTO `tbl_logs` (`log_id`, `log_info`, `date_created`) VALUES
 (49, '2 just logged in', '2022-11-23 14:45:34'),
 (50, '2 just logged in', '2022-11-25 04:34:25'),
 (51, '3 just logged in', '2022-11-25 04:40:20'),
-(52, '3 just logged in', '2022-11-25 04:44:40');
+(52, '3 just logged in', '2022-11-25 04:44:40'),
+(53, 'The user John F Kenedy is approved by User ID: 1 Name: Admin', '2022-11-26 23:10:46'),
+(54, '3 just logged in', '2022-11-26 23:12:06'),
+(55, '3 just logged in', '2022-11-26 23:13:48'),
+(56, '2 just logged in', '2022-11-26 23:23:56');
 
 -- --------------------------------------------------------
 
@@ -301,8 +306,8 @@ CREATE TABLE `tbl_projects` (
 --
 
 INSERT INTO `tbl_projects` (`project_id`, `project_title`, `project_date`, `project_details`, `project_userfile`, `user_id`, `official_id`, `archive`, `date_created`) VALUES
-(1, 'Street Mass', '2022-11-23 16:00:00', 'We have an upcoming street mass this December for our season of Christmas, This event will take place at Purok Street, Ynares Compound. The Mass starts at 7pm until Christmas.', 'event_01.jpg', 1, 26, 0, '2022-11-11 08:06:24'),
-(2, 'Brigada Eskwela', '2022-11-24 16:00:00', 'Baranggay Personnel Volunteers performed a well assessed project for the students of Sacred Heart Barangay, Here in our Baranggay we prioritized the welfare of our students. This will be performed on November 4, 2022. 9AM.', 'event_02.jpg', 1, 10, 0, '2022-11-11 08:06:24');
+(1, 'Street Mass', '2022-11-26 23:13:33', 'We have an upcoming street mass this December for our season of Christmas, This event will take place at Purok Street, Ynares Compound. The Mass starts at 7pm until Christmas.', 'event_01.jpg', 1, 26, 0, '2022-11-11 08:06:24'),
+(2, 'Brigada Eskwela', '2022-11-26 23:06:11', 'Baranggay Personnel Volunteers performed a well assessed project for the students of Sacred Heart Barangay, Here in our Baranggay we prioritized the welfare of our students. This will be performed on November 4, 2022. 9AM.', 'event_02.jpg', 1, 10, 0, '2022-11-11 08:06:24');
 
 -- --------------------------------------------------------
 
@@ -428,7 +433,8 @@ INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_
 (2, 6, '1', '1231123', '', '2022-10-19', 1, 0, '', '2022-11-09 10:51:49'),
 (3, 3, '2', 'Please', '', '2022-11-16', 1, 0, '', '2022-11-25 04:40:23'),
 (4, 3, '3', 'Please', '', '2022-11-17', 1, 0, '', '2022-11-14 10:13:54'),
-(5, 3, '3', 'Hello', '', '2022-11-17', 1, 0, '', '2022-11-14 10:18:52');
+(5, 3, '3', 'Hello', '', '2022-11-17', 1, 0, '', '2022-11-14 10:18:52'),
+(6, 3, '2', 'asdasd', '1669504517.png', '2022-12-02', 0, 0, '', '2022-11-26 23:15:18');
 
 -- --------------------------------------------------------
 
@@ -478,7 +484,7 @@ CREATE TABLE `tbl_request_types` (
 --
 
 INSERT INTO `tbl_request_types` (`request_type_id`, `request_type`, `request_price`, `date_created`) VALUES
-(1, 'Barangay Clearance (300 Pesos)', '300', '2022-11-04 13:51:20'),
+(1, 'Barangay Clearance', '300', '2022-11-04 13:51:20'),
 (2, 'Cedula (100 Pesos)', '100', '2022-11-04 13:51:20'),
 (3, 'Barangay ID (100 Pesos)', '100', '2022-11-04 13:52:03'),
 (6, 'Certificate of Residential', '100', '2022-11-23 12:48:37');
@@ -553,7 +559,7 @@ CREATE TABLE `tbl_users` (
 
 INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`, `fname`, `mname`, `lname`, `address`, `contact`, `userfile`, `approved`, `verification_code`, `validation_code`, `reg_userfile`, `position`, `dp_userfile`, `date_created`) VALUES
 (1, 'admin', 'admin', 1, 'admin@gmail.com', 'Admin', 'The', 'Great', '1', '1', 'default.jpg', 2, '', '', '', 'Founder', '', '2022-09-16 12:38:05'),
-(2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'John', 'F', 'Kenedy', 'Sulok', '093131313131', 'pat.jpg', 2, '', '', '', '', '', '2022-09-16 12:39:14'),
+(2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'Hello1', 'F', 'Kenedy', 'Sulok', '093131313131', 'pat.jpg', 2, '', '', '', '', '', '2022-09-16 12:39:14'),
 (3, 'resident', 'resident', 3, 'resident@gmail.com', 'Sorry', 'Na', 'Uwu', 'There', '09135465', 'default.jpg', 2, '', '', '', '', '', '2022-09-16 12:39:14'),
 (7, 'user_7', 'ma.francescacamille', 2, 'ma.francescacamille@gmail.com', 'Ma. Francesca Camille', 'Malig', 'David', '#190-A SCT. FUENTEBELLA EXT. STREET SACRED HEART, QUEZON CITY', '00000000000', '1668354508.PNG', 2, '', '', '', 'Barangay Captain', '1668367594.jpg', '2022-11-13 15:48:28'),
 (8, 'user_8', 'jonah', 2, 'jonah@gmail.com', 'Jonah', 'C', 'Galoyo', '#88 SCT. LIMBAGA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668354672.PNG', 2, '', '', '', 'Secretary', '1668367607.jpg', '2022-11-13 15:51:12'),
@@ -712,7 +718,7 @@ ALTER TABLE `tbl_assistance`
 -- AUTO_INCREMENT for table `tbl_assistance_remarks`
 --
 ALTER TABLE `tbl_assistance_remarks`
-  MODIFY `assistance_remark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `assistance_remark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_assistance_types`
@@ -742,7 +748,7 @@ ALTER TABLE `tbl_info`
 -- AUTO_INCREMENT for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `tbl_projects`
@@ -766,7 +772,7 @@ ALTER TABLE `tbl_replies`
 -- AUTO_INCREMENT for table `tbl_requests`
 --
 ALTER TABLE `tbl_requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_request_remarks`

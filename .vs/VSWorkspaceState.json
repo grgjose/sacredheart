@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\application",
-    "\\application\\controllers"
+    "\\application\\models"
   ],
-  "SelectedNode": "\\application\\controllers\\Admin.php",
+  "SelectedNode": "\\application\\models\\User_model.php",
   "PreviewInSolutionExplorer": false
 }

@@ -610,6 +610,7 @@ class Home extends CI_Controller {
 			$data['error'] = $this->session->userdata('error');
 			$data['success'] = $this->session->userdata('success');
 
+			$data['users'] = $this->user_model->users_retrieve();
 			$data['info'] = $this->get_info();
 
 			$data['complaints'] = $this->complaints_model->complaint_retrieve($this->session->userdata('user_id'));
@@ -617,6 +618,8 @@ class Home extends CI_Controller {
 			$data['request_types'] = $this->requests_model->request_types_retrieve();
 			$data['assistance'] = $this->assistance_model->assistance_retrieve($this->session->userdata('user_id'));
 			$data['assistance_types'] = $this->assistance_model->assistance_types_retrieve();
+			
+					
 
 			$this->complaints_model->complaint_seen($this->session->userdata('user_id'));
 			$this->requests_model->request_seen($this->session->userdata('user_id'));
@@ -687,7 +690,7 @@ class Home extends CI_Controller {
 
 	public function edit_info(){
 
-		if($this->session->usertype != 3)
+		if($this->session->userdata('usertype') == 1)
 		{
 			$error = "Register or Login First";
 			$this->session->set_userdata('error' , $error);
