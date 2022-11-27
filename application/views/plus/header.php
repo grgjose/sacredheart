@@ -18,7 +18,9 @@
 	<link href="<?php echo base_url(); ?>assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	
 	<!-- CSS Plugins (Bootstrap / Themify / Slick / Fancybox / AOS / Notyf) -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"><link href="<?php echo base_url(); ?>assets/plugins/slick/slick.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" 
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<link href="<?php echo base_url(); ?>assets/plugins/slick/slick.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/themify-icons/themify-icons.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/slick/slick-theme.css" rel="stylesheet">
 	<link href="<?php echo base_url(); ?>assets/plugins/fancybox/jquery.fancybox.min.css" rel="stylesheet">
@@ -30,7 +32,8 @@
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" 
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	
 	<!-- CSS Custom -->
@@ -49,13 +52,13 @@
 
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item active @@home">
+					<li id="navbar-home" class="nav-item @@home">
 						<a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
 					</li>
 					
 					<!-- Headbar Navigation (For Officials) -->
 					<?php if($user['usertype'] == 2 ){?>
-					<li class="nav-item dropdown @@Provide">
+					<li id="navbar-provide" class="nav-item dropdown @@Provide">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Provide Service <span><i class="ti-angle-down"></i></span></a> 
 						<!-- Dropdown list -->
 						<ul class="dropdown-menu">
@@ -78,7 +81,7 @@
 					</li>
 					<?php } elseif($user['usertype'] == 3) { ?>
 					<!-- Headbar Navigation (For Normal Users) -->
-					<li class="nav-item dropdown @@services">
+					<li id="navbar-services" class="nav-item dropdown @@services">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Services <span><i class="ti-angle-down"></i></span></a> 
 						<!-- Dropdown list -->
 						<ul class="dropdown-menu">
@@ -96,7 +99,7 @@
 					<?php } ?>
 
 					<?php if($user['usertype'] == 2 || $user['usertype'] == 3){?>
-					<li class="nav-item dropdown @@events">
+					<li id="navbar-events" class="nav-item dropdown @@events">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Events <span><i class="ti-angle-down"></i></span></a> 
 						<!-- Dropdown list -->
 						<ul class="dropdown-menu">
@@ -113,25 +116,25 @@
 					</li>
 					<?php } ?>
 
-					<li class="nav-item @@about">
+					<li id="navbar-about" class="nav-item @@about">
 						<a class="nav-link" href="<?php echo base_url(); ?>home/about">About</a>
 					</li>
-					<li class="nav-item @@contact">
+					<li id="navbar-contact" class="nav-item @@contact">
 						<a class="nav-link" href="<?php echo base_url(); ?>home/contact">Contact</a>
 					</li>
 					
 					<!-- Headbar Navigation (For Logged Out Users) -->
 					<?php if($user['logged_in'] == false ){?>
-					<li class="nav-item @@login">
+					<li id="navbar-login" class="nav-item @@login">
 						<a class="nav-link" data-target="#LoginModal" data-toggle="modal" href="#">Login</a>
 					</li>
-					<li class="nav-item @@register">
+					<li id="navbar-register" class="nav-item @@register">
 						<a class="nav-link" href="<?php echo base_url(); ?>home/register">Register</a>
 					</li>
 
 					<!-- Headbar Navigation (For Logged In Users) -->
 					<?php } else { ?>
-					<li class="nav-item dropdown @@myprofile">
+					<li id="navbar-myprofile" class="nav-item dropdown @@myprofile">
 						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Welcome <?php echo $user['lname']; ?> 
 							<span><i class="ti-angle-down"></i>
 							<?php if($user['notif_count'] != 0){ ?>
@@ -169,6 +172,47 @@
 			</div>
 		</div>
 	</nav>
+
+	<script>
+		$(document).ready(function(){
+			var url = window.location.href;
+
+			if(url.indexOf('provide') > 0){
+				$('#navbar-provide').addClass("active");
+			}
+
+			else if(url.indexOf('services') > 0){
+				$('#navbar-services').addClass("active");
+			}
+
+			else if(url.indexOf('events') > 0){
+				$('#navbar-events').addClass("active");
+			}
+
+			else if(url.indexOf('about') > 0){
+				$('#navbar-about').addClass("active");
+			}
+
+			else if(url.indexOf('contact') > 0){
+				$('#navbar-contact').addClass("active");
+			}
+
+			else if(url.indexOf('login') > 0){
+				$('#navbar-login').addClass("active");
+			}
+
+			else if(url.indexOf('register') > 0){
+				$('#navbar-register').addClass("active");
+			}
+
+			else if(url.indexOf('myprofile') > 0){
+				$('#navbar-myprofile').addClass("active");
+			} 
+			else {
+				$('#navbar-home').addClass("active");
+			}
+		});
+	</script>
 
 	<!-- Login Window -->
 	<div aria-hidden="true" aria-labelledby="LoginModal" class="modal fade" id="LoginModal" role="dialog" tabindex="-1">

@@ -57,39 +57,36 @@
 	</div>
 </section>
 
-<!--====  End of Address and Map  ====-->
-<section class="contact-form section">
+<!-- ********************************
+     *			OFFICIALS           *
+	 ******************************** -->
+<section class="section investors">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="mb-5 text-center">Drop us a mail</h2>
+				<div class="section-title">
+					<h2>Our Barangay Officials</h2>
+					<p>If cartoon bluebirds were real, a couple of 'em would be sitting on your shoulders singing right now.</p>
+				</div>
 			</div>
-			<div class="col-12">
-				<form action="">
-					<div class="row">
-						<!-- Name -->
-						<div class="col-md-6 mb-2">
-							<input class="form-control main" type="text" placeholder="Name" required>
-						</div>
-						<!-- Email -->
-						<div class="col-md-6 mb-2">
-							<input class="form-control main" type="email" placeholder="Your Email Address" required>
-						</div>
-						<!-- subject -->
-						<div class="col-md-12 mb-2">
-							<input class="form-control main" type="text" placeholder="Subject" required>
-						</div>
-						<!-- Message -->
-						<div class="col-md-12 mb-2">
-							<textarea class="form-control main" name="message" rows="10" placeholder="Your Message"></textarea>
-						</div>
-						<!-- Submit Button -->
-						<div class="col-12 text-right">
-							<button class="btn btn-main-md">Submit</button>
-						</div>
+
+			<?php foreach($users as $user){ if($user->usertype == 2 && $user->dp_userfile != ""){ ?>
+			<div class="col-xl-3 col-lg-4 col-sm-6">
+				<div class="block text-center">
+					<!-- Investor Image -->
+					<div class="image shadow hover-zoom">
+						<img class="img-fluid" src="<?php echo base_url(); ?>assets/files/officials/<?php echo $user->dp_userfile; ?>" alt="investor">
 					</div>
-				</form>
+					<!-- Company -->
+					<h3><?php echo $user->fname.' '.$user->mname.' '.$user->lname; ?></h3>
+					<!--  -->
+					<p><?php echo $user->position; ?></p>
+				</div>
 			</div>
+			<?php }} ?>
+			
 		</div>
 	</div>
 </section>
+
+<!--====  End of Address and Map  ====-->

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 12:32 AM
+-- Generation Time: Nov 27, 2022 at 02:20 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -44,17 +44,10 @@ CREATE TABLE `tbl_assistance` (
 --
 
 INSERT INTO `tbl_assistance` (`assistance_id`, `user_id`, `assistance_type`, `assistance_purpose`, `date_needed`, `status`, `seen`, `remarks`, `date_created`) VALUES
-(1, 6, '1', '123213', '2022-10-21', 0, 0, '', '2022-11-09 10:54:31'),
-(2, 20, '1', 'new residency, need help moving stuff', '2022-11-15', 1, 1, '', '2022-11-15 20:48:46'),
-(3, 21, '2', 'covid related problem', '2022-11-14', 0, 0, '', '2022-11-14 18:33:40'),
-(4, 22, '3', 'need to reserve basketball court', '2022-11-14', 0, 0, '', '2022-11-13 17:45:48'),
-(5, 22, '2', 'accident happened', '2022-11-23', 0, 0, '', '2022-11-14 18:33:43'),
-(6, 23, '3', 'permission to landi', '2022-11-24', 0, 0, '', '2022-11-13 17:58:33'),
-(7, 23, '1', 'need visitors for lonely birthday', '2022-11-25', 0, 0, '', '2022-11-13 17:58:59'),
-(8, 24, '3', 'pwede gumamit ng cr', '2022-11-27', 1, 1, 'Ayoko', '2022-11-14 18:32:29'),
-(9, 24, '2', 'pyramid scheme', '2022-11-26', 0, 0, '', '2022-11-14 18:33:45'),
-(10, 24, '1', 'need ng clown para sa funeral', '2022-11-26', 0, 0, '', '2022-11-13 18:03:20'),
-(11, 25, '2', 'For medical reasons', '2022-11-27', 0, 0, '', '2022-11-14 18:33:48');
+(12, 3, '1', 'asdasdasd', '2022-11-29', 0, 0, '', '2022-11-26 23:48:49'),
+(13, 32, '3', 'Can I use the basketball court at December 5 for my birthday', '2022-12-07', 0, 0, '', '2022-11-27 01:10:25'),
+(14, 33, '1', 'Need someone to help me pack my stuff on moving houses', '2022-12-07', 0, 0, '', '2022-11-27 01:12:00'),
+(15, 35, '2', 'Request aid, im sick on covid and need help', '', 0, 0, '', '2022-11-27 01:13:32');
 
 -- --------------------------------------------------------
 
@@ -76,8 +69,7 @@ CREATE TABLE `tbl_assistance_remarks` (
 --
 
 INSERT INTO `tbl_assistance_remarks` (`assistance_remark_id`, `assistance_id`, `user_id`, `remark`, `status`, `date_created`) VALUES
-(1, 11, 1, 'okay', 0, '2022-11-21 01:49:21'),
-(2, 11, 1, 'no', 0, '2022-11-26 23:09:31');
+(3, 14, 33, '5 people lang', 0, '2022-11-27 01:12:19');
 
 -- --------------------------------------------------------
 
@@ -122,26 +114,9 @@ CREATE TABLE `tbl_complaints` (
 --
 
 INSERT INTO `tbl_complaints` (`complaint_id`, `user_id`, `complaint_description`, `complaint_letter`, `status`, `seen`, `remarks`, `date_created`) VALUES
-(1, 6, '123123', '1666196054.txt', 1, 1, '', '2022-11-21 01:29:54'),
-(2, 6, '12313123', '1666196237.txt', 1, 1, 'Ayaw', '2022-11-14 18:29:17'),
-(3, 15, 'poor service I received from your barangay', '1668360692.txt', 0, 0, '', '2022-11-13 17:31:33'),
-(4, 15, 'May gulo sa restaurant', '1668360712.txt', 0, 0, '', '2022-11-13 17:31:52'),
-(5, 16, 'lagi po may nagtatae sa tapat ng gate namin ang baho yuck', '1668360901.txt', 0, 0, '', '2022-11-13 17:35:01'),
-(6, 16, 'barado kanal sa street namin, paki ayos po', '1668360914.txt', 0, 0, '', '2022-11-13 17:35:14'),
-(7, 17, 'Laging may nagaaway na mongoloid at pipe sa tapat ng bahay namin', '1668361002.txt', 0, 0, '', '2022-11-13 17:36:42'),
-(8, 17, 'Loud Neighborhood, laging may nagsisigawan', '1668361013.txt', 0, 0, '', '2022-11-13 17:36:53'),
-(9, 18, 'Very loud car from my neighbor', '1668361050.txt', 0, 0, '', '2022-11-13 17:37:30'),
-(10, 18, 'mga manginginom ang ingay!!', '1668361090.txt', 0, 0, '', '2022-11-13 17:38:10'),
-(11, 20, 'Nanghahabol na aso sa kapitbahay', '1668361128.txt', 0, 0, '', '2022-11-13 17:38:48'),
-(12, 20, 'Madaming tambay sa tapat namin', '1668361140.txt', 0, 0, '', '2022-11-13 17:39:00'),
-(13, 21, 'Nanghahabol na aso sa kapitbahay', '1668361278.txt', 0, 0, '', '2022-11-13 17:41:18'),
-(14, 21, 'Madaming tambay sa tapat namin', '1668361307.txt', 0, 0, '', '2022-11-13 17:41:47'),
-(15, 22, 'may lumalangitngit po kapitbahay, di makatulog ', '1668361457.txt', 0, 0, '', '2022-11-13 17:44:17'),
-(16, 23, 'Si kuya andoy po may hawak laging itak pag lasing', '1668362285.txt', 0, 0, '', '2022-11-13 17:58:05'),
-(17, 24, 'May mga lasingero na gumagawa ng gulo sa street namin', '1668362497.txt', 0, 0, '', '2022-11-13 18:01:37'),
-(18, 24, 'may mga tambay po ', '1668362509.txt', 0, 0, '', '2022-11-13 18:01:49'),
-(19, 25, 'May customer sa Jollibee naninigaw ng manager', '1668362704.txt', 0, 0, '', '2022-11-13 18:05:04'),
-(20, 25, 'Yung mga tanod po nantututok lang ng flashlight sa mukha during curfew hours', '1668362718.txt', 0, 0, '', '2022-11-13 18:05:18');
+(21, 32, 'My Request for a document is taking awhile', '1669511406.pdf', 0, 0, '', '2022-11-27 01:10:06'),
+(22, 35, 'Ambaho ng CR sa barangay hall', '1669511584.pdf', 0, 0, '', '2022-11-27 01:13:04'),
+(23, 32, 'Yung isang barangay official ang rude', '1669511718.pdf', 0, 0, '', '2022-11-27 01:15:18');
 
 -- --------------------------------------------------------
 
@@ -157,24 +132,6 @@ CREATE TABLE `tbl_complaint_remarks` (
   `status` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_complaint_remarks`
---
-
-INSERT INTO `tbl_complaint_remarks` (`complaint_remark_id`, `complaint_id`, `user_id`, `remark`, `status`, `date_created`) VALUES
-(1, 8, 1, 'Saan ito?', 0, '2022-11-20 09:31:16'),
-(2, 1, 1, 'Hello', 1, '2022-11-20 11:14:47'),
-(3, 8, 1, 'Sa bahay pugay ata', 0, '2022-11-20 11:22:54'),
-(4, 7, 1, 'Pupuntahin po namin mam para maresolve issue', 0, '2022-11-20 12:34:30'),
-(5, 8, 1, 'para', 0, '2022-11-20 12:34:47'),
-(6, 1, 1, 'Kulang bayad', 0, '2022-11-21 01:29:40'),
-(7, 1, 1, 'Okay na bayad, Goods', 1, '2022-11-21 01:29:54'),
-(8, 1, 2, 'Basta goods na yan', 1, '2022-11-23 15:19:34'),
-(9, 1, 2, 'all goods', 1, '2022-11-23 15:20:53'),
-(10, 1, 2, 'yown', 1, '2022-11-23 15:21:54'),
-(11, 3, 3, 'Thanks po', 1, '2022-11-25 04:51:59'),
-(12, 3, 3, 'Thanks po', 1, '2022-11-25 04:52:15');
 
 -- --------------------------------------------------------
 
@@ -281,7 +238,59 @@ INSERT INTO `tbl_logs` (`log_id`, `log_info`, `date_created`) VALUES
 (53, 'The user John F Kenedy is approved by User ID: 1 Name: Admin', '2022-11-26 23:10:46'),
 (54, '3 just logged in', '2022-11-26 23:12:06'),
 (55, '3 just logged in', '2022-11-26 23:13:48'),
-(56, '2 just logged in', '2022-11-26 23:23:56');
+(56, '2 just logged in', '2022-11-26 23:23:56'),
+(57, '3 just logged in', '2022-11-26 23:48:37'),
+(58, 'Korbin Garcia Receiver is Added. ', '2022-11-27 00:32:49'),
+(59, 'Tavion Monceda Receiver is Added. ', '2022-11-27 00:37:15'),
+(60, 'Kennedy Pavia Receiver is Added. ', '2022-11-27 00:37:49'),
+(61, 'Pamela Roa Receiver is Added. ', '2022-11-27 00:38:25'),
+(62, 'Karmen Singco Receiver is Added. ', '2022-11-27 00:38:59'),
+(63, 'Bembe Tongson Receiver is Added. ', '2022-11-27 00:39:56'),
+(64, 'Harley Mariano Receiver is Added. ', '2022-11-27 00:40:30'),
+(65, 'Kyle Sicat Receiver is Added. ', '2022-11-27 00:41:16'),
+(66, 'Ginessa Medel Receiver is Added. ', '2022-11-27 00:42:02'),
+(67, 'Don is Deleted Successfully!', '2022-11-27 00:42:18'),
+(68, 'Mondragon is Deleted Successfully!', '2022-11-27 00:42:20'),
+(69, 'Emilito is Deleted Successfully!', '2022-11-27 00:42:22'),
+(70, 'Roel is Deleted Successfully!', '2022-11-27 00:42:24'),
+(71, 'Tasing is Deleted Successfully!', '2022-11-27 00:42:26'),
+(72, 'Bogart is Deleted Successfully!', '2022-11-27 00:42:28'),
+(73, 'Raul is Deleted Successfully!', '2022-11-27 00:42:30'),
+(74, 'Barting is Deleted Successfully!', '2022-11-27 00:45:38'),
+(75, 'Tupac is Deleted Successfully!', '2022-11-27 00:45:40'),
+(76, 'Aling is Deleted Successfully!', '2022-11-27 00:45:42'),
+(77, 'Esparanza is Deleted Successfully!', '2022-11-27 00:45:44'),
+(78, 'Magdalena is Deleted Successfully!', '2022-11-27 00:45:46'),
+(79, 'Batong is Deleted Successfully!', '2022-11-27 00:45:48'),
+(80, 'Quinten Gonzaga is an added senior citizen', '2022-11-27 00:48:47'),
+(81, 'Eduardo Carino is an added senior citizen', '2022-11-27 00:49:16'),
+(82, 'Hilario Manaloto is an added senior citizen', '2022-11-27 00:49:41'),
+(83, 'Cory Silvestre is an added senior citizen', '2022-11-27 00:50:04'),
+(84, 'Bobby Acebado is an added senior citizen', '2022-11-27 00:50:40'),
+(85, 'Fraco Pelayo is an added senior citizen', '2022-11-27 00:51:10'),
+(86, 'Ezra Mercado is an added senior citizen', '2022-11-27 00:51:37'),
+(87, 'Ben Clemente is an added senior citizen', '2022-11-27 00:52:15'),
+(88, 'Juanito Macaraeg is an added senior citizen', '2022-11-27 00:52:48'),
+(89, 'Ciri Cuevas is an added senior citizen', '2022-11-27 00:53:03'),
+(90, 'Roberto Caringal Receiver is Added. ', '2022-11-27 00:53:41'),
+(91, 'Distribution of QC ID and Booklet project title is added', '2022-11-27 00:58:05'),
+(92, 'House to House Distribution of QC ID project title is added', '2022-11-27 00:59:38'),
+(93, 'Weekly Clean Up Drive project title is added', '2022-11-27 01:01:02'),
+(94, 'Weekly Clean Up Drive project title is added', '2022-11-27 01:02:37'),
+(95, 'Weekly Clean Up Drive project title is added', '2022-11-27 01:02:48'),
+(96, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:02:57'),
+(97, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:03:13'),
+(98, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:03:24'),
+(99, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:03:50'),
+(100, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:03:57'),
+(101, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:04:04'),
+(102, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:04:12'),
+(103, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:04:20'),
+(104, 'Weekly Clean Up Drive project title is updated', '2022-11-27 01:04:25'),
+(105, '32 just logged in', '2022-11-27 01:08:59'),
+(106, '33 just logged in', '2022-11-27 01:10:47'),
+(107, '35 just logged in', '2022-11-27 01:12:45'),
+(108, '32 just logged in', '2022-11-27 01:14:54');
 
 -- --------------------------------------------------------
 
@@ -307,7 +316,10 @@ CREATE TABLE `tbl_projects` (
 
 INSERT INTO `tbl_projects` (`project_id`, `project_title`, `project_date`, `project_details`, `project_userfile`, `user_id`, `official_id`, `archive`, `date_created`) VALUES
 (1, 'Street Mass', '2022-11-26 23:13:33', 'We have an upcoming street mass this December for our season of Christmas, This event will take place at Purok Street, Ynares Compound. The Mass starts at 7pm until Christmas.', 'event_01.jpg', 1, 26, 0, '2022-11-11 08:06:24'),
-(2, 'Brigada Eskwela', '2022-11-26 23:06:11', 'Baranggay Personnel Volunteers performed a well assessed project for the students of Sacred Heart Barangay, Here in our Baranggay we prioritized the welfare of our students. This will be performed on November 4, 2022. 9AM.', 'event_02.jpg', 1, 10, 0, '2022-11-11 08:06:24');
+(2, 'Brigada Eskwela', '2022-11-26 23:06:11', 'Baranggay Personnel Volunteers performed a well assessed project for the students of Sacred Heart Barangay, Here in our Baranggay we prioritized the welfare of our students. This will be performed on November 4, 2022. 9AM.', 'event_02.jpg', 1, 10, 0, '2022-11-11 08:06:24'),
+(5, 'Distribution of QC ID and Booklet', '2022-12-03 16:00:00', 'At the day of December 4, we will be distributing the QC ID of our community and a booklet, it will be set at 9 AM at the Barangay Hall', '1669510685.jpg', 1, 11, 0, '2022-11-27 00:58:05'),
+(6, 'House to House Distribution of QC ID', '2022-12-06 16:00:00', 'Due to people not attending the event, we will be doing a house visit to distribute their QC ID, expect us at December 7 to arrive at your home', '1669510778.jpg', 1, 10, 0, '2022-11-27 00:59:38'),
+(7, 'Weekly Clean Up Drive', '2022-12-10 16:00:00', 'At December 11, we will be having a clean up of our community, we will meet up at the barangay hall at 1 PM and we will move from there', '1669510968.jpg', 1, 13, 0, '2022-11-27 01:02:48');
 
 -- --------------------------------------------------------
 
@@ -332,21 +344,16 @@ CREATE TABLE `tbl_receivers` (
 --
 
 INSERT INTO `tbl_receivers` (`receiver_id`, `fname`, `mname`, `lname`, `age`, `current_job`, `date_to_receive`, `is_received`, `date_created`) VALUES
-(2, 'Sponge', 'Bob', 'Square Pants', 21, 'Cook', '11/03/2022', 'No', '2022-10-20 09:24:15'),
-(3, 'Patrick', 'The', 'Star', 21, 'Friend', '11/03/2022', 'No', '2022-10-20 09:25:36'),
-(4, 'Squidward', 'The', 'Squid', 21, 'Cashier', '11/03/2022', 'No', '2022-10-20 09:25:36'),
-(5, 'Krusty', 'The', 'Crab', 32, 'Owner', '11/03/2022', 'No', '2022-10-20 09:30:45'),
-(7, 'Naruto', 'The', 'Uzumaki', 17, 'Hokage', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
-(8, 'Anya', 'The', 'Forger', 18, 'Mentalist', '2022-11-03', 'No', '2022-10-20 09:30:45'),
-(9, 'Katniss', 'X', 'Everdeen', 18, 'Tribute', '11/03/2022', 'No', '2022-10-20 09:30:45'),
-(10, 'Petah', 'X', 'Mellark', 19, 'Tribute', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
-(11, 'Steve', 'Less', 'Jobs', 45, 'Founder', '11/03/2022', 'No', '2022-10-20 09:30:45'),
-(12, 'The', 'World', 'Star', 47, 'Commet', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
-(13, 'Mother', 'Lily', 'Shimmer', 33, 'Flower', '11/03/2022', 'No', '2022-10-20 09:30:45'),
-(14, 'Harry', 'The', 'Potter', 26, 'Wizard', '11/03/2022', 'Yes', '2022-10-20 09:30:45'),
-(15, 'Old', 'Spank', 'Harry', 92, 'Farmer', '11/03/2022', 'No', '2022-10-20 09:30:45'),
-(16, 'Pat', 'Ricia', 'Velasquez', 13, 'Something', '2022-11-05', 'No', '2022-10-31 22:25:08'),
-(17, 'Frank', 'The ', 'Builder', 33, 'Vocal Gawker', '2022-11-10', 'No', '2022-10-31 22:26:51');
+(19, 'Korbin', 'Kiong', 'Garcia', 33, 'Singer', '2022-11-29', 'No', '2022-11-27 00:32:49'),
+(20, 'Tavion', 'Loshang', 'Monceda', 42, 'N/A', '2022-12-02', 'No', '2022-11-27 00:37:15'),
+(21, 'Kennedy', 'Ray', 'Pavia', 34, 'Carpenter', '2022-12-08', 'No', '2022-11-27 00:37:49'),
+(22, 'Pamela', 'Nato', 'Roa', 41, 'House maid', '2022-12-10', 'No', '2022-11-27 00:38:25'),
+(23, 'Karmen', '', 'Singco', 28, 'N/A', '2022-12-09', 'Yes', '2022-11-27 00:38:59'),
+(24, 'Bembe', '', 'Tongson', 37, 'Construction Worker', '2022-12-09', 'No', '2022-11-27 00:39:56'),
+(25, 'Harley', '', 'Mariano', 38, 'N/A', '2022-11-30', 'No', '2022-11-27 00:40:30'),
+(26, 'Kyle', '', 'Sicat', 47, 'N/A', '2022-12-10', 'No', '2022-11-27 00:41:16'),
+(27, 'Ginessa', 'Dumaloan', 'Medel', 48, 'N/A', '2022-12-08', 'Yes', '2022-11-27 00:42:02'),
+(28, 'Roberto', 'Gervaso', 'Caringal', 47, 'Construction Worker', '2022-12-08', 'No', '2022-11-27 00:53:41');
 
 -- --------------------------------------------------------
 
@@ -372,12 +379,12 @@ INSERT INTO `tbl_replies` (`reply_id`, `reply`, `reply_suggested`, `date_created
 (4, 'I need help in using the services of the barangay or navigating the website', '13', '2022-11-10 07:19:44', 0),
 (5, 'How do I login, register an account, or get verified?', '38', '2022-11-10 07:19:44', 0),
 (6, 'What do you want to know?', '7,8,9', '2022-11-10 07:19:44', 1),
-(7, 'Can you tell me more about Barangay Sacred Heart?', '10', '2022-11-10 07:19:44', 0),
-(8, 'What is the address of the Barangay hall or their Contact Number?', '11', '2022-11-10 07:19:44', 0),
-(9, 'Who are the Barangay Officials?', '12', '2022-11-10 07:19:44', 0),
-(10, 'Our contact details and address is located here [LINK]', '2', '2022-11-10 07:19:44', 1),
-(11, 'The members of our staff can be seen here <a href=\"#\" data-target=\"#LoginModal\" data-toggle=\"modal\" ></a>', '2', '2022-11-10 07:19:44', 1),
-(12, 'You can read more about us here [LINK], to see more info about our projects, you need to be a registered user', '2', '2022-11-10 07:19:44', 1),
+(7, 'Can you tell me more about Barangay Sacred Heart?', '12', '2022-11-10 07:19:44', 0),
+(8, 'What is the address of the Barangay hall or their Contact Number?', '10', '2022-11-10 07:19:44', 0),
+(9, 'Who are the Barangay Officials?', '11', '2022-11-10 07:19:44', 0),
+(10, 'Our contact details and address is located <a href=\"http://sacredheart.byethost7.com/home/contact\">HERE</a>', '2', '2022-11-10 07:19:44', 1),
+(11, 'The members of our staff can be seen at the bottom of the page in <a href=\"http://sacredheart.byethost7.com/home/about\">HERE</a> ', '2', '2022-11-10 07:19:44', 1),
+(12, 'You can read more about us here <a href=\"http://sacredheart.byethost7.com/home/about\">HERE</a>, to see more info about our projects, you need to be a registered user', '2', '2022-11-10 07:19:44', 1),
 (13, 'Are you a registered resident of the barangay?', '14,15', '2022-11-10 07:19:44', 1),
 (14, 'Yes', '17', '2022-11-10 07:19:44', 0),
 (15, 'No', '16', '2022-11-10 07:19:44', 0),
@@ -385,25 +392,26 @@ INSERT INTO `tbl_replies` (`reply_id`, `reply`, `reply_suggested`, `date_created
 (17, 'Do you have a registered account in our website?', '18,19', '2022-11-10 07:19:44', 1),
 (18, 'Yes', '21', '2022-11-10 07:19:44', 0),
 (19, 'No', '20', '2022-11-10 07:19:44', 0),
-(20, 'Go here [LINK] to Register an account, once registered, await for verification of account', '2', '2022-11-10 07:19:44', 1),
+(20, 'Go <a href=\"http://sacredheart.byethost7.com/home/register\">HERE</a> to Register an account, once registered, await for verification of account', '2', '2022-11-10 07:19:44', 1),
 (21, 'Are you logged in?', '22,23', '2022-11-10 07:19:44', 1),
 (22, 'Yes', '25', '2022-11-10 07:19:44', 0),
 (23, 'No', '24', '2022-11-10 07:19:44', 0),
-(24, 'Log in here [LINK] with your verified account', '2', '2022-11-10 07:19:44', 1),
+(24, 'Log in <a href=\"http://sacredheart.byethost7.com\" data-toggle=\"modal\" data-target=\"#LoginModal\">HERE</a> with your verified account', '2', '2022-11-10 07:19:44', 1),
 (25, 'What services do you need help with?', '26,27,28,29', '2022-11-10 07:19:44', 1),
 (26, 'What Programs/Projects does the Barangay offer?', '30', '2022-11-10 07:19:44', 0),
 (27, 'I need help Requesting a document from the Barangay', '31', '2022-11-10 07:19:44', 0),
 (28, 'I need assistance from the Barangay', '32', '2022-11-10 07:19:44', 0),
 (29, 'I want to file a Complaint', '33', '2022-11-10 07:19:44', 0),
-(30, 'We have an Ayuda Program[LINK] and a Senior Citizen Program[LINK]. For other programs, you can read more here[LINK]', '2', '2022-11-10 07:19:44', 1),
-(31, 'Go here [LINK] and choose the document you want to get, explain as to why, and the day you will retrieve it.', '2', '2022-11-10 07:19:44', 1),
-(32, 'Go here [LINK] and choose the assistance you need, explain as to why and what happened, and the day need the help.', '2', '2022-11-10 07:19:44', 1),
-(33, 'Go here [LINK] and type down your problem? If you have a complaint letter already, you may upload the file.', '2', '2022-11-10 07:19:44', 1),
+(30, 'We have an <a href=\"http://sacredheart.byethost7.com/events/ayuda\">Ayuda Program</a> and a <a href=\"http://sacredheart.byethost7.com/events/senior_citizen\">Senior Citizen Program</a>. For our other programs, you can read more <a href=\"http://sacredheart.byethost7.com/events/projects\">HERE</a>', '2', '2022-11-10 07:19:44', 1),
+(31, 'Go <a href=\"http://sacredheart.byethost7.com/services/request_document\">HERE</a> and choose the document you want to get, explain as to why, and the day you will retrieve it.', '2', '2022-11-10 07:19:44', 1),
+(32, 'Go <a href=\"http://sacredheart.byethost7.com/services/file_complaint\">HERE</a>  and choose the assistance you need, explain as to why and what happened, and the day need the help.', '2', '2022-11-10 07:19:44', 1),
+(33, 'Go <a href=\"http://sacredheart.byethost7.com/services/assistance\">HERE</a>  and type down your problem? If you have a complaint letter already, you may upload the file.', '2', '2022-11-10 07:19:44', 1),
 (34, 'Login?', '24', '2022-11-10 07:19:44', 0),
 (35, 'Register an account?', '20', '2022-11-10 07:19:44', 0),
 (36, 'Get account verified?', '36', '2022-11-10 07:19:44', 0),
 (37, 'After creating an account, you need to wait until your account is verified by checking your valid ID to prove you\'re a resident of the Barangay', '2', '2022-11-10 07:19:44', 1),
-(38, 'Which is it, Login, Register, or Verification?', '34,35,36', '2022-11-10 10:47:46', 1);
+(38, 'Which is it, Login, Register, or Verification?', '34,35,36', '2022-11-10 10:47:46', 1),
+(39, 'Who the hell am I?', '', '2022-11-14 19:34:59', 0);
 
 -- --------------------------------------------------------
 
@@ -429,12 +437,9 @@ CREATE TABLE `tbl_requests` (
 --
 
 INSERT INTO `tbl_requests` (`request_id`, `user_id`, `document_type`, `document_purpose`, `document_userfile`, `date_needed`, `status`, `seen`, `remarks`, `date_created`) VALUES
-(1, 6, '1', 'Something', '', '2022-10-18', 1, 1, '', '2022-11-21 01:36:40'),
-(2, 6, '1', '1231123', '', '2022-10-19', 1, 0, '', '2022-11-09 10:51:49'),
-(3, 3, '2', 'Please', '', '2022-11-16', 1, 0, '', '2022-11-25 04:40:23'),
-(4, 3, '3', 'Please', '', '2022-11-17', 1, 0, '', '2022-11-14 10:13:54'),
-(5, 3, '3', 'Hello', '', '2022-11-17', 1, 0, '', '2022-11-14 10:18:52'),
-(6, 3, '2', 'asdasd', '1669504517.png', '2022-12-02', 0, 0, '', '2022-11-26 23:15:18');
+(7, 32, '2', 'Need this for my job', '1669511365.png', '2022-11-30', 0, 0, '', '2022-11-27 01:09:25'),
+(8, 33, '1', 'Need for house change', '1669511491.png', '2022-11-30', 0, 0, '', '2022-11-27 01:11:31'),
+(9, 35, '2', 'Need for work purposes', '1669511672.png', '2022-12-07', 0, 0, '', '2022-11-27 01:14:32');
 
 -- --------------------------------------------------------
 
@@ -450,21 +455,6 @@ CREATE TABLE `tbl_request_remarks` (
   `status` int(11) NOT NULL,
   `date_created` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_request_remarks`
---
-
-INSERT INTO `tbl_request_remarks` (`request_remark_id`, `request_id`, `user_id`, `remark`, `status`, `date_created`) VALUES
-(1, 1, 1, 'sa', 1, '2022-11-21 01:36:23'),
-(2, 1, 1, 'aaa', 0, '2022-11-21 01:36:30'),
-(3, 1, 1, 'aaa', 1, '2022-11-21 01:36:40'),
-(4, 3, 1, 'aaaaaa', 0, '2022-11-21 01:36:54'),
-(5, 3, 1, 'okay na', 1, '2022-11-21 01:37:28'),
-(6, 3, 1, 'nope', 1, '2022-11-21 01:41:28'),
-(7, 3, 1, '111', 0, '2022-11-21 01:44:15'),
-(8, 3, 1, '111', 1, '2022-11-21 01:46:08'),
-(9, 3, 3, 'Thanks po', 1, '2022-11-25 04:54:45');
 
 -- --------------------------------------------------------
 
@@ -485,9 +475,8 @@ CREATE TABLE `tbl_request_types` (
 
 INSERT INTO `tbl_request_types` (`request_type_id`, `request_type`, `request_price`, `date_created`) VALUES
 (1, 'Barangay Clearance', '300', '2022-11-04 13:51:20'),
-(2, 'Cedula (100 Pesos)', '100', '2022-11-04 13:51:20'),
-(3, 'Barangay ID (100 Pesos)', '100', '2022-11-04 13:52:03'),
-(6, 'Certificate of Residential', '100', '2022-11-23 12:48:37');
+(2, 'Cedula', '100', '2022-11-04 13:51:20'),
+(3, 'Barangay ID', '100', '2022-11-04 13:52:03');
 
 -- --------------------------------------------------------
 
@@ -512,19 +501,16 @@ CREATE TABLE `tbl_seniors` (
 --
 
 INSERT INTO `tbl_seniors` (`senior_id`, `senior_card_id`, `fname`, `mname`, `lname`, `age`, `year`, `job`, `date_created`) VALUES
-(1, '0728', 'Don', 'Don', 'Ritualo', 101, '2020', 'Old Job (Publisher of Rizal)', '2022-10-24 08:09:45'),
-(2, '0729', 'Mondragon', 'De', 'Jonor', 126, '2020', 'Monk', '2022-10-24 08:16:31'),
-(3, '0730', 'Emilito', 'De', 'Kuntador', 99, '2020', 'Veteran', '2022-10-24 08:16:31'),
-(4, '0731', 'Roel', 'Castro', 'Barumbado', 165, '2022', 'Superman', '2022-10-24 08:16:31'),
-(5, '0732', 'Tasing', 'Sabog', 'Tae', 125, '', 'Pornstar', '2022-10-24 08:16:31'),
-(6, '0733', 'Bogart', 'El', 'Nombre', 111, '', 'Handyman', '2022-10-24 08:16:31'),
-(7, '0734', 'Raul', 'De', 'Palo', 171, '', 'Carpenter', '2022-10-24 08:16:31'),
-(8, '0735', 'Barting', 'Con', 'Tubo', 96, '', 'Plumber', '2022-10-24 08:16:31'),
-(9, '0736', 'Tupac', 'N', 'Shakur', 95, '', 'Rapper', '2022-10-24 08:16:31'),
-(10, '0925', 'Aling', 'X', 'Cely', 78, '', 'Singer', '2022-10-24 08:16:31'),
-(11, '0926', 'Esparanza', 'Mel', 'Checo', 200, '', 'Dancer', '2022-10-24 08:16:31'),
-(12, '0927', 'Magdalena', 'Anong', 'Problema', 1000, '', 'GRO', '2022-10-24 08:16:31'),
-(13, '1256', 'Batong', 'Burngis', 'Bakal', 268, '', 'Welder', '2022-10-24 08:16:31');
+(15, '0727', 'Quinten', '', 'Gonzaga', 78, '2022', 'N/A', '2022-11-27 00:48:47'),
+(16, '0728', 'Eduardo', '', 'Carino', 87, '2022', 'N/A', '2022-11-27 00:49:16'),
+(17, '0729', 'Hilario', '', 'Manaloto', 59, '2022', 'N/A', '2022-11-27 00:49:41'),
+(18, '0730', 'Cory', '', 'Silvestre', 75, '2022', 'N/A', '2022-11-27 00:50:04'),
+(19, '0731', 'Bobby', '', 'Acebado', 67, '2022', 'Handyman', '2022-11-27 00:50:40'),
+(20, '0732', 'Fraco', '', 'Pelayo', 66, '2022', 'N/A', '2022-11-27 00:51:10'),
+(21, '0735', 'Ezra', '', 'Mercado', 82, '2022', 'N/A', '2022-11-27 00:51:37'),
+(22, '0738', 'Ben', '', 'Clemente', 63, '2022', 'N/A', '2022-11-27 00:52:15'),
+(23, '0741', 'Juanito', '', 'Macaraeg', 80, '2022', 'N/A', '2022-11-27 00:52:48'),
+(24, '0764', 'Ciri', '', 'Cuevas', 67, '2022', 'N/A', '2022-11-27 00:53:03');
 
 -- --------------------------------------------------------
 
@@ -562,25 +548,18 @@ INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `usertype`, `email`,
 (2, 'tanod', 'tanod', 2, 'tanod@gmail.com', 'Hello1', 'F', 'Kenedy', 'Sulok', '093131313131', 'pat.jpg', 2, '', '', '', '', '', '2022-09-16 12:39:14'),
 (3, 'resident', 'resident', 3, 'resident@gmail.com', 'Sorry', 'Na', 'Uwu', 'There', '09135465', 'default.jpg', 2, '', '', '', '', '', '2022-09-16 12:39:14'),
 (7, 'user_7', 'ma.francescacamille', 2, 'ma.francescacamille@gmail.com', 'Ma. Francesca Camille', 'Malig', 'David', '#190-A SCT. FUENTEBELLA EXT. STREET SACRED HEART, QUEZON CITY', '00000000000', '1668354508.PNG', 2, '', '', '', 'Barangay Captain', '1668367594.jpg', '2022-11-13 15:48:28'),
-(8, 'user_8', 'jonah', 2, 'jonah@gmail.com', 'Jonah', 'C', 'Galoyo', '#88 SCT. LIMBAGA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668354672.PNG', 2, '', '', '', 'Secretary', '1668367607.jpg', '2022-11-13 15:51:12'),
+(8, 'user_8', 'jonah', 1, 'jonah@gmail.com', 'Jonah', 'C', 'Galoyo', '#88 SCT. LIMBAGA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668354672.PNG', 2, '', '', '', 'Secretary', '1669507689.jpg', '2022-11-13 15:51:12'),
 (9, 'user_9', 'angelo', 2, 'angelo@gmail.com', 'Angelo', 'L', 'Gatmaytan', '#154 SCT. LIMBAGA EXT. STREET SACRED HEART, QUEZON CITY', '00000000000', '1668354774.PNG', 2, '', '', '', 'Barangay Kagawad', '1668367636.jpg', '2022-11-13 15:52:54'),
 (10, 'user_10', 'moises', 2, 'moises@gmail.com', 'Moises', 'P.', 'fulgar', '#175 SCT. FUENTEBELLA EXT. STREET  SACRED HEART, QUEZON CITY.', '00000000000', '1668354835.PNG', 2, '', '', '', 'Barangay Kagawad', '1668367649.jpg', '2022-11-13 15:53:55'),
 (11, 'user_11', 'marissa', 2, 'marissa@gmail.com', 'Marissa', 'A.', 'Roissing', '#122 SCT. DE GUIA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668355023.PNG', 2, '', '', '', 'Barangay Kagawad', '1668367669.jpg', '2022-11-13 15:57:03'),
 (12, 'user_12', 'jesus', 2, 'jesus@gmail.com', 'Jesus', 'L.', 'Montealto', '#144-C SCT. LIMBAGA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668355077.PNG', 2, '', '', '', 'Barangay Kagawad', '1668367681.jpg', '2022-11-13 15:57:58'),
 (13, 'user_13', 'bonifacio', 2, 'bonifacio@gmail.com', 'Bonifacio', 'O.', 'Flores', '#144-C SCT. LIMBAGA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668355153.PNG', 2, '', '', '', 'Barangay Kagawad', '1668367695.jpg', '2022-11-13 15:59:13'),
-(14, 'user_14', 'rosemaganda', 3, 'rosemaganda23@gmail.com', 'Rose', 'A.', 'Hatfield', '46, M.H. Del Pilar', '00000000000', '1668356173.PNG', 2, '', '', '', '', '', '2022-11-13 16:04:36'),
-(15, 'user_15', 'Robert061598', 3, 'robert15@gmail.com', 'Robert', 'C.', 'Maglinao', '4, Kaimito Street', '00000000000', '1668357520.PNG', 2, '', '', '', '', '', '2022-11-13 16:17:16'),
-(16, 'user_16', 'Albert102299', 3, 'Albert22@gmail.com', 'Albert', 'C.', 'Legazpi', 'Lot 9 Block 7, Taas Road', '00000000000', '1668357529.PNG', 2, '', '', '', '', '', '2022-11-13 16:17:49'),
-(17, 'user_17', 'Nics120100', 3, 'Nicolai01@gmail.com', 'Nicolai', 'V.', 'Valdez', 'Lot 9 Block 7, Taas Road', '00000000000', '1668357742.PNG', 2, '', '', '', '', '', '2022-11-13 16:18:25'),
-(18, 'user_18', 'AmySR1128', 3, 'AmySR@gmail.com', 'Amy', 'S.', 'Reyes', '14, Simeon Ola Avenue', '00000000000', '1668357734.PNG', 2, '', '', '', '', '', '2022-11-13 16:22:29'),
-(20, 'user_20', 'vanessa456', 3, 'vanessa564@gmail.com', 'Vanessa', 'A.', 'Johnston', '422, Elisco Road', '00000000000', '1668357538.PNG', 2, '', '', '', '', '', '2022-11-13 16:26:27'),
-(21, 'user_21', 'djbombay34', 3, 'projas345@gmail.com', 'Peter', 'R.', 'Hayes', '44, Madrid', '00000000000', '1668357622.PNG', 2, '', '', '', '', '', '2022-11-13 16:27:22'),
-(22, 'user_22', 'annmateo123', 3, 'ann.norton@gmail.com', 'Ann', 'N.', 'Lee', '62, Don Gonzalo Puyat', '00000000000', '1668357560.PNG', 2, '', '', '', '', '', '2022-11-13 16:28:47'),
-(23, 'user_23', 'secret345', 3, 'mbrown@gmail.com', 'Mackenzie', 'P.', 'Brown', '38, Avocado Street', '00000000000', '1668357568.PNG', 2, '', '', '', '', '', '2022-11-13 16:29:14'),
-(24, 'user_24', 'oppakankita', 3, 'megan.archer.98@gmail.com', 'Megan', 'A.', 'Dixon', '44, Redwood', '00000000000', '1668357576.PNG', 2, '', '', '', '', '', '2022-11-13 16:30:11'),
-(25, 'user_25', 'MamamoAndoy01', 3, 'Andoy13@gmail.com', 'Andrew', 'S.', 'Hernandez', '4, Mount Pinatubo Drive', '00000000000', '1668357582.PNG', 2, '', '', '', '', '', '2022-11-13 16:30:55'),
 (26, 'user_26', 'eduardo', 2, 'eduardo@gmail.com', 'Eduardo', 'M.', 'Lapus', '#27-D SCT. YBARDOLAZA STREET SACRED HEART, QUEZON CITY', '00000000000', '1668363198.PNG', 2, '', '', '', 'Barangay Kagawad', '1668386508.jpg', '2022-11-13 18:13:18'),
-(27, 'user_27', 'edwin', 2, 'edwin@gmail.com', 'Edwin', 'DG.', 'Reyes', '#168 SCT. FUENTEBELLA EXT. STREET SACRED HEART, QUEZON CITY.', '00000000000', '1668363235.PNG', 2, '', '', '', 'Barangay Kagawad', '1668386495.jpg', '2022-11-13 18:13:55');
+(27, 'user_27', 'edwin', 2, 'edwin@gmail.com', 'Edwin', 'DG.', 'Reyes', '#168 SCT. FUENTEBELLA EXT. STREET SACRED HEART, QUEZON CITY.', '00000000000', '1668363235.PNG', 2, '', '', '', 'Barangay Kagawad', '1668386495.jpg', '2022-11-13 18:13:55'),
+(32, 'user_32', 'kendrick', 3, 'kendrickmallare.km@gmail.com', 'Kendrick', 'Abelador', 'Mallare', 'Alabang Town Center, 2/F Alabang - Zapote Road, Alabang', '09279973130', 'default.jpg', 2, '', '', '', '', '', '2022-11-27 00:10:33'),
+(33, 'user_33', 'christian', 3, 'christianjay@gmail.com', 'Christian', '', 'Jay', 'Suite 401 CLF Bldg. Chino Roces Ave., 1203', '00000000000', 'default.jpg', 2, '', '', '', '', '', '2022-11-27 00:11:08'),
+(34, 'user_34', 'michael', 3, 'michaelangelo@gmail.com', 'Michael', '', 'Angelo', '154 H.V. Dela Costa Corner Valero St., Salcedo Village, Bel Air', '09279973130', 'default.jpg', 2, '', '', '', '', '', '2022-11-27 00:12:37'),
+(35, 'user_35', 'patricia', 3, 'patriciarosario@gmail.com', 'Patricia', 'Del', 'Rosario', ' 26 Maningning Teachers Diliman 1100', '09279973130', 'default.jpg', 2, '', '', '', '', '', '2022-11-27 00:13:25');
 
 -- --------------------------------------------------------
 
@@ -712,13 +691,13 @@ ALTER TABLE `tbl_usertypes`
 -- AUTO_INCREMENT for table `tbl_assistance`
 --
 ALTER TABLE `tbl_assistance`
-  MODIFY `assistance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `assistance_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_assistance_remarks`
 --
 ALTER TABLE `tbl_assistance_remarks`
-  MODIFY `assistance_remark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `assistance_remark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_assistance_types`
@@ -730,7 +709,7 @@ ALTER TABLE `tbl_assistance_types`
 -- AUTO_INCREMENT for table `tbl_complaints`
 --
 ALTER TABLE `tbl_complaints`
-  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `complaint_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `tbl_complaint_remarks`
@@ -748,31 +727,31 @@ ALTER TABLE `tbl_info`
 -- AUTO_INCREMENT for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `tbl_projects`
 --
 ALTER TABLE `tbl_projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_receivers`
 --
 ALTER TABLE `tbl_receivers`
-  MODIFY `receiver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `receiver_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `tbl_replies`
 --
 ALTER TABLE `tbl_replies`
-  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `reply_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `tbl_requests`
 --
 ALTER TABLE `tbl_requests`
-  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `request_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_request_remarks`
@@ -790,13 +769,13 @@ ALTER TABLE `tbl_request_types`
 -- AUTO_INCREMENT for table `tbl_seniors`
 --
 ALTER TABLE `tbl_seniors`
-  MODIFY `senior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `senior_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tbl_usertypes`

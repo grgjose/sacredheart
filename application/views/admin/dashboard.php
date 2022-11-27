@@ -95,15 +95,6 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">
-          <div class="col-md-12">
-
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
@@ -162,7 +153,7 @@
                     <a href="#" class="nav-link" style="color: white;">
                      Document Requests
                       <span class="float-right" style="color: #3498db;">
-						<?php $total=0; foreach($requests as $request){ $total = $total + 1;}?>
+						<?php $total=0; foreach($requests as $request){ $total = $total + 1;} if($total==0){$total = 1;}?>
 						<?php $current=0; foreach($requests as $request){ if($request->status == 0){$current = $current + 1;}} ?>
 						<?php $dir = "up"; if(round($current/$total*100, 2) < 30){ $dir = "down"; } elseif (round($current/$total*100, 2) < 60){$dir = "left"; }?>
                         <i class="fas fa-arrow-<?php echo $dir; ?> text-sm"></i> &nbsp; &nbsp;
@@ -174,7 +165,7 @@
                     <a href="#" class="nav-link" style="color: white;">
                       Complaints
                       <span class="float-right" style="color: #e74c3c;">
-					  	<?php $total=0; foreach($complaints as $complaint){ $total = $total + 1;}?>
+					  	<?php $total=0; foreach($complaints as $complaint){ $total = $total + 1;} if($total==0){$total = 1;}?>
 						<?php $current=0; foreach($complaints as $complaint){ if($complaint->status == 0){$current = $current + 1;}} ?>
 						<?php $dir = "up"; if(round($current/$total*100, 2) < 30){ $dir = "down"; } elseif (round($current/$total*100, 2) < 60){$dir = "left"; }?>
                         <i class="fas fa-arrow-<?php echo $dir; ?> text-sm"></i> &nbsp; &nbsp;
@@ -186,7 +177,7 @@
                     <a href="#" class="nav-link" style="color: white;">
                       Assistance Requests
                       <span class="float-right" style="color: #00bc8c;">
-						<?php $total=0; foreach($assistance as $assist){ $total = $total + 1;}?>
+						<?php $total=0; foreach($assistance as $assist){ $total = $total + 1;} if($total==0){$total = 1;}?>
 						<?php $current=0; foreach($assistance as $assist){ if($assist->status == 0){$current = $current + 1;}} ?>
 						<?php $dir = "up"; if(round($current/$total*100, 2) < 30){ $dir = "down"; } elseif (round($current/$total*100, 2) < 60){$dir = "left"; }?>
                         <i class="fas fa-arrow-<?php echo $dir; ?> text-sm"></i> &nbsp; &nbsp;

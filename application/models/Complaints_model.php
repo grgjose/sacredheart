@@ -9,6 +9,7 @@ class Complaints_model extends CI_Model {
         }    
     
 		//tbl_complaints
+		//
         public function complaint_insert($user_id, $complaint_description, $complaint_letter){
 			$data = array(
 				'user_id' => $user_id,

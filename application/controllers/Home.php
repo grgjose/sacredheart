@@ -542,6 +542,7 @@ class Home extends CI_Controller {
 		$data['error'] = $this->session->userdata('error');
 		$data['success'] = $this->session->userdata('success');
 
+		$data['users'] = $this->user_model->users_retrieve();
 		$data['info'] = $this->get_info();
 
 		$this->load->view('plus/header', $data);

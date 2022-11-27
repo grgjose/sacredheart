@@ -116,7 +116,7 @@
 				</div>
 			</div>
 
-			<?php } else { ?>
+			<?php } elseif( $ctr == 1 ){ ?>
 
 			<div class="col-lg-6 mr-auto align-self-center">
 				<div class="feature-content">
