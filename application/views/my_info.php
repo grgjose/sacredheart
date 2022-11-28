@@ -24,7 +24,7 @@
 					<trstyle="<?php if($complaint->seen == 1){ echo "background-color: yellow"; } ?>;">
 						<td style="height: 30px;" class="text-center"><?php echo $complaint->date_created; ?></td>
 						<td style="height: 30px;" class="text-center"><?php echo $complaint->complaint_description; ?></td>
-						<td style="height: 30px;" class="text-center"><a href="<?php echo base_url() . $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
+						<td style="height: 30px;" class="text-center"><a class="btn btn-info" href="#" onclick="Download('<?php echo base_url() . 'home/download_file/1/' . $complaint->complaint_letter; ?>')">Download File</a></td>
 						<td style="height: 30px;" class="text-center">
 							<button class="btn btn-info text-justify text-center" 
 							data-toggle="modal" data-target="#ViewRemarksModal"
@@ -41,7 +41,11 @@
 					<?php } ?>
 				  </tbody>
 				</table>
-
+				<script>
+				function Download(url) {
+					window.open(url);
+				};
+				</script>
 				<script>
 					$(document).ready(function () {
 						$('#myTable').DataTable({

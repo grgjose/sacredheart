@@ -882,8 +882,16 @@ class Home extends CI_Controller {
 		$this->session->set_userdata('chatbot_replies', $x);
 	}
 
-	public function drop_us_mail(){
+		// Download File
+	public function download_file($type = null, $name = null){
+		
+		$path = "";
+		if($type == 1){ $path = base_url().'assets/files/complaints/'; }
 
+		$this->load->helper('download');
+		$data = file_get_contents($path.$name);
+		force_download($name, $data);
+	
 	}
 
 

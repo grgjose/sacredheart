@@ -525,7 +525,6 @@ class Provide extends CI_Controller {
 			$this->assistance_model->assistance_remarks_insert($id, $user_id, $remarks, $status);
 			redirect('/provide/assistance', 'refresh');
 		}
-
 	}
 
 	public function view_remarks($id = null, $tp = null){
@@ -552,6 +551,18 @@ class Provide extends CI_Controller {
 		}
 
 		$this->load->view('admin/remarks_table', $data);
+	}
+
+	// Download File
+	public function download_file($type = null, $name = null){
+		
+		$path = "";
+		if($type == 1){ $path = base_url().'assets/files/complaints/'; }
+
+		$this->load->helper('download');
+		$data = file_get_contents($path.$name);
+		force_download($name, $data);
+	
 	}
 
 	public function get_info(){

@@ -274,6 +274,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?php echo base_url() ?>admin/view_puroks" class="nav-link">
+                  <i class="fas fa-house-user nav-icon"></i>
+                  <p>View Puroks</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?php echo base_url() ?>admin/view_logs" class="nav-link">
                   <i class="fas fa-stream nav-icon"></i>
                   <p>View Logs</p>

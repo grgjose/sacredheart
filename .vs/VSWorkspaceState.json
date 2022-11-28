@@ -2,8 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\application",
-    "\\application\\models"
+    "\\application\\controllers",
+    "\\application\\views",
+    "\\application\\views\\services",
+    "\\assets\\admin\\dist",
+    "\\assets\\admin\\dist\\js\\pages",
+    "\\assets\\admin\\plugins\\chart.js"
   ],
-  "SelectedNode": "\\application\\models\\User_model.php",
+  "SelectedNode": "\\application\\controllers\\Services.php",
   "PreviewInSolutionExplorer": false
 }

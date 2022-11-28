@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2022 at 02:20 AM
+-- Generation Time: Nov 28, 2022 at 11:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -132,6 +132,26 @@ CREATE TABLE `tbl_complaint_remarks` (
   `status` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_households`
+--
+
+CREATE TABLE `tbl_households` (
+  `household_id` int(11) NOT NULL,
+  `purok_id` int(11) NOT NULL,
+  `household_name` varchar(500) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_households`
+--
+
+INSERT INTO `tbl_households` (`household_id`, `purok_id`, `household_name`, `date_created`) VALUES
+(1, 1, '133B Estancia St.', '2022-11-28 07:04:02');
 
 -- --------------------------------------------------------
 
@@ -290,7 +310,11 @@ INSERT INTO `tbl_logs` (`log_id`, `log_info`, `date_created`) VALUES
 (105, '32 just logged in', '2022-11-27 01:08:59'),
 (106, '33 just logged in', '2022-11-27 01:10:47'),
 (107, '35 just logged in', '2022-11-27 01:12:45'),
-(108, '32 just logged in', '2022-11-27 01:14:54');
+(108, '32 just logged in', '2022-11-27 01:14:54'),
+(109, '2 just logged in', '2022-11-28 06:23:14'),
+(110, '2 just logged in', '2022-11-28 06:24:56'),
+(111, '2 just logged in', '2022-11-28 10:04:32'),
+(112, '3 just logged in', '2022-11-28 10:05:35');
 
 -- --------------------------------------------------------
 
@@ -319,7 +343,26 @@ INSERT INTO `tbl_projects` (`project_id`, `project_title`, `project_date`, `proj
 (2, 'Brigada Eskwela', '2022-11-26 23:06:11', 'Baranggay Personnel Volunteers performed a well assessed project for the students of Sacred Heart Barangay, Here in our Baranggay we prioritized the welfare of our students. This will be performed on November 4, 2022. 9AM.', 'event_02.jpg', 1, 10, 0, '2022-11-11 08:06:24'),
 (5, 'Distribution of QC ID and Booklet', '2022-12-03 16:00:00', 'At the day of December 4, we will be distributing the QC ID of our community and a booklet, it will be set at 9 AM at the Barangay Hall', '1669510685.jpg', 1, 11, 0, '2022-11-27 00:58:05'),
 (6, 'House to House Distribution of QC ID', '2022-12-06 16:00:00', 'Due to people not attending the event, we will be doing a house visit to distribute their QC ID, expect us at December 7 to arrive at your home', '1669510778.jpg', 1, 10, 0, '2022-11-27 00:59:38'),
-(7, 'Weekly Clean Up Drive', '2022-12-10 16:00:00', 'At December 11, we will be having a clean up of our community, we will meet up at the barangay hall at 1 PM and we will move from there', '1669510968.jpg', 1, 13, 0, '2022-11-27 01:02:48');
+(7, 'Weekly Clean Up Drive', '2022-11-28 10:00:51', 'At December 11, we will be having a clean up of our community, we will meet up at the barangay hall at 1 PM and we will move from there', '1669510968.jpg', 1, 13, 0, '2022-11-27 01:02:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_puroks`
+--
+
+CREATE TABLE `tbl_puroks` (
+  `purok_id` int(11) NOT NULL,
+  `purok_name` varchar(500) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_puroks`
+--
+
+INSERT INTO `tbl_puroks` (`purok_id`, `purok_name`, `date_created`) VALUES
+(1, 'Espolarium', '2022-11-28 07:03:25');
 
 -- --------------------------------------------------------
 
@@ -616,6 +659,12 @@ ALTER TABLE `tbl_complaint_remarks`
   ADD PRIMARY KEY (`complaint_remark_id`);
 
 --
+-- Indexes for table `tbl_households`
+--
+ALTER TABLE `tbl_households`
+  ADD PRIMARY KEY (`household_id`);
+
+--
 -- Indexes for table `tbl_info`
 --
 ALTER TABLE `tbl_info`
@@ -632,6 +681,12 @@ ALTER TABLE `tbl_logs`
 --
 ALTER TABLE `tbl_projects`
   ADD PRIMARY KEY (`project_id`);
+
+--
+-- Indexes for table `tbl_puroks`
+--
+ALTER TABLE `tbl_puroks`
+  ADD PRIMARY KEY (`purok_id`);
 
 --
 -- Indexes for table `tbl_receivers`
@@ -718,6 +773,12 @@ ALTER TABLE `tbl_complaint_remarks`
   MODIFY `complaint_remark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `tbl_households`
+--
+ALTER TABLE `tbl_households`
+  MODIFY `household_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `tbl_info`
 --
 ALTER TABLE `tbl_info`
@@ -727,13 +788,19 @@ ALTER TABLE `tbl_info`
 -- AUTO_INCREMENT for table `tbl_logs`
 --
 ALTER TABLE `tbl_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `tbl_projects`
 --
 ALTER TABLE `tbl_projects`
   MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `tbl_puroks`
+--
+ALTER TABLE `tbl_puroks`
+  MODIFY `purok_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_receivers`

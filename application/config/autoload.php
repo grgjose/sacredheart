@@ -142,4 +142,5 @@ $autoload['model'] = array(
 	'projects_model',
 	'logs_model',
 	'info_model',
+	'puroks_model',
 	'replies_model');

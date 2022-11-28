@@ -30,7 +30,7 @@
 				<?php foreach($complaints as $complaint){ ?>
                 <tr>
 				<td><?php echo $complaint->complaint_description; ?></td>
-				<td><a href="<?php echo base_url() . 'assets/files/complaints/' . $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
+				<td><a class="btn btn-info" href="#" onclick="Download('<?php echo base_url() . 'provide/download_file/1/' . $complaint->complaint_letter; ?>')">Download File</a></td>
 				<td><?php foreach($users as $user){ if($user->user_id == $complaint->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?></td>
                 <td>
 				<?php if($complaint->status == 1){?> <span class="badge badge-success">Done</span> <?php }?>
@@ -62,6 +62,11 @@
                 <?php } ?>
                 </tfoot>
 				</table>
+				<script>
+				function Download(url) {
+					window.open(url);
+				};
+				</script>
 				<style>
 
 					.results tr[visible='false'],

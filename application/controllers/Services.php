@@ -218,7 +218,7 @@ class Services extends CI_Controller {
 			$description = $this->input->post('description');
 			
 			// Upload ID to a Path
-			$config['upload_path']          = './assets/files/registration/';
+			$config['upload_path']          = './assets/files/complaints/';
 			$config['allowed_types']        = '*';
 			$config['max_size']             = 1000000000;
 			$config['file_name']			= time();

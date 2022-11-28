@@ -152,7 +152,7 @@
 	</div>
 </section>
 
-<?php $ctr = $ctr + 1; } ?>
+<?php $ctr = $ctr + 1; if($ctr == 2){ break; } } ?>
 
 <!--
 

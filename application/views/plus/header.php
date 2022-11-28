@@ -205,9 +205,14 @@
 				$('#navbar-register').addClass("active");
 			}
 
-			else if(url.indexOf('myprofile') > 0){
+			else if(url.indexOf('home/my_info') > 0){
 				$('#navbar-myprofile').addClass("active");
 			} 
+
+			else if(url.indexOf('home/edit_info') > 0){
+				$('#navbar-myprofile').addClass("active");
+			} 
+
 			else {
 				$('#navbar-home').addClass("active");
 			}

@@ -24,7 +24,7 @@
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-md-6">
             <div class="info-box">
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-file-alt"></i></span>
 
@@ -41,7 +41,7 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-md-6">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-angry"></i></span>
 
@@ -62,7 +62,7 @@
           <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
 
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-md-6">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-success elevation-1"><i class="fas fa-hands-helping"></i></span>
 
@@ -79,7 +79,7 @@
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-3">
+          <div class="col-12 col-md-6">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
@@ -98,9 +98,9 @@
         <!-- Main row -->
         <div class="row">
           <!-- Left col -->
-          <div class="col-md-6">
+          <div class="col-md-12">
             <!-- CHART: All Services -->
-			<div class="card" style="height: 650px;">
+			<div class="card">
               <div class="card-header">
                 <h3 class="card-title">Services Usage</h3>
 
@@ -125,7 +125,7 @@
 								</div>
 							</div>
 						</div>
-						<canvas id="pieChart" height="63" width="127" style="display: block; width: 167px; height: 83px;" class="chartjs-render-monitor"></canvas>
+						<canvas id="pieChart" style="display: block; height: 60%; width: 60%;" class="chartjs-render-monitor"></canvas>
 						<?php $total=0; ?>
 						<?php foreach($requests as $request){ $total = $total + 1;}?>
 						<?php foreach($complaints as $complaint){ $total = $total + 1;}?>
@@ -190,9 +190,9 @@
               <!-- /.footer -->
             </div>
 		  </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
 		    <!-- TABLE: Latest Complaints -->
-            <div class="card" style="height: 650px;">
+            <div class="card">
               <div class="card-header border-transparent">
                 <h3 class="card-title">Latest Complaints</h3>
 
@@ -222,7 +222,7 @@
                     <tr>
                       <td><?php echo $complaint->complaint_id; ?></td>
                       <td><?php echo $complaint->complaint_description; ?></td>
-					  <td><a href="<?php echo base_url() ?>assets/files/<?php echo $complaint->complaint_letter; ?>"><?php echo $complaint->complaint_letter; ?></a></td>
+					  <td><a class="btn btn-info" href="#" onclick="Download('<?php echo base_url() . 'admin/download_file/1/' . $complaint->complaint_letter; ?>')">Download File</a></td>
                       <td>
 					    <?php if($complaint->status == 1){?> <span class="badge badge-success">Done</span> <?php }?>
 						<?php if($complaint->status == 0){?> <span class="badge badge-danger">Pending</span> <?php }?>
@@ -244,9 +244,9 @@
               <!-- /.card-footer -->
             </div>
 		  </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
 			<!-- TABLE: Latest Document Requests-->
-            <div class="card" style="height: 650px;">
+            <div class="card">
               <div class="card-header border-transparent">
                 <h3 class="card-title">Latest Document Requests</h3>
 
@@ -300,9 +300,9 @@
               <!-- /.card-footer -->
             </div>
 		  </div>
-          <div class="col-md-6">
+          <div class="col-md-12">
 			<!-- TABLE: Latest Assistance Requests-->
-            <div class="card" style="height: 650px;">
+            <div class="card">
               <div class="card-header border-transparent">
                 <h3 class="card-title">Latest Assistance Requests</h3>
 
@@ -363,4 +363,9 @@
     </section>
     <!-- /.content -->
   </div>
+  				<script>
+				function Download(url) {
+					window.open(url);
+				};
+				</script>
   <!-- /.content-wrapper -->

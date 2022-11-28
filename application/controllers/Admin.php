@@ -1088,4 +1088,99 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	// Puroks
+
+	public function view_puroks(){
+		if($this->session->userdata('usertype') != 1)
+		{
+			$error = "Access Denied!";
+			$this->session->set_userdata('error' , $error);
+
+			redirect('/home', 'refresh');
+		}
+		else
+		{
+			$newdata = array(
+				'username'  => $this->session->userdata('username'),
+				'usertype'  => $this->session->userdata('usertype'),
+				'email'     => $this->session->userdata('email'),
+				'fname'  => $this->session->userdata('fname'),
+				'mname'  => $this->session->userdata('mname'),
+				'lname'  => $this->session->userdata('lname'),
+				'userfile'  => $this->session->userdata('userfile'),
+				'logged_in' => $this->session->userdata('logged_in')
+			);
+
+			$data['user'] = $newdata;
+			$data['error'] = $this->session->userdata('error');
+			$data['success'] = $this->session->userdata('success');
+
+			$data['puroks'] = $this->puroks_model->purok_retrieve();
+			$data['households'] = $this->puroks_model->household_retrieve();
+
+			$this->load->view('admin/plus/header', $data);
+			$this->load->view('admin/puroks', $data);
+			$this->load->view('admin/plus/footer', $data);
+
+			$this->session->unset_userdata('error');
+			$this->session->unset_userdata('success');
+		}
+	}
+
+	public function add_purok(){
+		$purok = $this->input->post('purok');
+
+		$this->puroks_model->purok_insert($purok);
+
+		$success = "Purok has been Added";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/view_puroks', 'refresh');
+	}
+
+	public function delete_purok(){
+		$purok_id = $this->input->post('id');
+
+		$this->puroks_model->purok_delete($purok_id);
+
+		$success = "Purok has been Deleted";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/view_puroks', 'refresh');
+	}
+
+	public function inc_household(){
+		$purok_id = $this->input->post('id');
+		$household = $this->input->post('household');
+
+		$this->puroks_model->household_insert($purok_id, $household);
+
+		$success = "Household has been Added";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/view_puroks', 'refresh');
+	}
+
+	public function dec_household(){
+		$household = $this->input->post('dec_household');
+		$this->puroks_model->household_delete($household);
+
+		$success = "Household has been Deleted";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/admin/view_puroks', 'refresh');
+	}
+
+	// Download File
+	public function download_file($type = null, $name = null){
+		
+		$path = "";
+		if($type == 1){ $path = base_url().'assets/files/complaints/'; }
+
+		$this->load->helper('download');
+		$data = file_get_contents($path.$name);
+		force_download($name, $data);
+	
+	}
+
 }
