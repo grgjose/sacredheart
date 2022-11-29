@@ -49,6 +49,16 @@ class Requests_model extends CI_Model {
             $this->db->close();
 		}
 
+		public function request_delete($id)
+		{
+			$this->db->where('request_id', $id);
+			$this->db->delete('tbl_request');
+			$this->db->where('request_id', $id);
+			$this->db->delete('tbl_request_remarks');
+			$this->db->close();
+		}
+
+
 		//tbl_request_types
 		public function request_types_retrieve($id = null){
 			if($id !== null) { $this->db->where('request_type_id', intval($id)); }

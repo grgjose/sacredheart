@@ -51,6 +51,15 @@ class Complaints_model extends CI_Model {
             $this->db->close();
 		}
 
+		public function complaint_delete($id)
+		{
+			$this->db->where('complaint_id', $id);
+			$this->db->delete('tbl_complaints');
+			$this->db->where('complaint_id', $id);
+			$this->db->delete('tbl_complaint_remarks');
+			$this->db->close();
+		}
+
 		//tbl_complaint_remarks
 		public function complaint_remarks_retrieve($id = null){
 			if($id !== null) { $this->db->where('complaint_id', intval($id)); }

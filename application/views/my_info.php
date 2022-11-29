@@ -17,6 +17,7 @@
 					  <th class="text-center">Complaint Description</th>
 					  <th class="text-center">Complaint Letter</th>
 					  <th style="width: 300px;" class="text-center">Remarks</th>
+					  <th class="text-center">Action</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -35,6 +36,13 @@
 							data-toggle="modal" data-target="#AddRemarkModal"
 							onclick="addRemarkFunc(<?php echo $complaint->complaint_id; ?>,<?php echo $complaint->status; ?>,'complaints')" >
 							<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
+							</button>
+						</td>
+						<td style="height: 30px;" class="text-center">
+							<button class="btn btn-danger text-justify text-center" 
+							data-toggle="modal" data-target="#DeleteModal"
+							onclick="delFunc(2,<?php echo $complaint->complaint_id; ?>)" >
+							<span class="ti-trash"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Cancel</span>
 							</button>
 						</td>
 					</tr>
@@ -81,6 +89,7 @@
 					  <th class="text-center">Document Purpose</th>
 					  <th class="text-center">Date Needed</th>
 					  <th style="width: 300px;" class="text-center">Remarks</th>
+					  <th class="text-center">Action</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -103,6 +112,13 @@
 						onclick="addRemarkFunc(<?php echo $request->request_id; ?>,<?php echo $request->status; ?>,'requests')" >
 						<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
 						</button>
+						</td>
+						<td style="height: 30px;" class="text-center">
+							<button class="btn btn-danger text-justify text-center" 
+							data-toggle="modal" data-target="#DeleteModal"
+							onclick="delFunc(1,<?php echo $request->request_id; ?>)" >
+							<span class="ti-trash"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Cancel</span>
+							</button>
 						</td>
 					</tr>
 					<?php } ?>
@@ -145,6 +161,7 @@
 					  <th class="text-center">Assistance Purpose</th>
 					  <th class="text-center">Date Needed</th>
 					  <th style="width: 300px;" class="text-center">Remarks</th>
+					  <th class="text-center">Action</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -167,6 +184,13 @@
 						onclick="addRemarkFunc(<?php echo $assist->assistance_id; ?>,<?php echo $assist->status; ?>,'assistance')" >
 						<span class="ti-plus"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Remarks</span>
 						</button>
+						</td>
+						<td style="height: 30px;" class="text-center">
+							<button class="btn btn-danger text-justify text-center" 
+							data-toggle="modal" data-target="#DeleteModal"
+							onclick="delFunc(3,<?php echo $assist->assistance_id; ?>)" >
+							<span class="ti-trash"></span><span style="font-size: 12px; font-family: Verdana, sans-serif;">Cancel</span>
+							</button>
 						</td>
 					</tr>
 					<?php } ?>
@@ -196,11 +220,14 @@
 					
 	}
 
-	function delFunc(id)
+	function delFunc(tp, id)
 	{
+		if(tp === 1){ $('#DeleteModal #type').val('requests'); }
+		if(tp === 2){ $('#DeleteModal #type').val('complaints'); }
+		if(tp === 3){ $('#DeleteModal #type').val('assistance'); }
 		$('#DeleteModal #id').val(id);
-					
 	}
+
 	function addRemarkFunc(id, st, tp)
 	{
 		$('#AddRemarkModal #id').val(id);
@@ -267,7 +294,34 @@
 	</div>
 </div>
 
-
+<!-- Delete Modal -->
+<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="DeleteModal" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Cancel Confirmation</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+		<?php $attributes = array('id' => 'DeleteModalForm'); echo form_open('home/cancel_request', $attributes); ?>
+			<div class="form-row">
+			<input type="hidden" id="type" name="type"  value="">
+			<input type="hidden" id="id" name="id"  value="">
+			<div class="col">
+				<label>Are you sure you want to cancel?</label>
+			</div>
+			</div> <br>						
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<input type="submit" class="btn btn-primary" value="Cancel" />
+		</div>
+		</form>
+	</div>
+	</div>
+</div>
 
 <!-- ********************************
      *             STORY            *

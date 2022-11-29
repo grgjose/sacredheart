@@ -48,6 +48,15 @@ class Assistance_model extends CI_Model {
             $this->db->close();
 		}
 
+		public function assistance_delete($id)
+		{
+			$this->db->where('assistance_id', $id);
+			$this->db->delete('tbl_assistance');
+			$this->db->where('assistance_id', $id);
+			$this->db->delete('tbl_assistance_remarks');
+			$this->db->close();
+		}
+
 		//tbl_assistance_types
 		public function assistance_types_retrieve($id = null){
 			if($id !== null) { $this->db->where('assistance_type_id', intval($id)); }

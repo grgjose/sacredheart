@@ -50,55 +50,50 @@
                   <thead class="border-bottom-0">
 					<tr>
 						<th></th>
-						<th></th>
 					</tr>
                   </thead>
                   <tbody>
 					<?php $ctr = 0; $counter = 0; foreach($projects as $project){ $counter = $counter + 1; }?>
 
 					<?php foreach($projects as $project){ ?>
-					<?php if($ctr % 2 == 0){ echo "<tr>"; }?>
-                    <td class="border-right border-left border-top border-bottom align-items-center text-center justify-content-center" style="margin-left: 50%; margin-right: 50%;">
-						<h4><?php echo $project->project_title ?></h4> <br>
-						<label>Date of Project: <?php echo $project->project_date; ?></label> <br>
-						<img src="<?php echo base_url() ?>assets/files/projects/<?php echo $project->project_userfile;?>" style="width: 600px; height: 400px;" /> <br> <br>
-						<p style="height: 100px;"><?php echo $project->project_details; ?></p> <br>
+
+                    <tr>
+						<td class="border-right border-left border-top border-bottom align-items-center text-center justify-content-center" style="margin-left: 50%; margin-right: 50%;">
+							<h4><?php echo $project->project_title ?></h4> <br>
+							<label>Date of Project: <?php echo $project->project_date; ?></label> <br>
+							<img src="<?php echo base_url() ?>assets/files/projects/<?php echo $project->project_userfile;?>" style="width: 600px; height: 400px;" /> <br> <br>
+							<p style="height: 50px;"><?php echo $project->project_details; ?></p> <br>
 						
-						<cite>
-						    Posted by <?php foreach($users as $user){ if($user->user_id == $project->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?> 
-							on <?php echo $project->date_created; ?> <?php if($project->archive == 1){ ?> (This post is Archived) <?php } ?>
-						</cite> <br>
+							<cite>
+								Posted by <?php foreach($users as $user){ if($user->user_id == $project->user_id){ echo $user->fname." ".$user->mname." ".$user->lname; break; } } ?> 
+								on <?php echo $project->date_created; ?> <?php if($project->archive == 1){ ?> (This post is Archived) <?php } ?>
+							</cite> <br>
 
 						
 
-						<i id="project_title_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_title; ?></i>
-						<i id="project_date_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_date; ?></i>
-						<i id="project_details_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_details; ?></i>
-						<i id="project_userfile_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_userfile; ?></i>
-						<i id="user_id_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->user_id; ?></i>
-						<i id="official_id_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->official_id; ?></i>
+							<i id="project_title_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_title; ?></i>
+							<i id="project_date_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_date; ?></i>
+							<i id="project_details_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_details; ?></i>
+							<i id="project_userfile_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->project_userfile; ?></i>
+							<i id="user_id_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->user_id; ?></i>
+							<i id="official_id_<?php echo $project->project_id;?>" style="display: none;"><?php echo $project->official_id; ?></i>
 						
-						<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
-						onclick="editFunc(<?php echo $project->project_id; ?>,'<?php echo $project->project_userfile; ?>')">
-						Edit Post
-						</button>
-						<button class="btn btn-danger text-justify text-center" data-toggle="modal" data-target="#DeleteModal"
-						onclick="delFunc(<?php echo $project->project_id; ?>)">
-						Delete Post
-						</button>
-						<button class="btn btn-light text-justify text-center"
-						onclick="archFunc(<?php echo $project->project_id; ?>)">
-							<?php if($project->archive == 1){ ?> Undo Archive <?php } else { ?> Archive Post <?php } ?>
-						</button>
-						<br> <br>
-					</td>
-					<?php $ctr = $ctr + 1; ?>
+							<button class="btn btn-info text-justify text-center" data-toggle="modal" data-target="#EditModal"
+							onclick="editFunc(<?php echo $project->project_id; ?>,'<?php echo $project->project_userfile; ?>')">
+							Edit Post
+							</button>
+							<button class="btn btn-danger text-justify text-center" data-toggle="modal" data-target="#DeleteModal"
+							onclick="delFunc(<?php echo $project->project_id; ?>)">
+							Delete Post
+							</button>
+							<button class="btn btn-light text-justify text-center"
+							onclick="archFunc(<?php echo $project->project_id; ?>)">
+								<?php if($project->archive == 1){ ?> Undo Archive <?php } else { ?> Archive Post <?php } ?>
+							</button>
+							<br> <br>
+						</td>
+					</tr>
 
-				  <?php if(($ctr == $counter) && ($ctr % 2 == 1)){ ?> 
-					<td class="border-right border-left border-top border-bottom align-items-center text-center justify-content-center" style="margin-left: 50%; margin-right: 50%;"></td>
-				  <?php }?>
-
-                  <?php if($ctr % 2 == 0){ echo "</tr>"; }?>
                   <?php } ?>
                   </tfoot>
                 </table>

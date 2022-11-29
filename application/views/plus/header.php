@@ -149,7 +149,7 @@
 							<?php if($user['usertype'] == 3){ ?>
 							<li>
 								<a class="dropdown-item @@team" href="<?php echo base_url(); ?>home/my_info">My Home
-									<span><i class="ti-angle-down"></i>
+									
 									<?php if($user['notif_count'] != 0){ ?>
 									<i class="ti-bell" style="width: 14px; height: 14px; border-radius: 5px; background-color: #C7E4EE; font-size: 14px; padding: 5px; ">
 										<?php echo $user['notif_count']; ?>

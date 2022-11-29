@@ -6,13 +6,21 @@ class User_model extends CI_Model {
         public function __construct() {
             parent::__construct();
             $this->load->database();
-			$this->load->dbutil();
+			try{
+				$this->load->dbutil();
+			} finally {}
         }    
     
         public function users_insert($password, $usertype, $email, $fname, $mname, $lname, $address, $contact, $userfile, $approved, $reg_userfile){
 			
-			$dbs = $this->dbutil->list_databases();
-			foreach ($dbs as $db) { $mydb = $db; break; }
+			$mydb = "";
+			
+			try{
+				$dbs = $this->dbutil->list_databases();
+				foreach ($dbs as $db) { $mydb = $db; break; }
+			}finally {}
+
+			if($mydb == ""){ $mydb = "b7_32962344_sacredheart"; }
 
 			$sql = "SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '". $mydb ."' AND TABLE_NAME = 'tbl_users';";
 

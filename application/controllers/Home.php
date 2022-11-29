@@ -689,6 +689,25 @@ class Home extends CI_Controller {
 		$this->load->view('admin/remarks_table', $data);
 	}
 
+	public function cancel_request(){
+		$type = $this->input->post('type');
+		$id= $this->input->post('id');
+
+		if($type == "requests"){
+			$this->requests_model->request_delete($id);
+		} elseif($type == "complaints"){
+			$this->complaints_model->complaint_delete($id);
+		} else {
+			$this->assistance_model->assistance_delete($id);
+		}
+
+		$success = "Request Deleted";
+		$this->session->set_userdata('success', $success);
+
+		redirect('/home/my_info','refresh');
+
+	}
+
 	public function edit_info(){
 
 		if($this->session->userdata('usertype') == 1)
@@ -868,16 +887,27 @@ class Home extends CI_Controller {
 	public function set_chatbot_reply($reply_id = null){
 
 		$x = $this->session->userdata('chatbot_replies');
+		
+		// Record Response
 		$x = $x . ',' . $reply_id;
 
 		$replies = $this->replies_model->reply_retrieve();
 
-		foreach($replies as $reply){ if($reply->reply_id == intval($reply_id)){ $x = $x .','.$reply->reply_suggested; break; }}
-
-		$myArr = explode(',', $x);
-		$idx = count($myArr);
-
-		if($myArr[$idx - 1]=='2' && count($myArr)>1){ foreach($replies as $reply){ if($reply->reply_id == intval(2)){ $x = $x .','.$reply->reply_suggested; break; }}}
+		// Get Reply base on Response
+		foreach($replies as $reply){ 
+			if($reply->reply_id == intval($reply_id)){ 
+				$x = $x .','.$reply->reply_suggested; 
+				// Check if Reply leads to Start of Dialog
+				$y = $reply->reply_suggested;
+				if(strpos($y,",") == null){
+					foreach($replies as $reply){ 
+						if($reply->reply_id == intval($y) && $reply->reply_suggested == '2'){ 
+							$x = $x .','.$reply->reply_suggested; break;
+						} 
+					}
+				}
+			}
+		}
 
 		$this->session->set_userdata('chatbot_replies', $x);
 	}
